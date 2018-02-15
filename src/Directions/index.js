@@ -9,6 +9,12 @@ import nightLive from "./img/night-live.svg";
 import relax from "./img/relax.svg";
 import shoping from "./img/shoping.svg";
 import sun from "./img/sun.svg";
+import krasnodar from "./img/krasnodar.png";
+import sochi from "./img/sochi.png";
+import piter from "./img/piter.png";
+import minvody from "./img/minvody.png";
+import simferopol from "./img/simferopol.png";
+import barcelona from "./img/barcelona.png";
 
 import Card from "./Card";
 
@@ -27,16 +33,16 @@ const Title = styled.h2`
   font-size: 18px;
   text-align: center;
   margin-bottom: 32px;
-  a {
-    display: block;
-    color: #00ace2;
-    text-decoration: none;
-    :after {
-    }
-  }
-  img {
-    margin-left: 5px;
-  }
+`;
+
+const TitleLink = styled.a`
+  display: block;
+  color: #00ace2;
+  text-decoration: none;
+`;
+
+const Edit = styled.img`
+  margin-left: 5px;
 `;
 
 const Icon = styled.div`
@@ -51,6 +57,8 @@ const Icon = styled.div`
   margin-bottom: 21px;
   }
 `;
+
+const Picture = styled.img``;
 
 const IconText = styled.a`
   text-align: center;
@@ -69,6 +77,57 @@ const IconText = styled.a`
   }
 `;
 
+const cards = [
+  {
+    id: 1,
+    src: krasnodar,
+    city: "Краснодар",
+    search: "Найти от 1 212 ₽",
+    country: "Россия",
+    date: "18 марта"
+  },
+  {
+    id: 2,
+    src: sochi,
+    city: "Сочи (Адлер)",
+    search: "Найти от 1 334 ₽",
+    country: "Россия",
+    date: "27 марта"
+  },
+  {
+    id: 3,
+    src: piter,
+    city: "Санкт-Петербург",
+    search: "Найти от 1 508 ₽",
+    country: "Россия",
+    date: "19 февраля"
+  },
+  {
+    id: 4,
+    src: minvody,
+    city: "Минеральне Воды",
+    search: "Найти от 2 074 ₽",
+    country: "Россия",
+    date: "13 марта"
+  },
+  {
+    id: 5,
+    src: simferopol,
+    city: "Симферополь (Крым)",
+    search: "Найти от 2 407 ₽",
+    country: "Россия",
+    date: "13 марта"
+  },
+  {
+    id: 6,
+    src: barcelona,
+    city: "Барселона",
+    search: "Найти от 4 247 ₽",
+    country: "Испания",
+    date: "24 марта"
+  }
+];
+
 export default () => (
   <Derections>
     <Grid>
@@ -79,55 +138,64 @@ export default () => (
         <Col xs={12}>
           <Title>
             Популярные направления перелетов из города
-            <a href="#">
+            <TitleLink href="#">
               Москва
-              <img src={edit} alt="edit" />
-            </a>
+              <Edit src={edit} alt="edit" />
+            </TitleLink>
           </Title>
         </Col>
       </Row>
       <Row>
         <Col xs={4}>
           <Icon>
-            <img src={anywhere} alt="anywhere" />
+            <Picture src={anywhere} alt="anywhere" />
           </Icon>
           <IconText href="#">Куда угодно</IconText>
         </Col>
         <Col xs={4}>
           <Icon>
-            <img src={sun} alt="sun" />
+            <Picture src={sun} alt="sun" />
           </Icon>
           <IconText href="#">Солнце и море</IconText>
         </Col>
         <Col xs={4}>
           <Icon>
-            <img src={shoping} alt="shoping" />
+            <Picture src={shoping} alt="shoping" />
           </Icon>
           <IconText href="#">Шопинг, Город</IconText>
         </Col>
         <Col xs={4}>
           <Icon>
-            <img src={history} alt="history" />
+            <Picture src={history} alt="history" />
           </Icon>
           <IconText href="#">Культура и история</IconText>
         </Col>
         <Col xs={4}>
           <Icon>
-            <img src={nightLive} alt="night-live" />
+            <Picture src={nightLive} alt="night-live" />
           </Icon>
           <IconText href="#">Ночная жизнь</IconText>
         </Col>
         <Col xs={4}>
           <Icon>
-            <img src={relax} alt="relax" />
+            <Picture src={relax} alt="relax" />
           </Icon>
           <IconText href="#">Отдых с детьми</IconText>
         </Col>
       </Row>
       <Row>
-        <Col xs={12}>
-          <Card />
-        </Col>
+        {cards.map(card => (
+          <Col xs={12}>
+            <Card
+              key={card.id}
+              src={card.src}
+              city={card.city}
+              search={card.search}
+              country={card.country}
+              date={card.date}
+            />
+          </Col>
+        ))}
       </Row>
     </Grid>
   </Derections>
