@@ -1,13 +1,12 @@
 import React from "react";
-import styled from "styled-components";
 
 import Header from "./Header/index";
-import Directions from "./Directions/index";
-import Prices from "./Prices/index";
-import Offer from "./Offer/index";
-import Help from "./Help/index";
-import MobileApp from "./MobileApp/index";
-import Footer from "./Footer/index";
+import Directions from "./Directions";
+import Prices from "./Prices";
+import Offer from "./Offer";
+import Help from "./Help";
+import MobileApp from "./MobileApp";
+import Footer from "./Footer";
 
 export default () => {
   return (
