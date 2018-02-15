@@ -6,7 +6,7 @@ const Ticket = styled.div`
   padding-bottom: 16px;
   margin-bottom: 12px;
 `;
-const Title = styled.div`
+const Title = styled.h2`
   box-sizing: border-box;
   padding: 22px 16px 21px;
   background: #cd2027;
@@ -14,12 +14,14 @@ const Title = styled.div`
   justify-content: space-between;
   align-items: center;
   max-height: 63px;
-  p {
-    line-height: 20px;
-    font-size: 16px;
-    color: #ffffff;
-  }
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #ffffff;
 `;
+
+const Img = styled.img``;
+
 const Row = styled.div`
   display: flex;
   justify-content: space-between;
@@ -36,11 +38,13 @@ const Cost = styled.div`
   color: #5c5c5c;
   margin-right: 16px;
   margin-bottom: 8px;
-  span {
-    font-size: 12px;
-    margin-right: 4px;
-  }
 `;
+
+const CostFrom = styled.span`
+  font-size: 12px;
+  margin-right: 4px;
+`;
+
 const DaysLeft = styled.div`
   line-height: 15px;
   font-size: 12px;
@@ -73,21 +77,23 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const Col = styled.div``;
+
 export default props => (
   <Ticket>
     <Title>
-      <p>{props.title}</p>
-      <img src={props.icon} alt="" />
+      {props.title}
+      <Img src={props.icon} alt="" />
     </Title>
     <Row>
       <Logo src={props.company} />
-      <div>
+      <Col>
         <Cost>
-          <span>от</span>
+          <CostFrom>от</CostFrom>
           {props.cost} ₽
         </Cost>
         <DaysLeft>{props.daysLeft} </DaysLeft>
-      </div>
+      </Col>
     </Row>
     <Text>{props.text}</Text>
     <Button>Узнать подробности</Button>

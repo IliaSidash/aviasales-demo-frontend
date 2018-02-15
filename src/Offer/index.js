@@ -21,17 +21,18 @@ const Title = styled.h2`
 const Text = styled.div`
   margin-top: 20px;
   text-align: center;
-  a,
-  p {
-    line-height: 20px;
-    font-size: 16px;
+  line-height: 20px;
+  font-size: 16px;
+  color: #ffffff;
+`;
 
-    color: #ffffff;
-  }
-  a {
-    text-decoration-line: underline;
-    margin-bottom: 8px;
-  }
+const Link = styled.a`
+  display: block;
+  line-height: 20px;
+  font-size: 16px;
+  color: #ffffff;
+  text-decoration-line: underline;
+  margin-bottom: 8px;
 `;
 
 const tickets = [
@@ -88,8 +89,8 @@ export default () => (
       <Row>
         <Col xs={12}>
           <Text>
-            <a href="#">Смотреть все спецпредложения</a>
-            <p> * средняя цена по направлению</p>
+            <Link href="#">Смотреть все спецпредложения</Link>
+            * средняя цена по направлению
           </Text>
         </Col>
       </Row>
