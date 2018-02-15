@@ -32,8 +32,8 @@ export default props => (
   <Nav key={props.id}>
     <Title>{props.title}</Title>
     <Menu>
-      {props.links.map(link => <Link href={link.href}>{link.link}</Link>)}
-      <All href={props.all.href}>{props.all.link}</All>
+      {props.links.map(item => <Link href={item.href}>{item.text}</Link>)}
+      <All href={props.all.href}>{props.all.text}</All>
     </Menu>
   </Nav>
 );

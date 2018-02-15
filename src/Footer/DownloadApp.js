@@ -23,11 +23,12 @@ const Text = styled.span`
   color: #ffffff;
   text-align: left;
   max-width: 70px;
-  b {
-    font-weight: bold;
-    font-size: 12px;
-    display: block;
-  }
+`;
+
+const System = styled.span`
+  font-weight: bold;
+  font-size: 12px;
+  display: block;
 `;
 
 export default props => (
@@ -35,7 +36,7 @@ export default props => (
     <Img src={props.img} />
     <Text>
       {props.text}
-      <b>{props.store}</b>
+      <System>{props.store}</System>
     </Text>
   </DownloadApp>
 );

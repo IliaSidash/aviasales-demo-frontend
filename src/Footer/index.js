@@ -9,31 +9,17 @@ import twit from "./img/twit.png";
 import viber from "./img/viber.png";
 import apple from "./img/apple.png";
 import play from "./img/play.png";
-import wp from "./img/windows-phone.png";
+import windowsPhone from "./img/windows-phone.png";
 
 import Menu from "./Menu";
+import Nav from "./Nav";
 import Social from "./Social";
 import DownloadApp from "./DownloadApp";
 
 const Footer = styled.footer`
   padding: 32px 0 24px;
 `;
-const Top = styled.div``;
-const BottomMenu = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-  li {
-    display: block;
-    line-height: 16px;
-    font-size: 12px;
-    color: #5b5b5c;
-    margin: 0 20px 8px 0;
-    :last-child {
-      margin-right: 0;
-    }
-  }
-`;
+
 const Hr = styled.div`
   height: 1px;
   border-bottom: 1px solid #e0e6e8;
@@ -41,12 +27,13 @@ const Hr = styled.div`
   margin-bottom: 24px;
 `;
 
-const Title = styled.div`
+const Title = styled.h3`
   line-height: 16px;
   font-size: 12px;
   text-align: center;
   color: #5b5b5c;
   margin: 12px 0 16px;
+  font-weight: normal;
 `;
 
 const Copyright = styled.div`
@@ -62,111 +49,80 @@ const menu = [
     id: 1,
     title: "СТРАНЫ",
     links: [
-      { href: "#", link: "Россия" },
-      { href: "#", link: "Таиланд" },
-      { href: "#", link: "Черногория" },
-      { href: "#", link: "Кипр" },
-      { href: "#", link: "Болгария" },
-      { href: "#", link: "Грузия" }
+      { href: "#", text: "Россия" },
+      { href: "#", text: "Таиланд" },
+      { href: "#", text: "Черногория" },
+      { href: "#", text: "Кипр" },
+      { href: "#", text: "Болгария" },
+      { href: "#", text: "Грузия" }
     ],
-    all: { href: "#", link: "Все страны →" }
+    all: { href: "#", text: "Все страны →" }
   },
   {
     id: 2,
     title: "ГОРОДА",
     links: [
-      { href: "#", link: "Москва" },
-      { href: "#", link: "Санкт-Петербург" },
-      { href: "#", link: "Симферополь" },
-      { href: "#", link: "Адлер" },
-      { href: "#", link: "Екатеринбург" },
-      { href: "#", link: "Лондон" }
+      { href: "#", text: "Москва" },
+      { href: "#", text: "Санкт-Петербург" },
+      { href: "#", text: "Симферополь" },
+      { href: "#", text: "Адлер" },
+      { href: "#", text: "Екатеринбург" },
+      { href: "#", text: "Лондон" }
     ],
-    all: { href: "#", link: "Все города →" }
+    all: { href: "#", text: "Все города →" }
   },
   {
     id: 3,
     title: "АВИАКОМПАНИИ",
     links: [
-      { href: "#", link: "Air Berlin" },
-      { href: "#", link: "Air France" },
-      { href: "#", link: "Alitalia" },
-      { href: "#", link: "Air Baltic" },
-      { href: "#", link: "Emirates" },
-      { href: "#", link: "KLM" }
+      { href: "#", text: "Air Berlin" },
+      { href: "#", text: "Air France" },
+      { href: "#", text: "Alitalia" },
+      { href: "#", text: "Air Baltic" },
+      { href: "#", text: "Emirates" },
+      { href: "#", text: "KLM" }
     ],
-    all: { href: "#", link: "Все авиакомпании →" }
+    all: { href: "#", text: "Все авиакомпании →" }
   },
   {
     id: 4,
     title: "АЭРОПОРТЫ",
     links: [
-      { href: "#", link: "Шереметьево" },
-      { href: "#", link: "Курумоч" },
-      { href: "#", link: "Домодедово" },
-      { href: "#", link: "Толмачево" },
-      { href: "#", link: "Владивосток" },
-      { href: "#", link: "Гамбург" }
+      { href: "#", text: "Шереметьево" },
+      { href: "#", text: "Курумоч" },
+      { href: "#", text: "Домодедово" },
+      { href: "#", text: "Толмачево" },
+      { href: "#", text: "Владивосток" },
+      { href: "#", text: "Гамбург" }
     ],
-    all: { href: "#", link: "Все аэропорты →" }
+    all: { href: "#", text: "Все аэропорты →" }
   },
   {
     id: 5,
     title: "НАПРАВЛЕНИЯ",
     links: [
-      { href: "#", link: "MOW – SIP" },
-      { href: "#", link: "MOW – AER" },
-      { href: "#", link: "MOW – TIV" },
-      { href: "#", link: "MOW – MRV" },
-      { href: "#", link: "LED – MOW" },
-      { href: "#", link: "MOW – BKK" }
+      { href: "#", text: "MOW – SIP" },
+      { href: "#", text: "MOW – AER" },
+      { href: "#", text: "MOW – TIV" },
+      { href: "#", text: "MOW – MRV" },
+      { href: "#", text: "LED – MOW" },
+      { href: "#", text: "MOW – BKK" }
     ],
-    all: { href: "", link: "" }
+    all: { href: "", text: "" }
   },
   {
     id: 6,
     title: "СЕРВИСЫ",
     links: [
-      { href: "#", link: "Горящие авиабилеты" },
-      { href: "#", link: "Календарь низких цен" },
-      { href: "#", link: "Карта низких цен" },
-      { href: "#", link: "Спецпредложения" },
-      { href: "#", link: "Таблица цен" },
-      { href: "#", link: "Блог" },
-      { href: "#", link: "Помощь" }
+      { href: "#", text: "Горящие авиабилеты" },
+      { href: "#", text: "Календарь низких цен" },
+      { href: "#", text: "Карта низких цен" },
+      { href: "#", text: "Спецпредложения" },
+      { href: "#", text: "Таблица цен" },
+      { href: "#", text: "Блог" },
+      { href: "#", text: "Помощь" }
     ],
-    all: { href: "", link: "" }
-  }
-];
-
-const bottomMenu = [
-  {
-    href: "#",
-    link: "О компании"
-  },
-  {
-    href: "#",
-    link: "Партнёрская программа"
-  },
-  {
-    href: "#",
-    link: "Реклама"
-  },
-  {
-    href: "#",
-    link: "Вакансии"
-  },
-  {
-    href: "#",
-    link: "Помощь"
-  },
-  {
-    href: "#",
-    link: "Правила"
-  },
-  {
-    href: "#",
-    link: "White Label авиабилеты"
+    all: { href: "", text: "" }
   }
 ];
 
@@ -174,27 +130,27 @@ const socials = [
   {
     href: "#",
     img: vk,
-    link: "Вконтакте"
+    text: "Вконтакте"
   },
   {
     href: "#",
     img: face,
-    link: "Фейсбук"
+    text: "Фейсбук"
   },
   {
     href: "#",
     img: inst,
-    link: "Инстаграм"
+    text: "Инстаграм"
   },
   {
     href: "#",
     img: twit,
-    link: "Твиттер"
+    text: "Твиттер"
   },
   {
     href: "#",
     img: viber,
-    link: "Вайбер"
+    text: "Вайбер"
   }
 ];
 
@@ -216,7 +172,7 @@ const apps = [
   {
     id: 3,
     href: "#",
-    img: wp,
+    img: windowsPhone,
     text: "",
     store: "Windows Phone"
   }
@@ -239,15 +195,13 @@ export default () => (
       </Row>
       <Row>
         <Col xs={12}>
-          <BottomMenu>
-            {bottomMenu.map(link => <li href={link.href}>{link.link}</li>)}
-          </BottomMenu>
+          <Nav />
         </Col>
       </Row>
       <Row>
         {socials.map(social => (
           <Col xs={4}>
-            <Social href={social.href} img={social.img} link={social.link} />
+            <Social href={social.href} img={social.img} text={social.text} />
           </Col>
         ))}
       </Row>

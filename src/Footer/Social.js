@@ -17,6 +17,6 @@ const Img = styled.img`
 
 export default props => (
   <Link href={props.href}>
-    <Img src={props.img} /> {props.link}
+    <Img src={props.img} /> {props.text}
   </Link>
 );
