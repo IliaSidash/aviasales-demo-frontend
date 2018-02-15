@@ -4,19 +4,19 @@ import styled from "styled-components";
 const Block = styled.div`
   margin-bottom: 16px;
 `;
-const Title = styled.div`
+const Title = styled.h3`
   display: flex;
   margin-bottom: 22px;
-  img {
-    margin-right: 10px;
-  }
-  h3 {
-    font-weight: bold;
-    line-height: 18px;
-    font-size: 13px;
-    color: #4a4a4a;
-  }
+  font-weight: bold;
+  line-height: 18px;
+  font-size: 13px;
+  color: #4a4a4a;
 `;
+
+const Img = styled.img`
+  margin-right: 10px;
+`;
+
 const Text = styled.p`
   line-height: 20px;
   font-size: 14px;
@@ -33,8 +33,8 @@ const Link = styled.a`
 export default props => (
   <Block>
     <Title>
-      <img src={props.img} alt="" />
-      <h3>{props.title}</h3>
+      <Img src={props.img} alt="" />
+      {props.title}
     </Title>
     <Text>
       {props.text} <Link href="#">Подробнее</Link>
