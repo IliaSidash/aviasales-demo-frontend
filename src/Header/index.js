@@ -78,20 +78,6 @@ const Input = styled.input`
 `;
 const CustomInput = styled.div`
   position: relative;
-  input {
-    color: #4a4a4a;
-  }
-  span {
-    position: absolute;
-    line-height: 20px;
-    font-size: 16px;
-    text-align: center;
-    text-transforme: uppercase;
-    right: 43px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #a0b0b9;
-  }
   :after {
     content: "";
     position: absolute;
@@ -102,6 +88,18 @@ const CustomInput = styled.div`
     width: 16px;
     height: 18px;
   }
+`;
+
+const Airport = styled.span`
+  position: absolute;
+  line-height: 20px;
+  font-size: 16px;
+  text-align: center;
+  text-transforme: uppercase;
+  right: 43px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0b0b9;
 `;
 
 const CustomInputDate = styled.div`
@@ -189,7 +187,7 @@ export default () => (
                 <Col xs={12}>
                   <CustomInput>
                     <Input type="text" value="Москва" />
-                    <span>MOW</span>
+                    <Airport>MOW</Airport>
                   </CustomInput>
                 </Col>
                 <Col xs={12}>
