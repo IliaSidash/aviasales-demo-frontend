@@ -28,46 +28,52 @@ const Country = styled.p`
   color: #a0b0b9;
 `;
 
-const Table = styled.ul`
+const Table = styled.div`
   margin-top: 24px;
-  li {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 16px;
-    :last-child {
-      margin-bottom: 0px;
-    }
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  :last-child {
+    margin-bottom: 0px;
   }
 `;
+
 const From = styled.div`
   line-height: 20px;
   font-size: 16px;
   color: #4a4a4a;
 `;
+
 const Coast = styled.div`
   line-height: 20px;
   font-size: 16px;
   color: #00bae8;
 `;
 
+const Img = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 12px;
+  align-self: center;
+`;
+
+const Col = styled.div``;
+
 export default props => (
   <Card>
     <Row>
-      <div>
-        <img src={props.src} alt="" />
-      </div>
-      <div>
+      <Img src={props.src} alt="" />
+      <Col>
         <City>{props.city}</City>
         <Country>{props.country}</Country>
-      </div>
+      </Col>
     </Row>
-    <Table>
-      {props.prices.map(price => (
-        <li>
-          <From>{price.from}</From>
-          <Coast>{price.coast} ₽</Coast>
-        </li>
-      ))}
-    </Table>
+    {props.prices.map(price => (
+      <Table>
+        <From>{price.from}</From>
+        <Coast>{price.coast} ₽</Coast>
+      </Table>
+    ))}
   </Card>
 );

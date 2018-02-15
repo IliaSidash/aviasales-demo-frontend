@@ -4,9 +4,9 @@ import { Grid, Row, Col } from "react-flexbox-grid";
 import icon from "./img/calen.svg";
 import Card from "./Card";
 
-import ru from "./img/flag-ru.svg";
-import am from "./img/flag-am.svg";
-import md from "./img/flag-md.svg";
+import ru from "./img/ru.png";
+import am from "./img/am.png";
+import md from "./img/md.png";
 
 const Prices = styled.section`
   padding: 60px 0 40px;
