@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Header from "./Header";
 import Directions from "./Directions";
@@ -10,18 +11,31 @@ import Help from "./Help";
 import MobileApp from "./MobileApp";
 import Footer from "./Footer";
 
+import Result from "./Search/Result";
+
+const Main = () => (
+  <div>
+    <Directions />
+    <Prices />
+    <Partners />
+    <Subscribe />
+    <Offer />
+    <Help />
+    <MobileApp />
+  </div>
+);
+
+const Search = () => <Result />;
+
 export default () => {
   return (
-    <div>
-      <Header />
-      <Directions />
-      <Prices />
-      <Partners />
-      <Subscribe />
-      <Offer />
-      <Help />
-      <MobileApp />
-      <Footer />
-    </div>
+    <Router>
+      <div>
+        <Header />
+        <Route exact path="/" component={Main} />
+        <Route path="/search" component={Search} />
+        <Footer />
+      </div>
+    </Router>
   );
 };
