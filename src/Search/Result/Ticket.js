@@ -23,8 +23,8 @@ const Title = styled.h2`
   color: #ffffff;
   background: ${props => props.titleBgColor};
   padding: 7px 0 7px 13px;
-  margin: 0 -8px;
   width: 100%;
+  display: ${props => props.display};
 `;
 
 const Smile = styled.span`
@@ -94,7 +94,7 @@ const Stop = styled.div`
 
 export default props => (
   <Ticket>
-    <Title titleBgColor={props.titleBgColor}>
+    <Title titleBgColor={props.titleBgColor} display={props.display}>
       {props.titleText} <Smile>{props.emoji}</Smile>
     </Title>
     <Price>{props.price}</Price>

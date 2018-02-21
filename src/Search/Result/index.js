@@ -51,6 +51,7 @@ export default () => (
           titleText={ticket.title.text}
           titleBgColor={ticket.title.bgColor}
           emoji={ticket.title.emoji}
+          display={ticket.title.display}
           price={ticket.price}
           logoSrc={ticket.logoSrc}
           departOut={ticket.depart.out}
