@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Row, Col } from "react-flexbox-grid";
+import { Grid } from "react-flexbox-grid";
 
 import tickets from "./data";
 
 import Ticket from "./Ticket";
+import SearchParams from "./SearchParams";
 
 const Result = styled.div`
   background-color: #eaeaea;
-  padding: 8px 0 16px;
+  padding-bottom: 16px;
 `;
 
 const ButtonUp = styled.button`
@@ -37,6 +38,7 @@ const ButtonFilter = ButtonUp.extend`
 
 export default () => (
   <Result>
+    <SearchParams />
     <Grid>
       <ButtonUp>Наверх</ButtonUp>
       {tickets.map(ticket => (

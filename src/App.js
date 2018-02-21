@@ -15,6 +15,7 @@ import Result from "./Search/Result";
 
 const Main = () => (
   <div>
+    <Header />
     <Directions />
     <Prices />
     <Partners />
@@ -31,7 +32,6 @@ export default () => {
   return (
     <Router>
       <div>
-        <Header />
         <Route exact path="/" component={Main} />
         <Route path="/search" component={Search} />
         <Footer />
