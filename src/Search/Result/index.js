@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid } from "react-flexbox-grid";
+import { Helmet } from "react-helmet";
 
 import tickets from "./data";
 
@@ -38,6 +39,9 @@ const ButtonFilter = ButtonUp.extend`
 
 export default () => (
   <Result>
+    <Helmet>
+      <title>Результаты поиска</title>
+    </Helmet>
     <SearchParams />
     <Grid>
       <ButtonUp>Наверх</ButtonUp>

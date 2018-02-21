@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 import Header from "./Header";
 import Directions from "./Directions";
@@ -15,6 +16,9 @@ import Result from "./Search/Result";
 
 const Main = () => (
   <div>
+    <Helmet>
+      <title>Aviasales / Главная страница</title>
+    </Helmet>
     <Header />
     <Directions />
     <Prices />
