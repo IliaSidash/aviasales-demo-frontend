@@ -5,6 +5,7 @@ import aero from "./img/aero.svg";
 import icon from "./img/date-icon.png";
 import arrows from "./img/arrows.svg";
 import arrowDown from "./img/arrow-down.svg";
+import { Link } from "react-router-dom";
 
 const Form = styled.form``;
 
@@ -220,7 +221,9 @@ export default () => (
         <ArrowDown src={arrowDown} />
       </CustomSelect>
     </InputsBox>
-    <Button>Найти билеты</Button>
+    <Link to="/search">
+      <Button>Найти билеты</Button>
+    </Link>
     <ArrowDown />
   </Form>
 );
