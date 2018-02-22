@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { Grid } from "react-flexbox-grid";
 import { Link } from "react-router-dom";
 
+import Logo from "../../Header/Logo";
 import arrowBack from "./img/arrow-back.svg";
 
-const Params = styled.div`
-  padding: 10px 6px;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
+const Header = styled.header`
+  padding: 11px 0 8px;
   background: linear-gradient(
     100deg,
     #00b0de -46.32%,
@@ -18,6 +17,15 @@ const Params = styled.div`
     #02abdb -35.02%,
     #196ebd 52.98%
   );
+`;
+
+const SearchLogo = styled(Logo)`
+  display: none;
+`;
+
+const Params = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const Arrow = styled.img`
@@ -48,14 +56,19 @@ const Info = styled.div`
 `;
 
 export default () => (
-  <Params>
-    <Link to="/">
-      <Arrow src={arrowBack} />
-    </Link>
-    <Path>
-      Москва — Барселона
-      <Info>24 фев — 3 март, 1 пассажир</Info>
-    </Path>
-    <Button>RUB</Button>
-  </Params>
+  <Header>
+    <Grid>
+      {/* <SearchLogo /> */}
+      <Params>
+        <Link to="/">
+          <Arrow src={arrowBack} />
+        </Link>
+        <Path>
+          Москва — Барселона
+          <Info>24 фев — 3 март, 1 пассажир</Info>
+        </Path>
+        <Button>RUB</Button>
+      </Params>
+    </Grid>
+  </Header>
 );

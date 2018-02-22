@@ -12,7 +12,7 @@ import Help from "./Help";
 import MobileApp from "./MobileApp";
 import Footer from "./Footer";
 
-import Result from "./Search/Result";
+import Search from "./Search";
 
 const Main = () => (
   <div>
@@ -29,8 +29,6 @@ const Main = () => (
     <MobileApp />
   </div>
 );
-
-const Search = () => <Result />;
 
 export default () => {
   return (

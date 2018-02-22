@@ -1,16 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid } from "react-flexbox-grid";
-import { Helmet } from "react-helmet";
 
 import tickets from "./data";
 
-import Ticket from "./Ticket";
-import SearchParams from "./SearchParams";
+import Ticket from "./Ticket/";
 
 const Result = styled.div`
   background-color: #eaeaea;
-  padding-bottom: 16px;
+  padding: 8px 0 16px;
 `;
 
 const ButtonUp = styled.button`
@@ -39,29 +37,16 @@ const ButtonFilter = ButtonUp.extend`
 
 export default () => (
   <Result>
-    <Helmet>
-      <title>Результаты поиска</title>
-    </Helmet>
-    <SearchParams />
     <Grid>
       <ButtonUp>Наверх</ButtonUp>
       {tickets.map(ticket => (
         <Ticket
-          key={ticket.id}
-          titleText={ticket.title.text}
-          titleBgColor={ticket.title.bgColor}
-          emoji={ticket.title.emoji}
-          display={ticket.title.display}
+          id={ticket.id}
+          title={ticket.title}
           price={ticket.price}
-          logoSrc={ticket.logoSrc}
-          departOut={ticket.depart.out}
-          departIn={ticket.depart.in}
-          departDuration={ticket.depart.duration}
-          departStop={ticket.depart.stop}
-          returnOut={ticket.return.out}
-          returnIn={ticket.return.in}
-          returnDuration={ticket.return.duration}
-          returnStop={ticket.return.stop}
+          company={ticket.company}
+          depart={ticket.depart}
+          return={ticket.return}
         />
       ))}
     </Grid>
