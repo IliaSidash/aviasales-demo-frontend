@@ -47,7 +47,6 @@ class Logotype extends React.Component {
 
     const searchPage = location.pathname === "/search";
 
-    console.log(searchPage);
     return (
       <Logo searchPage={searchPage}>
         <Img src={logo} alt="aviasales" searchPage={searchPage} />

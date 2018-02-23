@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Grid, Row, Col } from "react-flexbox-grid";
 
 import Logo from "./Logo";
-import Form from "./Form";
+import Form from "../Form";
 
 const Title = styled.h1`
   font-style: normal;

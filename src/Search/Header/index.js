@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import Logo from "../../Header/Logo";
 import arrowBack from "./img/arrow-back.svg";
 
+import Form from "./Form";
+
 const Header = styled.header`
   padding: 11px 0 8px;
   background: linear-gradient(
@@ -17,6 +19,9 @@ const Header = styled.header`
     #02abdb -35.02%,
     #196ebd 52.98%
   );
+  @media screen and (min-width: 768px) {
+    padding-bottom: 32px;
+  }
 `;
 
 const Head = styled.div`
@@ -73,6 +78,7 @@ export default () => (
         </Params>
         <Button>RUB</Button>
       </Head>
+      <Form />
     </Grid>
   </Header>
 );
