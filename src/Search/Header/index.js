@@ -19,8 +19,8 @@ const Header = styled.header`
   );
 `;
 
-const SearchLogo = styled(Logo)`
-  display: none;
+const Head = styled.div`
+  display: flex;
 `;
 
 const Params = styled.div`
@@ -42,6 +42,8 @@ const Button = styled.button`
   color: #ffffff;
   padding: 6px 12px 5px;
   margin-left: auto;
+  margin-left: auto;
+  align-self: center;
 `;
 
 const Path = styled.div`
@@ -58,17 +60,19 @@ const Info = styled.div`
 export default () => (
   <Header>
     <Grid>
-      {/* <SearchLogo /> */}
-      <Params>
-        <Link to="/">
-          <Arrow src={arrowBack} />
-        </Link>
-        <Path>
-          Москва — Барселона
-          <Info>24 фев — 3 март, 1 пассажир</Info>
-        </Path>
+      <Head>
+        <Logo />
+        <Params>
+          <Link to="/">
+            <Arrow src={arrowBack} />
+          </Link>
+          <Path>
+            Москва — Барселона
+            <Info>24 фев — 3 март, 1 пассажир</Info>
+          </Path>
+        </Params>
         <Button>RUB</Button>
-      </Params>
+      </Head>
     </Grid>
   </Header>
 );

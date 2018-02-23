@@ -62,8 +62,6 @@ function Options(props) {
   const intervals = props.interval;
   const travelTime = props.travelTime;
 
-  console.log(travelTime);
-
   if (intervals) {
     return (
       <div>
