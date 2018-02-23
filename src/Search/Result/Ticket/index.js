@@ -8,10 +8,9 @@ import pin from "./img/pin.svg";
 import takeOffPlane from "./img/take-off-plane.svg";
 import landingPlane from "./img/landing-plane.svg";
 import sharing from "./img/sharing.svg";
-import carryon from "./img/carryon.svg";
-import baggage from "./img/baggage.svg";
+import arrow from "./img/arrow.svg";
 
-import Offer from "./Offer";
+import Buy from "./Buy";
 
 const Ticket = styled.div`
   padding-bottom: 14px;
@@ -24,7 +23,11 @@ const Ticket = styled.div`
   margin: 0 -8px 8px;
   @media screen and (min-width: 768px) {
     padding-bottom: 0;
+    padding-right: 20px;
     border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 20px;
   }
 `;
 
@@ -295,6 +298,23 @@ const Info = styled.div`
   }
 `;
 
+const Button = styled.button`
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  border: none;
+  background: #edf5f7;
+  cursor: pointer;
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+`;
+
+const Arrow = styled.img``;
+
 function SpecialTitle(props) {
   if (props.title) {
     return (
@@ -328,7 +348,7 @@ function Company(props) {
 
 export default props => (
   <Ticket key={props.id}>
-    <Offer>Offer</Offer>
+    <Buy />
     <Info>
       <SpecialTitle title={props.title} />
       <Price>{props.price}</Price>
@@ -402,5 +422,8 @@ export default props => (
         <Stop>{props.return.stop}</Stop>
       </Return>
     </Info>
+    <Button>
+      <Arrow src={arrow} />
+    </Button>
   </Ticket>
 );
