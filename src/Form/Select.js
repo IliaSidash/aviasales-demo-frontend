@@ -32,6 +32,7 @@ const Select = styled.div`
   text-align: left;
   background: #fff;
   cursor: pointer;
+  white-space: nowrap;
   @media screen and (min-width: 1200px) {
     border-top-right-radius: ${props => (props.searchPage ? "4px" : "none")};
     border-bottom-right-radius: ${props => (props.searchPage ? "4px" : "none")};

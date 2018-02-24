@@ -7,6 +7,7 @@ import { withRouter } from "react-router";
 import aero from "./img/aero.svg";
 
 const Button = styled(Link)`
+  box-sizing: border-box;
   background: #ff9241;
   border: none;
   border-radius: 4px;
@@ -20,6 +21,7 @@ const Button = styled(Link)`
   text-decoration: none;
   display: block;
   margin: 16px auto 0;
+  white-space: nowrap;
   :after {
     content: "";
     position: absolute;
@@ -40,18 +42,22 @@ const Button = styled(Link)`
     font-style: normal;
     line-height: normal;
     font-size: ${props => (props.searchPage ? "20px" : "28px")};
-    text-align: left;
-    padding-left: ${props => (props.searchPage ? "29px" : "45px")};
+    text-align: ${props => (props.searchPage ? "center" : "left")};
+    padding: ${props => (props.searchPage ? "16px 24px" : "14px 0 13px 45px")};
     font-weight: bold;
     margin-top: 32px;
     margin-top: ${props => (props.searchPage ? "0" : "32px")};
     width: ${props => (props.searchPage ? "calc(25% - 2px)" : "auto")};
+    max-width: ${props => (props.searchPage ? "185px" : "auto")};
+  }
+  @media screen and (min-width: 992px) {
+    max-width: ${props => (props.searchPage ? "238px" : "auto")};
   }
   @media screen and (min-width: 1200px) {
     margin-top: ${props => (props.searchPage ? "0" : "48px")};
     margin-left: ${props => (props.searchPage ? "8px" : "auto")};
     padding: ${props => (props.searchPage ? "16px 25px" : "14px 0 13px 45px")};
-    min-width: ${props => (props.searchPage ? "185px" : "auto")};
+    max-width: ${props => (props.searchPage ? "185px" : "auto")};
   }
 `;
 

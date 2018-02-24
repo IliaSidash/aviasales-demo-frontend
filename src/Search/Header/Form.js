@@ -9,13 +9,13 @@ import Select from "../../Form/Select";
 import Submit from "../../Form/Submit";
 
 const Form = styled.form`
+  display: none;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
   }
   @media screen and (min-width: 1200px) {
-    overflow: hidden;
     flex-wrap: nowrap;
     border-radius: 4px;
   }
@@ -25,8 +25,7 @@ export default () => (
   <Form>
     <InputCity value={"Москва"} air={"MOW"} arrows />
     <InputCity value={"Барселона"} air={"BCN"} />
-    <InputDate value={"Туда"} />
-    <InputDate value={"Обратно"} />
+    <InputDate />
     <Select />
     <Submit />
   </Form>

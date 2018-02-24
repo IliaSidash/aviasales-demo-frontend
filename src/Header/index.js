@@ -4,6 +4,7 @@ import { Grid, Row, Col } from "react-flexbox-grid";
 
 import Logo from "./Logo";
 import Form from "../Form";
+import DayPicker from "../Form/DayPicker";
 
 const Title = styled.h1`
   font-style: normal;

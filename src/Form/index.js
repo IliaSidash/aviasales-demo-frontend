@@ -11,7 +11,6 @@ import Submit from "./Submit";
 const Form = styled.form``;
 
 const InputsBox = styled.div`
-  overflow: hidden;
   border-radius: 6px;
   margin: 0 -1px;
   @media screen and (min-width: 768px) {
@@ -34,8 +33,7 @@ class SearchForm extends React.Component {
         <InputsBox>
           <InputCity value={"Москва"} air={"MOW"} arrows />
           <InputCity />
-          <InputDate value={"Туда"} />
-          <InputDate value={"Обратно"} />
+          <InputDate />
           <Select />
         </InputsBox>
         <Submit />

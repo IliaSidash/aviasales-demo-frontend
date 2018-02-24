@@ -26,11 +26,15 @@ const Header = styled.header`
 
 const Head = styled.div`
   display: flex;
+  align-items: flex-start;
 `;
 
 const Params = styled.div`
   display: flex;
   align-items: center;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const Arrow = styled.img`
@@ -49,6 +53,9 @@ const Button = styled.button`
   margin-left: auto;
   margin-left: auto;
   align-self: center;
+  @media screen and (min-width: 768px) {
+    align-self: auto;
+  }
 `;
 
 const Path = styled.div`
