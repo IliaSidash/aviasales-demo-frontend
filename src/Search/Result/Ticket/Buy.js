@@ -19,8 +19,28 @@ const Baggage = styled.div`
   margin-bottom: 16px;
 `;
 
-const Icon = styled.img`
+const Icon = styled.div`
+  display: inline-block;
   margin-right: 4px;
+  position: relative;
+  :last-of-type {
+    margin: 0;
+  }
+`;
+
+const Img = styled.img``;
+
+const Count = styled.span`
+  font-weight: bold;
+  line-height: normal;
+  font-size: 10px;
+  text-align: center;
+  letter-spacing: -0.4px;
+  color: #9ab0b9;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const Text = styled.div`
@@ -119,13 +139,25 @@ export default () => (
   <Buy>
     <Baggage>
       <Option active>
-        <Icon src={carryon} />
-        <Icon src={baggage} />
+        <Icon>
+          <Img src={carryon} />
+          <Count>5</Count>
+        </Icon>
+        <Icon>
+          <Img src={baggage} />
+          <Count>15</Count>
+        </Icon>
         <Text>Нет багажа</Text>
       </Option>
       <Option>
-        <Icon src={carryon} />
-        <Icon src={baggage} />
+        <Icon>
+          <Img src={carryon} />
+          <Count>5</Count>
+        </Icon>
+        <Icon>
+          <Img src={baggage} />
+          <Count>15</Count>
+        </Icon>
         <Text>- 136 ₽</Text>
       </Option>
     </Baggage>
