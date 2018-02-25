@@ -10,11 +10,11 @@ const Input = styled.input`
   line-height: 20px;
   font-size: 16px;
   padding: 18px;
-  color: #a0b0b9;
   border: none;
+  color: #4a4a4a;
   width: 100%;
-  :focus {
-    color: #4a4a4a;
+  :placeholder {
+    color: #a0b0b9;
   }
   @media screen and (min-width: 1200px) {
     margin-bottom: 0;
@@ -64,7 +64,6 @@ export default class InputCity extends React.Component {
   };
 
   render() {
-    console.log(this.state.arrowsIsShowed);
     if (this.props.value) {
       return (
         <CustomInput>

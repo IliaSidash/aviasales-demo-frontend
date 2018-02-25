@@ -1,9 +1,13 @@
+.DayPicker-wrapper {
+  padding: 0;
+}
+
 .DayPickerInput {
   width: 100%;
   height: 100%;
 }
-.DayPickerInput input :focus {
-  color: #4a4a4a;
+.DayPickerInput input {
+  color: #4a4a4a !important;
 }
 
 .DayPickerInput input {
@@ -18,7 +22,89 @@
   padding: 18px;
   min-height: 56px;
 }
-
+.DayPicker-Month {
+  margin: 18px 24px 0;
+}
 .DayPickerInput-OverlayWrapper {
   display: block;
+}
+.DayPicker-Caption {
+  padding: 0;
+  text-align: center;
+  margin-bottom: 27px;
+}
+.DayPicker-Caption > div {
+  font-style: normal;
+  font-weight: bold;
+  line-height: 18px;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #4a4a4a;
+}
+.DayPicker-NavButton {
+  top: 21px;
+  width: 7px;
+  height: 14px;
+  margin-top: 0;
+  background-size: 100%;
+}
+.DayPicker-NavButton--prev {
+  left: 32px;
+  background: url(./img/prev.svg)no-repeat center;
+}
+.DayPicker-NavButton--next {
+  right: 32px;
+  background: url(./img/next.svg)no-repeat center;
+}
+
+.DayPicker-Weekdays {
+  margin-bottom: 7px;
+}
+.DayPicker-Weekday {
+  font-weight: 900;
+  line-height: 18px;
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  color: #5b5b5c;
+}
+
+.DayPicker-Day {
+  font-style: normal;
+  font-weight: 900;
+  line-height: 18px;
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  min-width: 46px;
+  padding: 9px 5px 21px 1px;
+  color: #4a4a4a;
+  border-radius: 0 !important;
+}
+.DayPicker-Day:hover {
+  background-color: transparent !important;
+}
+
+.DayPicker-Day--selected {
+  background-color: #f4f4f4;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+  background-color: #f4f4f4 !important;
+  color: #4a4a4a;
+}
+
+.DayPicker-Day--start {
+  background-color: #f4f4f4 !important;
+  color: #4a4a4a !important;
+  background: url(./img/start.png)no-repeat;
+  background-size: 99% 100%;
+}
+
+.DayPicker-Day--end {
+  background-color: #f4f4f4 !important;
+  color: #4a4a4a !important;
+  background: url(./img/end.png)no-repeat;
+  background-size: 99% 100%;
 }
