@@ -8,6 +8,7 @@ const Buy = styled.div`
   box-sizing: border-box;
   max-width: 209px;
   display: none;
+  padding-bottom: 30px;
   @media screen and (min-width: 768px) {
     display: block;
   }
