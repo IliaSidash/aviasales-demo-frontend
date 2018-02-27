@@ -10,7 +10,9 @@ import landingPlane from "./img/landing-plane.svg";
 import sharing from "./img/sharing.svg";
 import arrow from "./img/arrow.svg";
 
+import Title from "./Title";
 import Buy from "./Buy";
+import Company from "./Company";
 
 const Ticket = styled.div`
   padding-bottom: 14px;
@@ -31,24 +33,6 @@ const Ticket = styled.div`
   }
 `;
 
-const Title = styled.h2`
-  font-weight: 900;
-  line-height: 18px;
-  font-size: 14px;
-  color: #ffffff;
-  background: ${props => props.bgColor};
-  padding: 7px 0 7px 13px;
-  width: 100%;
-  display: ${props => props.display};
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-`;
-
-const Smile = styled.span`
-  margin-left: 8px;
-`;
-
 const Price = styled.div`
   box-sizing: border-box;
   font-weight: bold;
@@ -61,18 +45,6 @@ const Price = styled.div`
   align-self: center;
   @media screen and (min-width: 768px) {
     display: none;
-  }
-`;
-
-const Logo = styled.a`
-  box-sizing: border-box;
-  width: 50%;
-  text-align: right;
-  margin: 12px 0 10px;
-  padding-right: 13px;
-  @media screen and (min-width: 768px) {
-    text-align: left;
-    margin-right: auto;
   }
 `;
 
@@ -98,23 +70,6 @@ const Sharing = styled.img`
   @media screen and (min-width: 768px) {
     display: inline;
     text-align: right;
-  }
-`;
-
-const Img = styled.img`
-  width: 99px;
-  height: 36px;
-`;
-
-const SmallImg = styled.img`
-  width: 28px;
-  height: 28px;
-  padding: 4px;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-  margin-right: 10px;
-  :last-child {
-    margin-right: 0;
   }
 `;
 
@@ -315,42 +270,11 @@ const Button = styled.button`
 
 const Arrow = styled.img``;
 
-function SpecialTitle(props) {
-  if (props.title) {
-    return (
-      <Title bgColor={props.title.bgColor}>
-        {props.title.text} <Smile>{props.title.emoji}</Smile>
-      </Title>
-    );
-  } else {
-    return null;
-  }
-}
-
-function Company(props) {
-  const doubleCompany = props.company.double;
-  if (doubleCompany) {
-    return (
-      <Logo>
-        {doubleCompany.map(company => (
-          <SmallImg key={company.id} src={company.logoSrc} alt={company.alt} />
-        ))}
-      </Logo>
-    );
-  } else {
-    return (
-      <Logo>
-        <Img src={props.company.logoSrc} alt={props.company.alt} />
-      </Logo>
-    );
-  }
-}
-
 export default props => (
   <Ticket key={props.id}>
     <Buy />
     <Info>
-      <SpecialTitle title={props.title} />
+      <Title title={props.title} />
       <Price>{props.price}</Price>
       <Company company={props.company} />
       <Note>Чартер</Note>
