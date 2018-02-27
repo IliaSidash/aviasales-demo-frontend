@@ -3,9 +3,7 @@ import styled from "styled-components";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 import "./style.css";
-import moment from "moment";
-import { parseDate } from "react-day-picker/moment";
-import { format } from "date-fns";
+import { format, differenceInCalendarMonths } from "date-fns";
 import ruLocale from "date-fns/locale/ru";
 
 import icon from "./img/date-icon.png";
@@ -141,7 +139,7 @@ export default class DayPicker extends React.Component {
     if (!from) {
       return;
     }
-    if (moment(to).diff(moment(from), "months") < 2) {
+    if (differenceInCalendarMonths(to, from) < 2) {
       this.to.getDayPicker().showMonth(from);
     }
   };
@@ -169,7 +167,6 @@ export default class DayPicker extends React.Component {
             value={from}
             placeholder="Туда"
             formatDate={formatDate}
-            parseDate={parseDate}
             // showOverlay
             dayPickerProps={{
               selectedDays: [from, { from, to }],
@@ -192,7 +189,6 @@ export default class DayPicker extends React.Component {
             value={to}
             placeholder="От туда"
             formatDate={formatDate}
-            parseDate={parseDate}
             dayPickerProps={{
               selectedDays: [from, { from, to }],
               disabledDays: { before: from },
