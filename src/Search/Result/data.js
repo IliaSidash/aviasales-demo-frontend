@@ -15,32 +15,26 @@ export default [
       emoji: "🤑",
       bgColor: "#83D40B"
     },
-    price: "7 712 ₽",
+    price: 7712,
     company: {
       logoSrc: rossiya,
       alt: "rossiya"
     },
     depart: {
-      out: "00:05",
-      in: "03:05",
-      duration: "5 ч",
+      out: 1519412700000,
+      in: 1519423500000,
       stop: "Прямой",
       cityFrom: "Москва",
-      dateFrom: "24 фев 2018, Сб",
       cityTo: "Барселона",
-      dateTo: "24 фев 2018, Сб",
       airoportFrom: "VKO",
       airoportIn: "BCN"
     },
     return: {
-      out: "10:35",
-      in: "17:10",
-      duration: "4 ч 35 м",
+      out: 1520055300000,
+      in: 1520079000000,
       stop: "Прямой",
       cityFrom: "Барселона",
-      dateFrom: "3 мар 2018, Сб",
       cityTo: "Москва",
-      dateTo: "3 мар 2018, Сб",
       airoportFrom: "BCN",
       airoportIn: "VKO"
     }
@@ -52,32 +46,26 @@ export default [
       emoji: "⚡️",
       bgColor: "#AF7542"
     },
-    price: "9 269 ₽",
+    price: 9269,
     company: {
       logoSrc: fly,
       alt: "fly"
     },
     depart: {
-      out: "07:30",
-      in: "09:50",
-      duration: "4 ч 20 м",
+      out: 1519413300000,
+      in: 1519423800000,
       stop: "Прямой",
       cityFrom: "Москва",
-      dateFrom: "24 фев 2018, Сб",
       cityTo: "Барселона",
-      dateTo: "24 фев 2018, Сб",
       airoportFrom: "VKO",
       airoportIn: "BCN"
     },
     return: {
-      out: "11:20",
-      in: "17:35",
-      duration: "4 ч 15 м",
+      out: 1520055900000,
+      in: 1520079300000,
       stop: "CDG",
       cityFrom: "Барселона",
-      dateFrom: "3 мар 2018, Сб",
       cityTo: "Москва",
-      dateTo: "3 мар 2018, Сб",
       airoportFrom: "BCN",
       airoportIn: "VKO"
     }
@@ -89,103 +77,85 @@ export default [
       emoji: "😍",
       bgColor: "#C279D1"
     },
-    price: "8 029 ₽",
+    price: 8029,
     company: {
       logoSrc: nordwind,
       alt: "nordwind"
     },
     depart: {
-      out: "00:15",
-      in: "03:10",
-      duration: "4 ч 55 м",
+      out: 1519431300000,
+      in: 1519441800000,
       stop: "Прямой",
       cityFrom: "Москва",
-      dateFrom: "24 фев 2018, Сб",
       cityTo: "Барселона",
-      dateTo: "24 фев 2018, Сб",
       airoportFrom: "VKO",
       airoportIn: "BCN"
     },
     return: {
-      out: "10:45",
-      in: "17:15",
-      duration: "4 ч 30 м",
+      out: 1520073900000,
+      in: 1520097300000,
       stop: "CDG",
       cityFrom: "Барселона",
-      dateFrom: "3 мар 2018, Сб",
       cityTo: "Москва",
-      dateTo: "3 мар 2018, Сб",
       airoportFrom: "BCN",
       airoportIn: "VKO"
     }
   },
   {
     id: 4,
-    price: "8 164 ₽",
+    price: 8164,
     company: {
       logoSrc: nordwindAirlines,
       alt: "nordwind airlines"
     },
     depart: {
-      out: "00:15",
-      in: "03:10",
-      duration: "4 ч 55 м",
+      out: 1519431300000,
+      in: 1519441800000,
       stop: "Прямой",
       cityFrom: "Москва",
-      dateFrom: "24 фев 2018, Сб",
       cityTo: "Барселона",
-      dateTo: "24 фев 2018, Сб",
       airoportFrom: "VKO",
       airoportIn: "BCN"
     },
     return: {
-      out: "10:45",
-      in: "17:15",
-      duration: "4 ч 30 м",
+      out: 1520073900000,
+      in: 1520097300000,
       stop: "Прямой",
       cityFrom: "Барселона",
-      dateFrom: "3 мар 2018, Сб",
       cityTo: "Москва",
-      dateTo: "3 мар 2018, Сб",
       airoportFrom: "BCN",
       airoportIn: "VKO"
     }
   },
   {
     id: 5,
-    price: "8 240 ₽",
+    price: 8240,
     company: {
       logoSrc: redwings,
       alt: "red wings"
     },
     depart: {
-      out: "07:00",
-      in: "09:30",
-      duration: "4 ч 30 м",
+      out: 1519455600000,
+      in: 1519464600000,
       stop: "Прямой",
       cityFrom: "Москва",
-      dateFrom: "24 фев 2018, Сб",
       cityTo: "Барселона",
-      dateTo: "24 фев 2018, Сб",
       airoportFrom: "VKO",
       airoportIn: "BCN"
     },
     return: {
-      out: "11:00",
-      in: "17:10",
-      duration: "4 ч 10 м",
+      out: 1520074800000,
+      in: 1520097000000,
       stop: "Прямой",
       cityFrom: "Барселона",
-      dateFrom: "3 мар 2018, Сб",
       cityTo: "Москва",
-      dateTo: "3 мар 2018, Сб",
       airoportFrom: "BCN",
       airoportIn: "VKO"
     }
   },
   {
     id: 6,
-    price: "9 108 ₽",
+    price: 9108,
     company: {
       double: [
         {
@@ -201,33 +171,27 @@ export default [
       ]
     },
     depart: {
-      out: "00:05",
-      in: "03:05",
-      duration: "5 ч",
+      out: 1519430700000,
+      in: 1519441500000,
       stop: "Прямой",
       cityFrom: "Москва",
-      dateFrom: "24 фев 2018, Сб",
       cityTo: "Барселона",
-      dateTo: "24 фев 2018, Сб",
       airoportFrom: "VKO",
       airoportIn: "BCN"
     },
     return: {
-      out: "11:00",
-      in: "17:10",
-      duration: "4 ч 10 м",
+      out: 1520074800000,
+      in: 1520097000000,
       stop: "Прямой",
       cityFrom: "Барселона",
-      dateFrom: "3 мар 2018, Сб",
       cityTo: "Москва",
-      dateTo: "3 мар 2018, Сб",
       airoportFrom: "BCN",
       airoportIn: "VKO"
     }
   },
   {
     id: 7,
-    price: "9 485 ₽",
+    price: 9485,
     company: {
       double: [
         {
@@ -243,26 +207,20 @@ export default [
       ]
     },
     depart: {
-      out: "00:05",
-      in: "03:05",
-      duration: "5 ч",
+      out: 1519430700000,
+      in: 1519441500000,
       stop: "Прямой",
       cityFrom: "Москва",
-      dateFrom: "24 фев 2018, Сб",
       cityTo: "Барселона",
-      dateTo: "24 фев 2018, Сб",
       airoportFrom: "VKO",
       airoportIn: "BCN"
     },
     return: {
-      out: "11:20",
-      in: "17:35",
-      duration: "4 ч 15 м",
+      out: 1520076000000,
+      in: 1520098500000,
       stop: "Прямой",
       cityFrom: "Барселона",
-      dateFrom: "3 мар 2018, Сб",
       cityTo: "Москва",
-      dateTo: "3 мар 2018, Сб",
       airoportFrom: "BCN",
       airoportIn: "VKO"
     }

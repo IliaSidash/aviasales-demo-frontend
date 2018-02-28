@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { FormattedNumber } from "react-intl";
+import { format } from "date-fns";
+import ruLocale from "date-fns/locale/ru";
 
 import airLeft from "./img/air-left.svg";
 import airRight from "./img/air-right.svg";
@@ -270,12 +273,42 @@ const Button = styled.button`
 
 const Arrow = styled.img``;
 
+function formatDate(milliseconds) {
+  return format(milliseconds, "DD MMM YYYY, dd", {
+    locale: ruLocale
+  });
+}
+function formatTime(milliseconds) {
+  return format(milliseconds, "HH:mm", {
+    locale: ruLocale
+  });
+}
+function formatDuration(milliseconds) {
+  if (milliseconds % 3600 === 0) {
+    return format(milliseconds, "H ч", {
+      locale: ruLocale
+    });
+  } else {
+    return format(milliseconds, "H ч mm м", {
+      locale: ruLocale
+    });
+  }
+}
+
 export default props => (
   <Ticket key={props.id}>
-    <Buy />
+    <Buy price={props.price} />
     <Info>
       <Title title={props.title} />
-      <Price>{props.price}</Price>
+      <Price>
+        <FormattedNumber
+          style={`currency`}
+          currency={"rub"}
+          value={props.price}
+          minimumFractionDigits={0}
+          maximumFractionDigits={0}
+        />
+      </Price>
       <Company company={props.company} />
       <Note>Чартер</Note>
       <Sharing src={sharing} />
@@ -283,20 +316,20 @@ export default props => (
         <Time>
           <Pin src={pin} />
           <Icon src={airRight} />
-          {props.depart.out}
+          {formatTime(props.depart.out)}
           <City>{props.depart.cityFrom}</City>
-          <Date>{props.depart.dateFrom}</Date>
+          <Date>{formatDate(props.depart.out)}</Date>
         </Time>
         <Time>
-          {props.depart.in}
+          {formatTime(props.depart.in)}
           <City>{props.depart.cityTo}</City>
-          <Date>{props.depart.dateTo}</Date>
+          <Date>{formatDate(props.depart.in)}</Date>
         </Time>
         <Path first>
           <Duration>
             <Plan src={takeOffPlane} />
             <Icon src={clock} />
-            <Total>{props.depart.duration}</Total>
+            <Total>{formatDuration(props.depart.in - props.depart.out)}</Total>
             <Plan src={landingPlane} />
           </Duration>
           <Airoports>
@@ -315,22 +348,21 @@ export default props => (
         <Time>
           <Pin src={pin} />
           <Icon src={airLeft} />
-          {props.return.out}
+          {formatTime(props.return.out)}
           <City>{props.return.cityFrom}</City>
-          <Date>{props.return.dateFrom}</Date>
+          <Date>{formatDate(props.return.out)}</Date>
         </Time>
         <Time>
-          {props.return.in}
+          {formatTime(props.return.in)}
           <City>{props.return.cityTo}</City>
-          <Date>{props.return.dateTo}</Date>
+          <Date>{formatDate(props.return.in)}</Date>
         </Time>
 
         <Path>
           <Duration>
             <Plan src={takeOffPlane} />
             <Icon src={clock} />
-            <Total>{props.return.duration}</Total>
-
+            <Total>{formatDuration(props.return.in - props.return.out)}</Total>
             <Plan src={landingPlane} />
           </Duration>
           <Airoports>

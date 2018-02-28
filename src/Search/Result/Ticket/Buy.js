@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { FormattedNumber } from "react-intl";
 
 import carryon from "./img/carryon.svg";
 import baggage from "./img/baggage.svg";
@@ -136,7 +137,7 @@ const More = styled.a`
   display: block;
 `;
 
-export default () => (
+export default props => (
   <Buy>
     <Baggage>
       <Option active>
@@ -164,14 +165,40 @@ export default () => (
     </Baggage>
     <TicketsLeft>Осталось 4 билета</TicketsLeft>
     <Button>
-      Купить <Price>за 7 712 ₽</Price>
+      Купить
+      <Price>
+        за &nbsp;
+        <FormattedNumber
+          style={`currency`}
+          currency={"rub"}
+          value={props.price}
+          minimumFractionDigits={0}
+          maximumFractionDigits={0}
+        />
+      </Price>
     </Button>
     <Link>на Clickavia</Link>
     <Offer>
       <Store>Clickavia</Store>
-      <Coast>8 302 ₽</Coast>
+      <Coast>
+        <FormattedNumber
+          style={`currency`}
+          currency={"rub"}
+          value={8302}
+          minimumFractionDigits={0}
+          maximumFractionDigits={0}
+        />
+      </Coast>
       <Store>Aviakassa</Store>
-      <Coast>8 376 ₽</Coast>
+      <Coast>
+        <FormattedNumber
+          style={`currency`}
+          currency={"rub"}
+          value={8376}
+          minimumFractionDigits={0}
+          maximumFractionDigits={0}
+        />
+      </Coast>
     </Offer>
     <More>+ Еще 3 предложения</More>
   </Buy>
