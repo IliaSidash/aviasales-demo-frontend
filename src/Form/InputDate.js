@@ -1,12 +1,31 @@
 import React from "react";
 import styled from "styled-components";
-import DayPickerInput from "react-day-picker/DayPickerInput";
+import DayPicker from "react-day-picker/DayPicker";
 import "react-day-picker/lib/style.css";
 import "./style.css";
-import { format, differenceInCalendarMonths } from "date-fns";
+import { format } from "date-fns";
 import ruLocale from "date-fns/locale/ru";
+import { withClickOutside } from "react-clickoutside";
 
 import icon from "./img/date-icon.png";
+
+const Input = styled.input`
+  font-style: normal;
+  font-weight: normal;
+  box-sizing: border-box;
+  line-height: 20px;
+  font-size: 16px;
+  padding: 18px;
+  border: none;
+  color: #4a4a4a;
+  width: 100%;
+  :placeholder {
+    color: #a0b0b9;
+  }
+  @media screen and (min-width: 1200px) {
+    margin-bottom: 0;
+  }
+`;
 
 const CustomInput = styled.div`
   position: relative;
@@ -37,9 +56,21 @@ const InputsBox = styled.div`
     width: 50%;
   }
   @media screen and (min-width: 1200px) {
-    width: calc(34% - 2px);
+    width: calc(38% - 2px);
   }
 `;
+
+const CustomPicker = styled.div`
+  display: ${props => (props.isPickerShow ? "block" : "none")};
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #ffffff;
+  z-index: 2;
+`;
+
+const CustomPickerWithOutside = withClickOutside()(CustomPicker);
+
 const Option = styled.div`
   margin: 15px 0 16px 24px;
   display: flex;
@@ -75,6 +106,19 @@ const Text = styled.p`
   color: #4a4a4a;
 `;
 
+const Price = styled.div`
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  font-size: 10px;
+  color: #a0b0b9;
+  position: absolute;
+  width: 100%;
+  bottom: 6px;
+  left: 50%;
+  transform: translatex(-50%);
+`;
+
 const MONTHS = [
   "Январь",
   "Февраль",
@@ -102,108 +146,135 @@ const WEEKDAYS_LONG = [
 
 const WEEKDAYS_SHORT = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
 
+const prices = {
+  24: "43 606",
+  25: "43 606",
+  26: "41 920",
+  27: "42 140",
+  28: "42 130"
+};
+
 function formatDate(inputString) {
-  return format(inputString, "DD MMMM, dd", {
-    locale: ruLocale
-  });
+  return inputString
+    ? format(inputString, "DD MMMM, dd", {
+        locale: ruLocale
+      })
+    : "";
 }
 
-function CustomOverlay({ classNames, selectedDay, children }) {
+function renderDay(day) {
+  const date = day.getDate();
   return (
-    <div className={classNames.overlayWrapper}>
-      <div className={classNames.overlay}>
-        {children}
-        <Option>
-          <Switch />
-          <Text>Показать цены в одну сторону </Text>
-        </Option>
-      </div>
+    <div>
+      {date}
+      <Price>{prices[date]}</Price>
     </div>
   );
 }
 
-export default class DayPicker extends React.Component {
+export default class Picker extends React.Component {
   state = {
     from: undefined,
-    to: undefined
+    to: undefined,
+    isDateToOpen: false,
+    isDateFromOpen: false
   };
 
-  componentWillUnmount = () => {
-    clearTimeout(this.timeout);
+  showDateFrom = () => {
+    this.setState({ isDateFromOpen: true });
   };
-  focusTo() {
-    this.timeout = setTimeout(() => this.to.getInput().focus(), 0);
-  }
-  showFromMonth = () => {
-    const { from, to } = this.state;
-    if (!from) {
-      return;
+
+  showDateTo = () => {
+    this.setState({ isDateToOpen: true });
+  };
+
+  hideDate = () => {
+    this.setState({ isDateFromOpen: false, isDateToOpen: false });
+  };
+
+  handleFromChange = (from, { disabled, selected }) => {
+    if (!disabled) {
+      this.setState({ from, isDateFromOpen: false, isDateToOpen: true });
     }
-    if (differenceInCalendarMonths(to, from) < 2) {
-      this.to.getDayPicker().showMonth(from);
+    if (selected) {
+      this.setState({ from: undefined });
     }
   };
-  handleFromChange = from => {
-    this.setState({ from }, () => {
-      if (!this.state.to) {
-        this.focusTo();
-      }
-    });
+
+  handleToChange = (to, { disabled, selected }) => {
+    if (!disabled) {
+      this.setState({ to, isDateToOpen: false });
+    }
+    if (selected) {
+      this.setState({ to: undefined });
+    }
   };
-  handleToChange = to => {
-    this.setState({ to }, this.showFromMonth);
-  };
+
   render() {
-    const props = this.props;
-    const { from, to } = this.state;
+    const { isDateToOpen, isDateFromOpen, from, to } = this.state;
     const modifiers = { start: from, end: to };
 
     return (
       <InputsBox>
         <CustomInput>
-          <DayPickerInput
-            overlayComponent={CustomOverlay}
-            onDayChange={this.handleFromChange}
-            value={from}
-            placeholder="Туда"
-            formatDate={formatDate}
-            // showOverlay
-            dayPickerProps={{
-              selectedDays: [from, { from, to }],
-              disabledDays: { after: to },
-              toMonth: to,
-              modifiers,
-              numberOfMonths: 1,
-              locale: "ru",
-              months: MONTHS,
-              weekdaysLong: WEEKDAYS_LONG,
-              weekdaysShort: WEEKDAYS_SHORT,
-              firstDayOfWeek: 1
-            }}
+          <Input
+            placeholder={"Туда"}
+            onClick={this.showDateFrom}
+            value={formatDate(from)}
           />
+          {isDateFromOpen && (
+            <CustomPickerWithOutside
+              isPickerShow={isDateFromOpen}
+              onClickOutside={this.hideDate}
+            >
+              <DayPicker
+                onDayClick={this.handleFromChange}
+                locale="ru"
+                months={MONTHS}
+                weekdaysLong={WEEKDAYS_LONG}
+                weekdaysShort={WEEKDAYS_SHORT}
+                firstDayOfWeek={1}
+                disabledDays={{ before: new Date() }}
+                selectedDays={[from, { from, to }]}
+                modifiers={modifiers}
+                renderDay={renderDay}
+              />
+              <Option>
+                <Switch />
+                <Text>Показать цены в одну сторону </Text>
+              </Option>
+            </CustomPickerWithOutside>
+          )}
         </CustomInput>
         <CustomInput>
-          <DayPickerInput
-            overlayComponent={CustomOverlay}
-            ref={el => (this.to = el)}
-            value={to}
-            placeholder="От туда"
-            formatDate={formatDate}
-            dayPickerProps={{
-              selectedDays: [from, { from, to }],
-              disabledDays: { before: from },
-              modifiers,
-              month: from,
-              fromMonth: from,
-              numberOfMonths: 1,
-              locale: "ru",
-              months: MONTHS,
-              weekdaysLong: WEEKDAYS_LONG,
-              weekdaysShort: WEEKDAYS_SHORT,
-              firstDayOfWeek: 1
-            }}
-            onDayChange={this.handleToChange}
+          <Input
+            placeholder={"Обратно"}
+            onClick={this.showDateTo}
+            value={formatDate(to)}
           />
+          {isDateToOpen && (
+            <CustomPickerWithOutside
+              isPickerShow={isDateToOpen}
+              onClickOutside={this.hideDate}
+            >
+              <DayPicker
+                onDayClick={this.handleToChange}
+                locale="ru"
+                months={MONTHS}
+                weekdaysLong={WEEKDAYS_LONG}
+                weekdaysShort={WEEKDAYS_SHORT}
+                firstDayOfWeek={1}
+                disabledDays={[{ before: new Date() }, { before: from }]}
+                selectedDays={[from, { from, to }]}
+                modifiers={modifiers}
+                renderDay={renderDay}
+              />
+              <Option>
+                <Switch />
+                <Text>Показать цены в одну сторону </Text>
+              </Option>
+            </CustomPickerWithOutside>
+          )}
         </CustomInput>
       </InputsBox>
     );

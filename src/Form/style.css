@@ -71,6 +71,7 @@
 }
 
 .DayPicker-Day {
+  position: relative;
   font-style: normal;
   font-weight: 900;
   line-height: 18px;
@@ -78,7 +79,7 @@
   text-align: center;
   text-transform: uppercase;
   min-width: 46px;
-  padding: 9px 5px 21px 1px;
+  padding: 9px 4px 21px;
   color: #4a4a4a;
   border-radius: 0 !important;
 }
@@ -86,6 +87,12 @@
   background-color: transparent !important;
 }
 
+.DayPicker-Day--disabled {
+  color: rgba(74, 74, 74, 0.1);
+}
+.DayPicker-Day--outside {
+  opacity: 0;
+}
 .DayPicker-Day--selected {
   background-color: #f4f4f4;
 }

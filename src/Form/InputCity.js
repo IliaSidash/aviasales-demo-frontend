@@ -42,7 +42,7 @@ const CustomInput = styled.div`
   }
   @media screen and (min-width: 1200px) {
     margin-bottom: 0;
-    width: calc(22% - 2px);
+    width: calc(20.1% - 2px);
   }
 `;
 
