@@ -31,20 +31,21 @@ const SmallImg = styled.img`
 `;
 
 export default function(props) {
-  const doubleCompany = props.company.double;
-  if (doubleCompany) {
+  const companies = props.companies;
+
+  if (companies.length > 1) {
     return (
       <Logo>
-        {doubleCompany.map(company => (
+        {companies.map(company => (
           <SmallImg key={company.id} src={company.logoSrc} alt={company.alt} />
         ))}
       </Logo>
     );
-  } else {
-    return (
-      <Logo>
-        <Img src={props.company.logoSrc} alt={props.company.alt} />
-      </Logo>
-    );
   }
+
+  return (
+    <Logo>
+      <Img src={companies[0].logoSrc} alt={companies[0].alt} />
+    </Logo>
+  );
 }

@@ -95,9 +95,9 @@ export default () => (
           {tickets.map(ticket => (
             <Ticket
               id={ticket.id}
-              title={ticket.title}
+              type={ticket.type}
               price={ticket.price}
-              company={ticket.company}
+              companies={ticket.companies}
               depart={ticket.depart}
               return={ticket.return}
             />

@@ -10,16 +10,14 @@ import airlines from "./img/airlines.png";
 export default [
   {
     id: 1,
-    title: {
-      text: "Самый дешевый",
-      emoji: "🤑",
-      bgColor: "#83D40B"
-    },
+    type: "cheapest",
     price: 7712,
-    company: {
-      logoSrc: rossiya,
-      alt: "rossiya"
-    },
+    companies: [
+      {
+        logoSrc: rossiya,
+        alt: "rossiya"
+      }
+    ],
     depart: {
       out: 1519412700000,
       in: 1519423500000,
@@ -41,16 +39,14 @@ export default [
   },
   {
     id: 2,
-    title: {
-      text: "Самый быстрый",
-      emoji: "⚡️",
-      bgColor: "#AF7542"
-    },
+    type: "fastest",
     price: 9269,
-    company: {
-      logoSrc: fly,
-      alt: "fly"
-    },
+    companies: [
+      {
+        logoSrc: fly,
+        alt: "fly"
+      }
+    ],
     depart: {
       out: 1519413300000,
       in: 1519423800000,
@@ -72,16 +68,14 @@ export default [
   },
   {
     id: 3,
-    title: {
-      text: "Лучший билет",
-      emoji: "😍",
-      bgColor: "#C279D1"
-    },
+    type: "best",
     price: 8029,
-    company: {
-      logoSrc: nordwind,
-      alt: "nordwind"
-    },
+    companies: [
+      {
+        logoSrc: nordwind,
+        alt: "nordwind"
+      }
+    ],
     depart: {
       out: 1519431300000,
       in: 1519441800000,
@@ -104,10 +98,12 @@ export default [
   {
     id: 4,
     price: 8164,
-    company: {
-      logoSrc: nordwindAirlines,
-      alt: "nordwind airlines"
-    },
+    companies: [
+      {
+        logoSrc: nordwindAirlines,
+        alt: "nordwind airlines"
+      }
+    ],
     depart: {
       out: 1519431300000,
       in: 1519441800000,
@@ -130,10 +126,12 @@ export default [
   {
     id: 5,
     price: 8240,
-    company: {
-      logoSrc: redwings,
-      alt: "red wings"
-    },
+    companies: [
+      {
+        logoSrc: redwings,
+        alt: "red wings"
+      }
+    ],
     depart: {
       out: 1519455600000,
       in: 1519464600000,
@@ -156,20 +154,18 @@ export default [
   {
     id: 6,
     price: 9108,
-    company: {
-      double: [
-        {
-          id: 1,
-          logoSrc: redwingsLogo,
-          alt: "red wings"
-        },
-        {
-          id: 2,
-          logoSrc: rossiyaLogo,
-          alt: "rossiya"
-        }
-      ]
-    },
+    companies: [
+      {
+        id: 1,
+        logoSrc: redwingsLogo,
+        alt: "red wings"
+      },
+      {
+        id: 2,
+        logoSrc: rossiyaLogo,
+        alt: "rossiya"
+      }
+    ],
     depart: {
       out: 1519430700000,
       in: 1519441500000,
@@ -192,20 +188,18 @@ export default [
   {
     id: 7,
     price: 9485,
-    company: {
-      double: [
-        {
-          id: 1,
-          logoSrc: rossiyaLogo,
-          alt: "rossiya"
-        },
-        {
-          id: 2,
-          logoSrc: airlines,
-          alt: "airlines"
-        }
-      ]
-    },
+    companies: [
+      {
+        id: 1,
+        logoSrc: rossiyaLogo,
+        alt: "rossiya"
+      },
+      {
+        id: 2,
+        logoSrc: airlines,
+        alt: "airlines"
+      }
+    ],
     depart: {
       out: 1519430700000,
       in: 1519441500000,

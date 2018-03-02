@@ -278,11 +278,13 @@ function formatDate(milliseconds) {
     locale: ruLocale
   });
 }
+
 function formatTime(milliseconds) {
   return format(milliseconds, "HH:mm", {
     locale: ruLocale
   });
 }
+
 function formatDuration(milliseconds) {
   if (milliseconds % 3600 === 0) {
     return format(milliseconds, "H ч", {
@@ -299,7 +301,7 @@ export default props => (
   <Ticket key={props.id}>
     <Buy price={props.price} />
     <Info>
-      <Title title={props.title} />
+      <Title type={props.type} />
       <Price>
         <FormattedNumber
           style={`currency`}
@@ -309,7 +311,7 @@ export default props => (
           maximumFractionDigits={0}
         />
       </Price>
-      <Company company={props.company} />
+      <Company companies={props.companies} />
       <Note>Чартер</Note>
       <Sharing src={sharing} />
       <Depart>
