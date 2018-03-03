@@ -6,6 +6,7 @@ import "./style.css";
 import { format } from "date-fns";
 import ruLocale from "date-fns/locale/ru";
 import { withClickOutside } from "react-clickoutside";
+import { FormattedNumber } from "react-intl";
 
 import icon from "./img/date-icon.png";
 
@@ -22,6 +23,7 @@ const Input = styled.input`
   :placeholder {
     color: #a0b0b9;
   }
+
   @media screen and (min-width: 1200px) {
     margin-bottom: 0;
   }
@@ -33,13 +35,23 @@ const CustomInput = styled.div`
   box-sizing: border-box;
   margin: 0 1px 2px;
   width: calc(50% - 2px);
+  :first-child {
+    ${Input} {
+      @media screen and (min-width: 768px) {
+        border-bottom-left-radius: 4px;
+      }
+      @media screen and (min-width: 1200px) {
+        border-bottom-left-radius: 0px;
+      }
+    }
+  }
   :after {
     content: "";
     position: absolute;
     right: 16px;
     top: 50%;
     transform: translateY(-50%);
-    background: url(${icon})no-repeat center;
+    background: url(${icon}) no-repeat center;
     width: 17px;
     height: 20px;
   }
@@ -111,7 +123,7 @@ const Price = styled.div`
   font-weight: 500;
   line-height: normal;
   font-size: 10px;
-  color: #a0b0b9;
+  color: ${props => (props.cheap ? "#00C455" : "#a0b0b9")};
   position: absolute;
   width: 100%;
   bottom: 6px;
@@ -147,11 +159,26 @@ const WEEKDAYS_LONG = [
 const WEEKDAYS_SHORT = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
 
 const prices = {
-  24: "43 606",
-  25: "43 606",
-  26: "41 920",
-  27: "42 140",
-  28: "42 130"
+  24: {
+    price: 43606,
+    cheap: false
+  },
+  25: {
+    price: 43606,
+    cheap: false
+  },
+  26: {
+    price: 41920,
+    cheap: true
+  },
+  27: {
+    price: 42140,
+    cheap: true
+  },
+  28: {
+    price: 42130,
+    cheap: true
+  }
 };
 
 function formatDate(inputString) {
@@ -164,10 +191,19 @@ function formatDate(inputString) {
 
 function renderDay(day) {
   const date = day.getDate();
+
   return (
     <div>
       {date}
-      <Price>{prices[date]}</Price>
+      {prices[date] && (
+        <Price cheap={prices[date].cheap}>
+          <FormattedNumber
+            value={prices[date].price}
+            minimumFractionDigits={0}
+            maximumFractionDigits={0}
+          />
+        </Price>
+      )}
     </div>
   );
 }

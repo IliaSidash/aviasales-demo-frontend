@@ -15,8 +15,6 @@ const CustomSelect = styled.div`
   }
   @media screen and (min-width: 1200px) {
     width: calc(22% - 2px);
-    border-top-right-radius: ${props => (props.searchPage ? "4px" : "none")};
-    border-bottom-right-radius: ${props => (props.searchPage ? "4px" : "none")};
   }
 `;
 
@@ -33,9 +31,16 @@ const Select = styled.div`
   background: #fff;
   cursor: pointer;
   white-space: nowrap;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  @media screen and (min-width: 768px) {
+    border-top-right-radius: ${props => (props.searchPage ? "0" : "none")};
+    border-bottom-right-radius: ${props => (props.searchPage ? "0" : "none")};
+    border-bottom-left-radius: 0px;
+  }
   @media screen and (min-width: 1200px) {
-    border-top-right-radius: ${props => (props.searchPage ? "4px" : "none")};
-    border-bottom-right-radius: ${props => (props.searchPage ? "4px" : "none")};
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
   }
 `;
 
@@ -58,7 +63,7 @@ class SelectPasagers extends React.Component {
   };
 
   render() {
-    const { match, location, history } = this.props;
+    const { location } = this.props;
     const searchPage = location.pathname === "/search";
 
     return (

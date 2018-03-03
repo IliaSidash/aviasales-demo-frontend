@@ -25,7 +25,7 @@ const Button = styled(Link)`
   :after {
     content: "";
     position: absolute;
-    background: url(${aero})no-repeat center;
+    background: url(${aero}) no-repeat center;
     width: 26px;
     height: 21px;
     top: 50%;
@@ -49,11 +49,14 @@ const Button = styled(Link)`
     margin-top: ${props => (props.searchPage ? "0" : "32px")};
     width: ${props => (props.searchPage ? "calc(25% - 2px)" : "auto")};
     max-width: ${props => (props.searchPage ? "185px" : "auto")};
+    border-radius: ${props => (props.searchPage ? "0" : "4px")};
+    border-bottom-right-radius: 4px;
   }
   @media screen and (min-width: 992px) {
     max-width: ${props => (props.searchPage ? "238px" : "auto")};
   }
   @media screen and (min-width: 1200px) {
+    border-radius: 4px;
     margin-top: ${props => (props.searchPage ? "0" : "48px")};
     margin-left: ${props => (props.searchPage ? "8px" : "auto")};
     padding: ${props => (props.searchPage ? "16px 25px" : "14px 0 13px 45px")};
@@ -69,7 +72,7 @@ class Submit extends React.Component {
   };
 
   render() {
-    const { match, location, history } = this.props;
+    const { location } = this.props;
     const searchPage = location.pathname === "/search";
 
     return (

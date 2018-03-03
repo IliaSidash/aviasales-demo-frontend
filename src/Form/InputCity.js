@@ -13,10 +13,15 @@ const Input = styled.input`
   border: none;
   color: #4a4a4a;
   width: 100%;
+
   :placeholder {
     color: #a0b0b9;
   }
+  @media screen and (min-width: 768px) {
+    border-top-right-radius: 4px;
+  }
   @media screen and (min-width: 1200px) {
+    border-top-right-radius: 0px;
     margin-bottom: 0;
   }
 `;
@@ -36,6 +41,22 @@ const CustomInput = styled.div`
   position: relative;
   margin: 0 1px 2px;
   width: calc(100% - 2px);
+
+  :first-child {
+    ${Input} {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      @media screen and (min-width: 768px) {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 0px;
+      }
+      @media screen and (min-width: 1200px) {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
+    }
+  }
+  }
   @media screen and (min-width: 768px) {
     margin: 0 1px 2px;
     width: calc(50% - 2px);
@@ -67,7 +88,7 @@ export default class InputCity extends React.Component {
     if (this.props.value) {
       return (
         <CustomInput>
-          <Input value={this.props.value} />
+          <Input type="text" defaultValue={this.props.value} />
           <Airport styled={this.state.arrowsIsShowed}>
             {this.props.air}{" "}
           </Airport>
