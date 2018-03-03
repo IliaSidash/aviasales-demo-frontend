@@ -21,20 +21,16 @@ export default [
     depart: {
       out: 1519412700000,
       in: 1519423500000,
-      stop: "Прямой",
-      cityFrom: "Москва",
-      cityTo: "Барселона",
-      airoportFrom: "VKO",
-      airoportIn: "BCN"
+      stops: [],
+      airoportDepart: "VKO",
+      airoportArrival: "BCN"
     },
     return: {
       out: 1520055300000,
       in: 1520079000000,
-      stop: "Прямой",
-      cityFrom: "Барселона",
-      cityTo: "Москва",
-      airoportFrom: "BCN",
-      airoportIn: "VKO"
+      stops: [],
+      airoportDepart: "BCN",
+      airoportArrival: "SVO"
     }
   },
   {
@@ -50,20 +46,16 @@ export default [
     depart: {
       out: 1519413300000,
       in: 1519423800000,
-      stop: "Прямой",
-      cityFrom: "Москва",
-      cityTo: "Барселона",
-      airoportFrom: "VKO",
-      airoportIn: "BCN"
+      stops: [],
+      airoportDepart: "VKO",
+      airoportArrival: "BCN"
     },
     return: {
       out: 1520055900000,
       in: 1520079300000,
-      stop: "CDG",
-      cityFrom: "Барселона",
-      cityTo: "Москва",
-      airoportFrom: "BCN",
-      airoportIn: "VKO"
+      stops: ["CDG"],
+      airoportDepart: "BCN",
+      airoportArrival: "SVO"
     }
   },
   {
@@ -79,20 +71,16 @@ export default [
     depart: {
       out: 1519431300000,
       in: 1519441800000,
-      stop: "Прямой",
-      cityFrom: "Москва",
-      cityTo: "Барселона",
-      airoportFrom: "VKO",
-      airoportIn: "BCN"
+      stops: ["CDG", "CDG"],
+      airoportDepart: "VKO",
+      airoportArrival: "BCN"
     },
     return: {
       out: 1520073900000,
       in: 1520097300000,
-      stop: "CDG",
-      cityFrom: "Барселона",
-      cityTo: "Москва",
-      airoportFrom: "BCN",
-      airoportIn: "VKO"
+      stops: [],
+      airoportDepart: "BCN",
+      airoportArrival: "SVO"
     }
   },
   {
@@ -107,20 +95,16 @@ export default [
     depart: {
       out: 1519431300000,
       in: 1519441800000,
-      stop: "Прямой",
-      cityFrom: "Москва",
-      cityTo: "Барселона",
-      airoportFrom: "VKO",
-      airoportIn: "BCN"
+      stops: [],
+      airoportDepart: "VKO",
+      airoportArrival: "BCN"
     },
     return: {
       out: 1520073900000,
       in: 1520097300000,
-      stop: "Прямой",
-      cityFrom: "Барселона",
-      cityTo: "Москва",
-      airoportFrom: "BCN",
-      airoportIn: "VKO"
+      stops: [],
+      airoportDepart: "BCN",
+      airoportArrival: "SVO"
     }
   },
   {
@@ -135,20 +119,16 @@ export default [
     depart: {
       out: 1519455600000,
       in: 1519464600000,
-      stop: "Прямой",
-      cityFrom: "Москва",
-      cityTo: "Барселона",
-      airoportFrom: "VKO",
-      airoportIn: "BCN"
+      stops: [],
+      airoportDepart: "VKO",
+      airoportArrival: "BCN"
     },
     return: {
       out: 1520074800000,
       in: 1520097000000,
-      stop: "Прямой",
-      cityFrom: "Барселона",
-      cityTo: "Москва",
-      airoportFrom: "BCN",
-      airoportIn: "VKO"
+      stops: [],
+      airoportDepart: "BCN",
+      airoportArrival: "SVO"
     }
   },
   {
@@ -169,20 +149,16 @@ export default [
     depart: {
       out: 1519430700000,
       in: 1519441500000,
-      stop: "Прямой",
-      cityFrom: "Москва",
-      cityTo: "Барселона",
-      airoportFrom: "VKO",
-      airoportIn: "BCN"
+      stops: [],
+      airoportDepart: "VKO",
+      airoportArrival: "BCN"
     },
     return: {
       out: 1520074800000,
       in: 1520097000000,
-      stop: "Прямой",
-      cityFrom: "Барселона",
-      cityTo: "Москва",
-      airoportFrom: "BCN",
-      airoportIn: "VKO"
+      stops: [],
+      airoportDepart: "BCN",
+      airoportArrival: "SVO"
     }
   },
   {
@@ -203,20 +179,16 @@ export default [
     depart: {
       out: 1519430700000,
       in: 1519441500000,
-      stop: "Прямой",
-      cityFrom: "Москва",
-      cityTo: "Барселона",
-      airoportFrom: "VKO",
-      airoportIn: "BCN"
+      stops: [],
+      airoportDepart: "VKO",
+      airoportArrival: "BCN"
     },
     return: {
       out: 1520076000000,
       in: 1520098500000,
-      stop: "Прямой",
-      cityFrom: "Барселона",
-      cityTo: "Москва",
-      airoportFrom: "BCN",
-      airoportIn: "VKO"
+      stops: [],
+      airoportDepart: "BCN",
+      airoportArrival: "SVO"
     }
   }
 ];
