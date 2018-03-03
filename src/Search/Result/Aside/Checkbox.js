@@ -3,11 +3,6 @@ import styled from "styled-components";
 
 import checked from "./img/checked.svg";
 
-const Submenu = styled.span`
-  display: block;
-  padding: 17px 0 0;
-`;
-
 const Label = styled.label`
   display: flex;
   align-items: center;
@@ -34,7 +29,7 @@ const CustomCheckbox = styled.span`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: url(${checked})no-repeat center;
+    background: url(${checked}) no-repeat center;
     width: 18px;
     height: 18px;
     opacity: ${props => (props.checked ? "1" : "0")};

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 import Header from "../Header";

@@ -87,7 +87,7 @@ export default () => (
         <Col xs={0} xl={3}>
           <Aside />
         </Col>
-        <Col xs={12} xl={9}>
+        <Col xs={12} xl={8}>
           <Settings>
             <Icon src={settings} />
           </Settings>

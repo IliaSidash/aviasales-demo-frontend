@@ -5202,10 +5202,6 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-clickoutside-component@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/react-clickoutside-component/-/react-clickoutside-component-1.0.7.tgz#afac8cd66c3148a9eb6855c004db9d0b70a2da9a"
-
 react-clickoutside@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-clickoutside/-/react-clickoutside-2.0.0.tgz#bef84ece0a7e7afd0a1c0571f0080337cdedc704"

@@ -43,7 +43,7 @@ class Logotype extends React.Component {
   };
 
   render() {
-    const { match, location, history } = this.props;
+    const { location } = this.props;
 
     const searchPage = location.pathname === "/search";
 

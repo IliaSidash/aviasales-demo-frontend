@@ -97,8 +97,6 @@ const Flag = styled.img`
   }
 `;
 
-const Direction = styled.div``;
-
 export default props => (
   <Card>
     <Img src={props.src} alt={props.alt} />

@@ -1,6 +1,4 @@
 import React from "react";
-import styled from "styled-components";
-import { Grid } from "react-flexbox-grid";
 import { Helmet } from "react-helmet";
 
 import Header from "./Header";

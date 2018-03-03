@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid } from "react-flexbox-grid";
-import { Link } from "react-router-dom";
 
 import InputCity from "../../Form/InputCity";
 import InputDate from "../../Form/InputDate";

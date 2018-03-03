@@ -13,9 +13,12 @@ import landingPlane from "./img/landing-plane.svg";
 import sharing from "./img/sharing.svg";
 import arrow from "./img/arrow.svg";
 
+import airoports from "../airoports";
+
 import Title from "./Title";
 import Buy from "./Buy";
 import Company from "./Company";
+import Stops from "./Stops";
 
 const Ticket = styled.div`
   padding-bottom: 14px;
@@ -236,15 +239,6 @@ const Icon = styled.img`
   }
 `;
 
-const Stop = styled.div`
-  flex-grow: 1;
-  text-align: right;
-  color: #4a4a4a;
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-`;
-
 const Info = styled.div`
   box-sizing: border-box;
   display: flex;
@@ -319,12 +313,12 @@ export default props => (
           <Pin src={pin} />
           <Icon src={airRight} />
           {formatTime(props.depart.out)}
-          <City>{props.depart.cityFrom}</City>
+          <City>{airoports[props.depart.airoportDepart].city}</City>
           <Date>{formatDate(props.depart.out)}</Date>
         </Time>
         <Time>
           {formatTime(props.depart.in)}
-          <City>{props.depart.cityTo}</City>
+          <City>{airoports[props.depart.airoportArrival].city}</City>
           <Date>{formatDate(props.depart.in)}</Date>
         </Time>
         <Path first>
@@ -336,27 +330,27 @@ export default props => (
           </Duration>
           <Airoports>
             <Airoport>
-              {props.depart.airoportFrom} <Dot />
+              {props.depart.airoportDepart} <Dot />
             </Airoport>
             <Airoport>
-              {props.depart.airoportIn} <Dot right />
+              {props.depart.airoportArrival} <Dot right />
             </Airoport>
             <Line />
           </Airoports>
         </Path>
-        <Stop>{props.depart.stop}</Stop>
+        <Stops stops={props.depart.stops} />
       </Depart>
       <Return>
         <Time>
           <Pin src={pin} />
           <Icon src={airLeft} />
           {formatTime(props.return.out)}
-          <City>{props.return.cityFrom}</City>
+          <City>{airoports[props.return.airoportDepart].city}</City>
           <Date>{formatDate(props.return.out)}</Date>
         </Time>
         <Time>
           {formatTime(props.return.in)}
-          <City>{props.return.cityTo}</City>
+          <City>{airoports[props.return.airoportArrival].city}</City>
           <Date>{formatDate(props.return.in)}</Date>
         </Time>
 
@@ -369,15 +363,15 @@ export default props => (
           </Duration>
           <Airoports>
             <Airoport>
-              {props.return.airoportFrom} <Dot />
+              {props.return.airoportDepart} <Dot />
             </Airoport>
             <Airoport>
-              {props.return.airoportIn} <Dot right />
+              {props.return.airoportArrival} <Dot right />
             </Airoport>
             <Line />
           </Airoports>
         </Path>
-        <Stop>{props.return.stop}</Stop>
+        <Stops stops={props.return.stops} />
       </Return>
     </Info>
     <Button>
