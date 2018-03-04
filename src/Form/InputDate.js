@@ -73,7 +73,6 @@ const InputsBox = styled.div`
 `;
 
 const CustomPicker = styled.div`
-  display: ${props => (props.isPickerShow ? "block" : "none")};
   position: absolute;
   left: 0;
   top: 0;
@@ -182,11 +181,11 @@ const prices = {
 };
 
 function formatDate(inputString) {
-  return inputString
-    ? format(inputString, "DD MMMM, dd", {
-        locale: ruLocale
-      })
-    : "";
+  if (inputString) {
+    return format(inputString, "DD MMMM, dd", {
+      locale: ruLocale
+    });
+  }
 }
 
 function renderDay(day) {
@@ -259,10 +258,7 @@ export default class Picker extends React.Component {
             value={formatDate(from)}
           />
           {isDateFromOpen && (
-            <CustomPickerWithOutside
-              isPickerShow={isDateFromOpen}
-              onClickOutside={this.hideDate}
-            >
+            <CustomPickerWithOutside onClickOutside={this.hideDate}>
               <DayPicker
                 onDayClick={this.handleFromChange}
                 locale="ru"
@@ -289,10 +285,7 @@ export default class Picker extends React.Component {
             value={formatDate(to)}
           />
           {isDateToOpen && (
-            <CustomPickerWithOutside
-              isPickerShow={isDateToOpen}
-              onClickOutside={this.hideDate}
-            >
+            <CustomPickerWithOutside onClickOutside={this.hideDate}>
               <DayPicker
                 onDayClick={this.handleToChange}
                 locale="ru"
