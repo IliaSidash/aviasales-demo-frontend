@@ -24,7 +24,7 @@ export default () => (
     <InputCity value={"Москва"} air={"MOW"} arrows />
     <InputCity value={"Барселона"} air={"BCN"} />
     <InputDate />
-    <Select />
-    <Submit />
+    <Select customBorder />
+    <Submit withoutIcon />
   </Form>
 );

@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
-import { withRouter } from "react-router";
 
 import logo from "./img/logo.svg";
 
 const Logo = styled.div`
-  display: ${props => (props.searchPage ? "none" : "block")};
+  display: ${props => (props.customLogo ? "none" : "block")};
   @media screen and (min-width: 768px) {
     display: block;
   }
@@ -15,10 +13,10 @@ const Logo = styled.div`
 const Img = styled.img`
   margin-bottom: 47px;
   @media screen and (min-width: 768px) {
-    margin-bottom: ${props => (props.searchPage ? "40px" : "81px")};
+    margin-bottom: ${props => (props.customLogo ? "40px" : "81px")};
   }
   @media screen and (min-width: 1200px) {
-    margin-bottom: ${props => (props.searchPage ? "40px" : "213px")};
+    margin-bottom: ${props => (props.customLogo ? "40px" : "213px")};
   }
 `;
 
@@ -35,25 +33,11 @@ const CompanyName = styled.div`
   }
 `;
 
-class Logotype extends React.Component {
-  static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-  };
-
-  render() {
-    const { location } = this.props;
-
-    const searchPage = location.pathname === "/search";
-
-    return (
-      <Logo searchPage={searchPage}>
-        <Img src={logo} alt="aviasales" searchPage={searchPage} />
-        <CompanyName>aviasales</CompanyName>
-      </Logo>
-    );
-  }
-}
-
-export default withRouter(Logotype);
+export default ({ customLogo }) => {
+  return (
+    <Logo customLogo={customLogo}>
+      <Img src={logo} alt="aviasales" customLogo={customLogo} />
+      <CompanyName>aviasales</CompanyName>
+    </Logo>
+  );
+};

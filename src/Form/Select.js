@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
-import { withRouter } from "react-router";
 
 import arrowDown from "./img/arrow-down.svg";
 
@@ -11,7 +9,7 @@ const CustomSelect = styled.div`
   width: calc(100% - 2px);
   @media screen and (min-width: 768px) {
     width: ${props =>
-      props.searchPage ? "calc(25% - 2px)" : "calc(50% - 2px)"};
+      props.customBorder ? "calc(25% - 2px)" : "calc(50% - 2px)"};
   }
   @media screen and (min-width: 1200px) {
     width: calc(22% - 2px);
@@ -34,8 +32,8 @@ const Select = styled.div`
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   @media screen and (min-width: 768px) {
-    border-top-right-radius: ${props => (props.searchPage ? "0" : "none")};
-    border-bottom-right-radius: ${props => (props.searchPage ? "0" : "none")};
+    border-top-right-radius: ${props => (props.customBorder ? "0" : "none")};
+    border-bottom-right-radius: ${props => (props.customBorder ? "0" : "none")};
     border-bottom-left-radius: 0px;
   }
   @media screen and (min-width: 1200px) {
@@ -55,26 +53,13 @@ const ArrowDown = styled.img`
   transform: translateY(-50%);
 `;
 
-class SelectPasagers extends React.Component {
-  static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-  };
-
-  render() {
-    const { location } = this.props;
-    const searchPage = location.pathname === "/search";
-
-    return (
-      <CustomSelect searchPage={searchPage}>
-        <Select searchPage={searchPage}>
-          1 пассажир, <Type>эконом</Type>
-        </Select>
-        <ArrowDown src={arrowDown} />
-      </CustomSelect>
-    );
-  }
-}
-
-export default withRouter(SelectPasagers);
+export default ({ customBorder }) => {
+  return (
+    <CustomSelect customBorder={customBorder}>
+      <Select customBorder={customBorder}>
+        1 пассажир, <Type>эконом</Type>
+      </Select>
+      <ArrowDown src={arrowDown} />
+    </CustomSelect>
+  );
+};

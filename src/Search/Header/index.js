@@ -73,7 +73,7 @@ export default () => (
   <Header>
     <Grid>
       <Head>
-        <Logo />
+        <Logo customLogo />
         <Params>
           <Link to="/">
             <Arrow src={arrowBack} />

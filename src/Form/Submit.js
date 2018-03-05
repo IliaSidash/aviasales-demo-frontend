@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import { withRouter } from "react-router";
 
 import aero from "./img/aero.svg";
 
@@ -13,8 +11,8 @@ const Button = styled(Link)`
   border-radius: 4px;
   font-size: 24px;
   color: #fff;
-  width: ${props => (props.searchPage ? "auto" : "100%")};
-  padding: ${props => (props.searchPage ? "16px 29px" : "14px 0 13px")};
+  width: ${props => (props.withoutIcon ? "auto" : "100%")};
+  padding: ${props => (props.withoutIcon ? "16px 29px" : "14px 0 13px")};
   cursor: pointer;
   position: relative;
   max-width: 308px;
@@ -31,7 +29,7 @@ const Button = styled(Link)`
     top: 50%;
     left: 50%;
     transform: translate(91px, -50%);
-    display: ${props => (props.searchPage ? "none" : "block")};
+    display: ${props => (props.withoutIcon ? "none" : "block")};
     @media screen and (min-width: 768px) {
       left: auto;
       right: 24px;
@@ -41,46 +39,33 @@ const Button = styled(Link)`
   @media screen and (min-width: 768px) {
     font-style: normal;
     line-height: normal;
-    font-size: ${props => (props.searchPage ? "20px" : "28px")};
-    text-align: ${props => (props.searchPage ? "center" : "left")};
-    padding: ${props => (props.searchPage ? "16px 24px" : "14px 0 13px 45px")};
+    font-size: ${props => (props.withoutIcon ? "20px" : "28px")};
+    text-align: ${props => (props.withoutIcon ? "center" : "left")};
+    padding: ${props => (props.withoutIcon ? "16px 24px" : "14px 0 13px 45px")};
     font-weight: bold;
     margin-top: 32px;
-    margin-top: ${props => (props.searchPage ? "0" : "32px")};
-    width: ${props => (props.searchPage ? "calc(25% - 2px)" : "auto")};
-    max-width: ${props => (props.searchPage ? "185px" : "auto")};
-    border-radius: ${props => (props.searchPage ? "0" : "4px")};
+    margin-top: ${props => (props.withoutIcon ? "0" : "32px")};
+    width: ${props => (props.withoutIcon ? "calc(25% - 2px)" : "auto")};
+    max-width: ${props => (props.withoutIcon ? "185px" : "auto")};
+    border-radius: ${props => (props.withoutIcon ? "0" : "4px")};
     border-bottom-right-radius: 4px;
   }
   @media screen and (min-width: 992px) {
-    max-width: ${props => (props.searchPage ? "238px" : "auto")};
+    max-width: ${props => (props.withoutIcon ? "238px" : "auto")};
   }
   @media screen and (min-width: 1200px) {
     border-radius: 4px;
-    margin-top: ${props => (props.searchPage ? "0" : "48px")};
-    margin-left: ${props => (props.searchPage ? "8px" : "auto")};
-    padding: ${props => (props.searchPage ? "16px 25px" : "14px 0 13px 45px")};
-    max-width: ${props => (props.searchPage ? "185px" : "auto")};
+    margin-top: ${props => (props.withoutIcon ? "0" : "48px")};
+    margin-left: ${props => (props.withoutIcon ? "8px" : "auto")};
+    padding: ${props => (props.withoutIcon ? "16px 25px" : "14px 0 13px 45px")};
+    max-width: ${props => (props.withoutIcon ? "185px" : "auto")};
   }
 `;
 
-class Submit extends React.Component {
-  static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-  };
-
-  render() {
-    const { location } = this.props;
-    const searchPage = location.pathname === "/search";
-
-    return (
-      <Button to="/search" searchPage={searchPage}>
-        Найти билеты
-      </Button>
-    );
-  }
-}
-
-export default withRouter(Submit);
+export default ({ withoutIcon }) => {
+  return (
+    <Button to="/search" withoutIcon={withoutIcon}>
+      Найти билеты
+    </Button>
+  );
+};
