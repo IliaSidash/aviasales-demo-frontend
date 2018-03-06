@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-import aero from "./img/aero.svg";
-import icon from "./img/date-icon.png";
-import arrows from "./img/arrows.svg";
-import arrowDown from "./img/arrow-down.svg";
-import { Link } from "react-router-dom";
+import aero from './img/aero.svg';
+import icon from './img/date-icon.png';
+import arrows from './img/arrows.svg';
+import arrowDown from './img/arrow-down.svg';
 
 const Form = styled.form``;
 
@@ -22,9 +22,9 @@ const Button = styled.button`
   position: relative;
   max-width: 308px;
   :after {
-    content: "";
+    content: '';
     position: absolute;
-    background: url(${aero})no-repeat center;
+    background: url(${aero}) no-repeat center;
     width: 26px;
     height: 21px;
     top: 50%;
@@ -78,12 +78,12 @@ const Input = styled.input`
 const CustomInput = styled.div`
   position: relative;
   :after {
-    content: "";
+    content: '';
     position: absolute;
     right: 16px;
     top: 50%;
     transform: translateY(-50%);
-    background: url(${arrows})no-repeat center;
+    background: url(${arrows}) no-repeat center;
     width: 16px;
     height: 18px;
   }
@@ -115,12 +115,12 @@ const CustomInputDate = styled.div`
   margin-bottom: 2px;
   width: calc(50% - 1px);
   :after {
-    content: "";
+    content: '';
     position: absolute;
     right: 16px;
     top: 50%;
     transform: translateY(-50%);
-    background: url(${icon})no-repeat center;
+    background: url(${icon}) no-repeat center;
     width: 17px;
     height: 20px;
   }
@@ -221,7 +221,7 @@ export default () => (
         <ArrowDown src={arrowDown} />
       </CustomSelect>
     </InputsBox>
-    <Link to="/search">
+    <Link href="./" to="/search">
       <Button>Найти билеты</Button>
     </Link>
     <ArrowDown />

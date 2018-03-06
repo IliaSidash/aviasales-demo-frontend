@@ -1,10 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-import logo from "./img/logo.svg";
+import logo from './img/logo.svg';
 
-const Logo = styled.div`
-  display: ${props => (props.customLogo ? "none" : "block")};
+const LogoContent = styled.div`
+  display: ${props => (props.customLogo ? 'none' : 'block')};
   @media screen and (min-width: 768px) {
     display: block;
   }
@@ -13,10 +14,10 @@ const Logo = styled.div`
 const Img = styled.img`
   margin-bottom: 47px;
   @media screen and (min-width: 768px) {
-    margin-bottom: ${props => (props.customLogo ? "40px" : "81px")};
+    margin-bottom: ${props => (props.customLogo ? '40px' : '81px')};
   }
   @media screen and (min-width: 1200px) {
-    margin-bottom: ${props => (props.customLogo ? "40px" : "213px")};
+    margin-bottom: ${props => (props.customLogo ? '40px' : '213px')};
   }
 `;
 
@@ -33,11 +34,15 @@ const CompanyName = styled.div`
   }
 `;
 
-export default ({ customLogo }) => {
-  return (
-    <Logo customLogo={customLogo}>
-      <Img src={logo} alt="aviasales" customLogo={customLogo} />
-      <CompanyName>aviasales</CompanyName>
-    </Logo>
-  );
+const Logo = ({ customLogo }) => (
+  <LogoContent customLogo={customLogo}>
+    <Img src={logo} alt="aviasales" customLogo={customLogo} />
+    <CompanyName>aviasales</CompanyName>
+  </LogoContent>
+);
+
+Logo.propTypes = {
+  customLogo: PropTypes.bool.isRequired,
 };
+
+export default Logo;
