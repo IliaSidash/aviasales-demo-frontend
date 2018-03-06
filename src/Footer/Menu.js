@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Nav = styled.nav`
   margin-bottom: 31px;
@@ -28,7 +29,7 @@ const All = styled.a`
   color: #4a4a4a;
 `;
 
-export default props => (
+const Navigation = props => (
   <Nav key={props.id}>
     <Title>{props.title}</Title>
     <Menu>
@@ -41,3 +42,12 @@ export default props => (
     </Menu>
   </Nav>
 );
+
+Navigation.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  links: PropTypes.string.isRequired,
+  all: PropTypes.string.isRequired,
+};
+
+export default Navigation;

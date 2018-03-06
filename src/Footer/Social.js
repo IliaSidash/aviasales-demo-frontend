@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Link = styled.a`
   display: inline-block;
@@ -19,8 +20,17 @@ const Img = styled.img`
   margin-right: 4px;
 `;
 
-export default props => (
+const Social = props => (
   <Link key={props.id} href={props.href}>
     <Img src={props.img} /> {props.text}
   </Link>
 );
+
+Social.propTypes = {
+  id: PropTypes.number.isRequired,
+  href: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
+
+export default Social;

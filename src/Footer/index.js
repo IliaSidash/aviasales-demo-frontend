@@ -1,20 +1,20 @@
-import React from "react";
-import styled from "styled-components";
-import { Grid, Row, Col } from "react-flexbox-grid";
+import React from 'react';
+import styled from 'styled-components';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import vk from "./img/vk.png";
-import face from "./img/face.png";
-import inst from "./img/inst.png";
-import twit from "./img/twit.png";
-import viber from "./img/viber.png";
-import apple from "./img/apple.png";
-import play from "./img/play.png";
-import windowsPhone from "./img/windows-phone.png";
+import vk from './img/vk.png';
+import face from './img/face.png';
+import inst from './img/inst.png';
+import twit from './img/twit.png';
+import viber from './img/viber.png';
+import apple from './img/apple.png';
+import play from './img/play.png';
+import windowsPhone from './img/windows-phone.png';
 
-import Menu from "./Menu";
-import Nav from "./Nav";
-import Social from "./Social";
-import DownloadApp from "./DownloadApp";
+import Menu from './Menu';
+import Nav from './Nav';
+import Social from './Social';
+import DownloadApp from './DownloadApp';
 
 const Footer = styled.footer`
   background-color: #fff;
@@ -68,140 +68,140 @@ const Copyright = styled.div`
 const menu = [
   {
     id: 1,
-    title: "СТРАНЫ",
+    title: 'СТРАНЫ',
     links: [
-      { id: 1, href: "#", text: "Россия" },
-      { id: 2, href: "#", text: "Таиланд" },
-      { id: 3, href: "#", text: "Черногория" },
-      { id: 4, href: "#", text: "Кипр" },
-      { id: 5, href: "#", text: "Болгария" },
-      { id: 6, href: "#", text: "Грузия" }
+      { id: 1, href: '#', text: 'Россия' },
+      { id: 2, href: '#', text: 'Таиланд' },
+      { id: 3, href: '#', text: 'Черногория' },
+      { id: 4, href: '#', text: 'Кипр' },
+      { id: 5, href: '#', text: 'Болгария' },
+      { id: 6, href: '#', text: 'Грузия' },
     ],
-    all: { href: "#", text: "Все страны →" }
+    all: { href: '#', text: 'Все страны →' },
   },
   {
     id: 2,
-    title: "ГОРОДА",
+    title: 'ГОРОДА',
     links: [
-      { id: 1, href: "#", text: "Москва" },
-      { id: 2, href: "#", text: "Санкт-Петербург" },
-      { id: 3, href: "#", text: "Симферополь" },
-      { id: 4, href: "#", text: "Адлер" },
-      { id: 5, href: "#", text: "Екатеринбург" },
-      { id: 6, href: "#", text: "Лондон" }
+      { id: 1, href: '#', text: 'Москва' },
+      { id: 2, href: '#', text: 'Санкт-Петербург' },
+      { id: 3, href: '#', text: 'Симферополь' },
+      { id: 4, href: '#', text: 'Адлер' },
+      { id: 5, href: '#', text: 'Екатеринбург' },
+      { id: 6, href: '#', text: 'Лондон' },
     ],
-    all: { href: "#", text: "Все города →" }
+    all: { href: '#', text: 'Все города →' },
   },
   {
     id: 3,
-    title: "АВИАКОМПАНИИ",
+    title: 'АВИАКОМПАНИИ',
     links: [
-      { id: 1, href: "#", text: "Air Berlin" },
-      { id: 2, href: "#", text: "Air France" },
-      { id: 3, href: "#", text: "Alitalia" },
-      { id: 4, href: "#", text: "Air Baltic" },
-      { id: 5, href: "#", text: "Emirates" },
-      { id: 6, href: "#", text: "KLM" }
+      { id: 1, href: '#', text: 'Air Berlin' },
+      { id: 2, href: '#', text: 'Air France' },
+      { id: 3, href: '#', text: 'Alitalia' },
+      { id: 4, href: '#', text: 'Air Baltic' },
+      { id: 5, href: '#', text: 'Emirates' },
+      { id: 6, href: '#', text: 'KLM' },
     ],
-    all: { href: "#", text: "Все авиакомпании →" }
+    all: { href: '#', text: 'Все авиакомпании →' },
   },
   {
     id: 4,
-    title: "АЭРОПОРТЫ",
+    title: 'АЭРОПОРТЫ',
     links: [
-      { id: 1, href: "#", text: "Шереметьево" },
-      { id: 2, href: "#", text: "Курумоч" },
-      { id: 3, href: "#", text: "Домодедово" },
-      { id: 4, href: "#", text: "Толмачево" },
-      { id: 5, href: "#", text: "Владивосток" },
-      { id: 6, href: "#", text: "Гамбург" }
+      { id: 1, href: '#', text: 'Шереметьево' },
+      { id: 2, href: '#', text: 'Курумоч' },
+      { id: 3, href: '#', text: 'Домодедово' },
+      { id: 4, href: '#', text: 'Толмачево' },
+      { id: 5, href: '#', text: 'Владивосток' },
+      { id: 6, href: '#', text: 'Гамбург' },
     ],
-    all: { href: "#", text: "Все аэропорты →" }
+    all: { href: '#', text: 'Все аэропорты →' },
   },
   {
     id: 5,
-    title: "НАПРАВЛЕНИЯ",
+    title: 'НАПРАВЛЕНИЯ',
     links: [
-      { id: 1, href: "#", text: "MOW – SIP" },
-      { id: 2, href: "#", text: "MOW – AER" },
-      { id: 3, href: "#", text: "MOW – TIV" },
-      { id: 4, href: "#", text: "MOW – MRV" },
-      { id: 5, href: "#", text: "LED – MOW" },
-      { id: 6, href: "#", text: "MOW – BKK" }
+      { id: 1, href: '#', text: 'MOW – SIP' },
+      { id: 2, href: '#', text: 'MOW – AER' },
+      { id: 3, href: '#', text: 'MOW – TIV' },
+      { id: 4, href: '#', text: 'MOW – MRV' },
+      { id: 5, href: '#', text: 'LED – MOW' },
+      { id: 6, href: '#', text: 'MOW – BKK' },
     ],
-    all: { href: "", text: "" }
+    all: { href: '', text: '' },
   },
   {
     id: 6,
-    title: "СЕРВИСЫ",
+    title: 'СЕРВИСЫ',
     links: [
-      { id: 1, href: "#", text: "Горящие авиабилеты" },
-      { id: 2, href: "#", text: "Календарь низких цен" },
-      { id: 3, href: "#", text: "Карта низких цен" },
-      { id: 4, href: "#", text: "Спецпредложения" },
-      { id: 5, href: "#", text: "Таблица цен" },
-      { id: 6, href: "#", text: "Блог" },
-      { id: 7, href: "#", text: "Помощь" }
+      { id: 1, href: '#', text: 'Горящие авиабилеты' },
+      { id: 2, href: '#', text: 'Календарь низких цен' },
+      { id: 3, href: '#', text: 'Карта низких цен' },
+      { id: 4, href: '#', text: 'Спецпредложения' },
+      { id: 5, href: '#', text: 'Таблица цен' },
+      { id: 6, href: '#', text: 'Блог' },
+      { id: 7, href: '#', text: 'Помощь' },
     ],
-    all: { href: "", text: "" }
-  }
+    all: { href: '', text: '' },
+  },
 ];
 
 const socials = [
   {
     id: 1,
-    href: "#",
+    href: '#',
     img: vk,
-    text: "Вконтакте"
+    text: 'Вконтакте',
   },
   {
     id: 2,
-    href: "#",
+    href: '#',
     img: face,
-    text: "Фейсбук"
+    text: 'Фейсбук',
   },
   {
     id: 3,
-    href: "#",
+    href: '#',
     img: inst,
-    text: "Инстаграм"
+    text: 'Инстаграм',
   },
   {
     id: 4,
-    href: "#",
+    href: '#',
     img: twit,
-    text: "Твиттер"
+    text: 'Твиттер',
   },
   {
     id: 5,
-    href: "#",
+    href: '#',
     img: viber,
-    text: "Вайбер"
-  }
+    text: 'Вайбер',
+  },
 ];
 
 const apps = [
   {
     id: 1,
-    href: "#",
+    href: '#',
     img: apple,
-    text: "Скачайте в",
-    store: "App Store"
+    text: 'Скачайте в',
+    store: 'App Store',
   },
   {
     id: 2,
-    href: "#",
+    href: '#',
     img: play,
-    text: "Скачайте в",
-    store: "Google Play"
+    text: 'Скачайте в',
+    store: 'Google Play',
   },
   {
     id: 3,
-    href: "#",
+    href: '#',
     img: windowsPhone,
-    text: "",
-    store: "Windows Phone"
-  }
+    text: '',
+    store: 'Windows Phone',
+  },
 ];
 
 export default () => (
@@ -225,12 +225,7 @@ export default () => (
           <Row start="xl">
             <Col xs={12} md={8}>
               {socials.map(social => (
-                <Social
-                  key={social.id}
-                  href={social.href}
-                  img={social.img}
-                  text={social.text}
-                />
+                <Social key={social.id} href={social.href} img={social.img} text={social.text} />
               ))}
               <Title>Поиск и бронирование отелей</Title>
             </Col>

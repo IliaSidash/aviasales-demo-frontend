@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Nav = styled.nav`
   display: flex;
@@ -22,46 +22,46 @@ const Link = styled.a`
 const menu = [
   {
     id: 1,
-    href: "#",
-    text: "О компании"
+    href: '#',
+    text: 'О компании',
   },
   {
     id: 2,
-    href: "#",
-    text: "Партнёрская программа"
+    href: '#',
+    text: 'Партнёрская программа',
   },
   {
     id: 3,
-    href: "#",
-    text: "Реклама"
+    href: '#',
+    text: 'Реклама',
   },
   {
     id: 4,
-    href: "#",
-    text: "Вакансии"
+    href: '#',
+    text: 'Вакансии',
   },
   {
     id: 5,
-    href: "#",
-    text: "Помощь"
+    href: '#',
+    text: 'Помощь',
   },
   {
     id: 6,
-    href: "#",
-    text: "Правила"
+    href: '#',
+    text: 'Правила',
   },
   {
     id: 7,
-    href: "#",
-    text: "White Label авиабилеты"
-  }
+    href: '#',
+    text: 'White Label авиабилеты',
+  },
 ];
 
 export default () => (
   <Nav>
     {menu.map(link => (
       <Link key={link.id} href={link.href}>
-        {link.text}{" "}
+        {link.text}{' '}
       </Link>
     ))}
   </Nav>

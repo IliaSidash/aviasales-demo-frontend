@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const DownloadApp = styled.a`
   display: block;
@@ -40,7 +41,7 @@ const System = styled.span`
   display: block;
 `;
 
-export default props => (
+const Download = props => (
   <DownloadApp href={props.href} key={props.id}>
     <Img src={props.img} />
     <Text>
@@ -49,3 +50,13 @@ export default props => (
     </Text>
   </DownloadApp>
 );
+
+Download.propTypes = {
+  id: PropTypes.number.isRequired,
+  href: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  store: PropTypes.string.isRequired,
+};
+
+export default Download;
