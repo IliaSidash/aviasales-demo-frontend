@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const Filter = styled.div`
+const FilterContent = styled.div`
   margin: 0 auto 21px;
   display: inline-block;
   @media screen and (min-width: 768px) {
@@ -39,7 +40,7 @@ const IconText = styled.a`
   margin: 0 auto;
   display: block;
   :after {
-    content: "";
+    content: '';
     position: absolute;
     width: 60px;
     height: 1px;
@@ -55,11 +56,20 @@ const IconText = styled.a`
   }
 `;
 
-export default props => (
-  <Filter>
+const Filter = props => (
+  <FilterContent>
     <Icon>
       <Picture src={props.src} alt={props.alt} />
     </Icon>
     <IconText href={props.href}>{props.text}</IconText>
-  </Filter>
+  </FilterContent>
 );
+
+Filter.propTypes = {
+  alt: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  href: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
+
+export default Filter;

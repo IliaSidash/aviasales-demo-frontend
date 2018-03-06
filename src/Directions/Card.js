@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const Card = styled.div`
+const CardContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 16px;
@@ -97,8 +98,8 @@ const Flag = styled.img`
   }
 `;
 
-export default props => (
-  <Card>
+const Card = props => (
+  <CardContent>
     <Img src={props.src} alt={props.alt} />
     <Location>
       <Flag src={props.flag} alt={props.alt} />
@@ -109,5 +110,17 @@ export default props => (
       <Search>{props.search}</Search>
       <Date>{props.date}</Date>
     </Info>
-  </Card>
+  </CardContent>
 );
+
+Card.propTypes = {
+  alt: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  flag: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  search: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+};
+
+export default Card;
