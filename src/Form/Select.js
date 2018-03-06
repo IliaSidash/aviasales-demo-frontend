@@ -1,15 +1,15 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-import arrowDown from "./img/arrow-down.svg";
+import arrowDown from './img/arrow-down.svg';
 
 const CustomSelect = styled.div`
   position: relative;
   margin: 0 1px 0px;
   width: calc(100% - 2px);
   @media screen and (min-width: 768px) {
-    width: ${props =>
-      props.customBorder ? "calc(25% - 2px)" : "calc(50% - 2px)"};
+    width: ${props => (props.customBorder ? 'calc(25% - 2px)' : 'calc(50% - 2px)')};
   }
   @media screen and (min-width: 1200px) {
     width: calc(22% - 2px);
@@ -32,8 +32,8 @@ const Select = styled.div`
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   @media screen and (min-width: 768px) {
-    border-top-right-radius: ${props => (props.customBorder ? "0" : "none")};
-    border-bottom-right-radius: ${props => (props.customBorder ? "0" : "none")};
+    border-top-right-radius: ${props => (props.customBorder ? '0' : 'none')};
+    border-bottom-right-radius: ${props => (props.customBorder ? '0' : 'none')};
     border-bottom-left-radius: 0px;
   }
   @media screen and (min-width: 1200px) {
@@ -53,13 +53,17 @@ const ArrowDown = styled.img`
   transform: translateY(-50%);
 `;
 
-export default ({ customBorder }) => {
-  return (
-    <CustomSelect customBorder={customBorder}>
-      <Select customBorder={customBorder}>
-        1 пассажир, <Type>эконом</Type>
-      </Select>
-      <ArrowDown src={arrowDown} />
-    </CustomSelect>
-  );
+const SelectPassagers = ({ customBorder }) => (
+  <CustomSelect customBorder={customBorder}>
+    <Select customBorder={customBorder}>
+      1 пассажир, <Type>эконом</Type>
+    </Select>
+    <ArrowDown src={arrowDown} />
+  </CustomSelect>
+);
+
+SelectPassagers.propTypes = {
+  customBorder: PropTypes.bool.isRequired,
 };
+
+export default SelectPassagers;

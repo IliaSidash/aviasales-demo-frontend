@@ -1,12 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import { withRouter } from "react-router";
+import React from 'react';
+import styled from 'styled-components';
 
-import InputCity from "./InputCity";
-import InputDate from "./InputDate";
-import Select from "./Select";
-import Submit from "./Submit";
+import InputCity from './InputCity';
+import InputDate from './InputDate';
+import Select from './Select';
+import Submit from './Submit';
 
 const Form = styled.form``;
 
@@ -20,26 +18,16 @@ const InputsBox = styled.div`
   }
 `;
 
-class SearchForm extends React.Component {
-  static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-  };
+const SearchForm = () => (
+  <Form>
+    <InputsBox>
+      <InputCity value="Москва" air="MOW" arrows />
+      <InputCity />
+      <InputDate />
+      <Select />
+    </InputsBox>
+    <Submit />
+  </Form>
+);
 
-  render() {
-    return (
-      <Form>
-        <InputsBox>
-          <InputCity value={"Москва"} air={"MOW"} arrows />
-          <InputCity />
-          <InputDate />
-          <Select />
-        </InputsBox>
-        <Submit />
-      </Form>
-    );
-  }
-}
-
-export default withRouter(SearchForm);
+export default SearchForm;

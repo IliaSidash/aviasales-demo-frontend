@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import DayPicker from "react-day-picker/DayPicker";
-import "react-day-picker/lib/style.css";
-import "./style.css";
-import { format } from "date-fns";
-import ruLocale from "date-fns/locale/ru";
-import { withClickOutside } from "react-clickoutside";
-import { FormattedNumber } from "react-intl";
+import React from 'react';
+import styled from 'styled-components';
+import DayPicker from 'react-day-picker/DayPicker';
+import 'react-day-picker/lib/style.css';
+import { format } from 'date-fns';
+import ruLocale from 'date-fns/locale/ru';
+import { withClickOutside } from 'react-clickoutside';
+import { FormattedNumber } from 'react-intl';
+import './style.css';
 
-import icon from "./img/date-icon.png";
+import icon from './img/date-icon.png';
 
 const Input = styled.input`
   font-style: normal;
@@ -46,7 +46,7 @@ const CustomInput = styled.div`
     }
   }
   :after {
-    content: "";
+    content: '';
     position: absolute;
     right: 16px;
     top: 50%;
@@ -97,7 +97,7 @@ const Switch = styled.div`
   margin-right: 16px;
   cursor: pointer;
   :before {
-    content: "";
+    content: '';
     width: 20px;
     height: 20px;
     background: #ffffff;
@@ -122,7 +122,7 @@ const Price = styled.div`
   font-weight: 500;
   line-height: normal;
   font-size: 10px;
-  color: ${props => (props.cheap ? "#00C455" : "#a0b0b9")};
+  color: ${props => (props.cheap ? '#00C455' : '#a0b0b9')};
   position: absolute;
   width: 100%;
   bottom: 6px;
@@ -131,61 +131,63 @@ const Price = styled.div`
 `;
 
 const MONTHS = [
-  "Январь",
-  "Февраль",
-  "Март",
-  "Апрель",
-  "Май",
-  "Июнь",
-  "Июль",
-  "Август",
-  "Сентябрь",
-  "Октябрь",
-  "Ноябрь",
-  "Декабрь"
+  'Январь',
+  'Февраль',
+  'Март',
+  'Апрель',
+  'Май',
+  'Июнь',
+  'Июль',
+  'Август',
+  'Сентябрь',
+  'Октябрь',
+  'Ноябрь',
+  'Декабрь',
 ];
 
 const WEEKDAYS_LONG = [
-  "Воскресенье",
-  "Понедельник",
-  "Вторник",
-  "Среда",
-  "Четверг",
-  "Пятница",
-  "Суббота"
+  'Воскресенье',
+  'Понедельник',
+  'Вторник',
+  'Среда',
+  'Четверг',
+  'Пятница',
+  'Суббота',
 ];
 
-const WEEKDAYS_SHORT = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+const WEEKDAYS_SHORT = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
 
 const prices = {
   24: {
     price: 43606,
-    cheap: false
+    cheap: false,
   },
   25: {
     price: 43606,
-    cheap: false
+    cheap: false,
   },
   26: {
     price: 41920,
-    cheap: true
+    cheap: true,
   },
   27: {
     price: 42140,
-    cheap: true
+    cheap: true,
   },
   28: {
     price: 42130,
-    cheap: true
-  }
+    cheap: true,
+  },
 };
 
 function formatDate(inputString) {
   if (inputString) {
-    return format(inputString, "DD MMMM, dd", {
-      locale: ruLocale
+    return format(inputString, 'DD MMMM, dd', {
+      locale: ruLocale,
     });
   }
+
+  return null;
 }
 
 function renderDay(day) {
@@ -212,7 +214,7 @@ export default class Picker extends React.Component {
     from: undefined,
     to: undefined,
     isDateToOpen: false,
-    isDateFromOpen: false
+    isDateFromOpen: false,
   };
 
   showDateFrom = () => {
@@ -246,17 +248,15 @@ export default class Picker extends React.Component {
   };
 
   render() {
-    const { isDateToOpen, isDateFromOpen, from, to } = this.state;
+    const {
+      isDateToOpen, isDateFromOpen, from, to,
+    } = this.state;
     const modifiers = { start: from, end: to };
 
     return (
       <InputsBox>
         <CustomInput>
-          <Input
-            placeholder={"Туда"}
-            onClick={this.showDateFrom}
-            value={formatDate(from)}
-          />
+          <Input placeholder="Туда" onClick={this.showDateFrom} value={formatDate(from)} />
           {isDateFromOpen && (
             <CustomPickerWithOutside onClickOutside={this.hideDate}>
               <DayPicker
@@ -279,11 +279,7 @@ export default class Picker extends React.Component {
           )}
         </CustomInput>
         <CustomInput>
-          <Input
-            placeholder={"Обратно"}
-            onClick={this.showDateTo}
-            value={formatDate(to)}
-          />
+          <Input placeholder="Обратно" onClick={this.showDateTo} value={formatDate(to)} />
           {isDateToOpen && (
             <CustomPickerWithOutside onClickOutside={this.hideDate}>
               <DayPicker

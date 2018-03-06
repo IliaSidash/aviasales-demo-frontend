@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-
-import arrows from "./img/arrows.svg";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import arrows from './img/arrows.svg';
 
 const Input = styled.input`
   font-style: normal;
@@ -34,7 +34,7 @@ const Arrows = styled.img`
   width: 16px;
   height: 18px;
   cursor: pointer;
-  display: ${props => (props.styled ? "inline" : "none")};
+  display: ${props => (props.styled ? 'inline' : 'none')};
 `;
 
 const CustomInput = styled.div`
@@ -73,15 +73,15 @@ const Airport = styled.span`
   font-size: 16px;
   text-align: center;
   text-transforme: uppercase;
-  right: ${props => (props.styled ? "43px" : "16px")};
+  right: ${props => (props.styled ? '43px' : '16px')};
   top: 50%;
   transform: translateY(-50%);
   color: #a0b0b9;
 `;
 
-export default class InputCity extends React.Component {
+class InputCity extends React.Component {
   state = {
-    arrowsIsShowed: this.props.arrows
+    arrowsIsShowed: this.props.arrows,
   };
 
   render() {
@@ -89,18 +89,23 @@ export default class InputCity extends React.Component {
       return (
         <CustomInput>
           <Input type="text" defaultValue={this.props.value} />
-          <Airport styled={this.state.arrowsIsShowed}>
-            {this.props.air}{" "}
-          </Airport>
+          <Airport styled={this.state.arrowsIsShowed}>{this.props.air} </Airport>
           <Arrows src={arrows} styled={this.state.arrowsIsShowed} />
         </CustomInput>
       );
-    } else {
-      return (
-        <CustomInput>
-          <Input placeholder="Город прибытия" />
-        </CustomInput>
-      );
     }
+    return (
+      <CustomInput>
+        <Input placeholder="Город прибытия" />
+      </CustomInput>
+    );
   }
 }
+
+InputCity.propTypes = {
+  arrows: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  air: PropTypes.string.isRequired,
+};
+
+export default InputCity;
