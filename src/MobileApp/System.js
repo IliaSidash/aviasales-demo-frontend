@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const System = styled.div`
   display: flex;
@@ -37,9 +38,17 @@ const Text = styled.span`
   }
 `;
 
-export default props => (
+const App = props => (
   <System key={props.id}>
     <Img src={props.img} />
     <Text>{props.text}</Text>
   </System>
 );
+
+App.propTypes = {
+  id: PropTypes.number.isRequired,
+  img: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
+
+export default App;

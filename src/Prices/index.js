@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { Grid, Row, Col } from "react-flexbox-grid";
-import icon from "./img/calen.svg";
-import Card from "./Card";
+import React from 'react';
+import styled from 'styled-components';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import icon from './img/calen.svg';
+import Card from './Card';
 
-import ru from "./img/ru.png";
-import am from "./img/am.png";
-import md from "./img/md.png";
+import ru from './img/ru.png';
+import am from './img/am.png';
+import md from './img/md.png';
 
 const Prices = styled.section`
   padding: 60px 0 40px;
@@ -60,102 +60,102 @@ const data = [
   {
     id: 1,
     src: ru,
-    city: "Симферополь (Крым)",
-    country: "Крым",
+    city: 'Симферополь (Крым)',
+    country: 'Крым',
     prices: [
       {
         id: 1,
-        from: "Из Москвы",
-        coast: "от 4 813"
+        from: 'Из Москвы',
+        coast: 'от 4 813',
       },
       {
         id: 2,
-        from: "Из Санкт-Петербурга",
-        coast: "от 7 857"
+        from: 'Из Санкт-Петербурга',
+        coast: 'от 7 857',
       },
       {
         id: 3,
-        from: "Из Новосибирска",
-        coast: "от 15 127"
+        from: 'Из Новосибирска',
+        coast: 'от 15 127',
       },
       {
         id: 4,
-        from: "Из Екатеринбурга",
-        coast: "от 9 275"
+        from: 'Из Екатеринбурга',
+        coast: 'от 9 275',
       },
       {
         id: 5,
-        from: "Из Челябинска",
-        coast: "от 9 148"
-      }
-    ]
+        from: 'Из Челябинска',
+        coast: 'от 9 148',
+      },
+    ],
   },
   {
     id: 2,
     src: am,
-    city: "Ереван",
-    country: "Армения",
+    city: 'Ереван',
+    country: 'Армения',
     prices: [
       {
         id: 1,
-        from: "Из Москвы",
-        coast: "от 6 758"
+        from: 'Из Москвы',
+        coast: 'от 6 758',
       },
       {
         id: 2,
-        from: "Из Санкт-Петербурга",
-        coast: "от 9 932"
+        from: 'Из Санкт-Петербурга',
+        coast: 'от 9 932',
       },
       {
         id: 3,
-        from: "Из Сочи",
-        coast: "от 11 951"
+        from: 'Из Сочи',
+        coast: 'от 11 951',
       },
       {
         id: 4,
-        from: "Из Краснодара",
-        coast: "от 11 741"
+        from: 'Из Краснодара',
+        coast: 'от 11 741',
       },
       {
         id: 5,
-        from: "Из Ростова-на-Дону",
-        coast: "от 11 956"
-      }
-    ]
+        from: 'Из Ростова-на-Дону',
+        coast: 'от 11 956',
+      },
+    ],
   },
   {
     id: 3,
     src: md,
-    city: "Кишинёв",
-    country: "Молдавия",
+    city: 'Кишинёв',
+    country: 'Молдавия',
     prices: [
       {
         id: 1,
-        from: "Из Москвы",
-        coast: "от 8 319"
+        from: 'Из Москвы',
+        coast: 'от 8 319',
       },
       {
         id: 2,
-        from: "Из Санкт-Петербурга",
-        coast: "от 10 800"
+        from: 'Из Санкт-Петербурга',
+        coast: 'от 10 800',
       },
       {
         id: 3,
-        from: "Из Краснодара",
-        coast: "от 12 098"
+        from: 'Из Краснодара',
+        coast: 'от 12 098',
       },
       {
         id: 4,
-        from: "Из Сургута",
-        coast: "от 16 277"
+        from: 'Из Сургута',
+        coast: 'от 16 277',
       },
       {
         id: 5,
-        from: "Из Нового Уренгоя",
-        coast: "от 15 987"
-      }
-    ]
-  }
+        from: 'Из Нового Уренгоя',
+        coast: 'от 15 987',
+      },
+    ],
+  },
 ];
 
 export default () => (
@@ -168,29 +168,19 @@ export default () => (
       <Row center="md">
         <Col xs={12} md={10}>
           {data.map(i => (
-            <Card
-              key={i.id}
-              src={i.src}
-              city={i.city}
-              country={i.country}
-              prices={i.prices}
-            />
+            <Card key={i.id} src={i.src} city={i.city} country={i.country} prices={i.prices} />
           ))}
         </Col>
       </Row>
       <Row center="md">
         <Col xs={12} md={10}>
           <Text>
-            Мы знаем, где купить авиабилеты дешево. Билеты на самолет в 220
-            стран мира. Поиск и сравнение цен на авиабилеты среди 100 агентств и
-            728 авиакомпаний.
+            Мы знаем, где купить авиабилеты дешево. Билеты на самолет в 220 стран мира. Поиск и
+            сравнение цен на авиабилеты среди 100 агентств и 728 авиакомпаний.
           </Text>
         </Col>
       </Row>
-      <Offer>
-        Цены, найденные пользователями за последние 48 часов, не являются
-        офертой.
-      </Offer>
+      <Offer>Цены, найденные пользователями за последние 48 часов, не являются офертой.</Offer>
     </Grid>
   </Prices>
 );

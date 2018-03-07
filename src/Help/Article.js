@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const Block = styled.div`
+const ArticleContent = styled.div`
   margin-bottom: 16px;
 `;
 const Title = styled.h3`
@@ -31,14 +32,22 @@ const Link = styled.a`
   color: #00ace2;
 `;
 
-export default props => (
-  <Block>
+const Article = props => (
+  <ArticleContent>
     <Title>
       <Img src={props.img} alt="" />
       {props.title}
     </Title>
     <Text>
-      {props.text} <Link href="#">Подробнее</Link>
+      {props.text} <Link href="./">Подробнее</Link>
     </Text>
-  </Block>
+  </ArticleContent>
 );
+
+Article.propTypes = {
+  img: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
+
+export default Article;

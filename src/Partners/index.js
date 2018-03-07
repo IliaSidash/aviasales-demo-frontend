@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import { Grid, Row, Col } from "react-flexbox-grid";
+import React from 'react';
+import styled from 'styled-components';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import aeroflot from "./img/aeroflot.png";
-import sseven from "./img/sseven.png";
-import oneTwo from "./img/one-two-trip.png";
-import korean from "./img/korean-air.png";
-import eliva from "./img/elivaline.png";
+import aeroflot from './img/aeroflot.png';
+import sseven from './img/sseven.png';
+import oneTwo from './img/one-two-trip.png';
+import korean from './img/korean-air.png';
+import eliva from './img/elivaline.png';
 
-import Slider from "./Slider";
+import Slider from './Slider';
 
 const Partners = styled.div`
   display: none;
@@ -38,28 +38,28 @@ const partners = [
   {
     id: 1,
     src: aeroflot,
-    alt: "aeroflot"
+    alt: 'aeroflot',
   },
   {
     id: 2,
     src: sseven,
-    alt: "sseven"
+    alt: 'sseven',
   },
   {
     id: 3,
     src: oneTwo,
-    alt: "one two trtip"
+    alt: 'one two trtip',
   },
   {
     id: 4,
     src: korean,
-    alt: "korean air"
+    alt: 'korean air',
   },
   {
     id: 5,
     src: eliva,
-    alt: "elivaline"
-  }
+    alt: 'elivaline',
+  },
 ];
 
 export default () => (

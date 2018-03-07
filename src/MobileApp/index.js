@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import { Grid, Row, Col } from "react-flexbox-grid";
+import React from 'react';
+import styled from 'styled-components';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import System from "./System";
+import System from './System';
 
-import stars from "./img/stars.svg";
-import android from "./img/android.png";
-import windows from "./img/windows.png";
-import apple from "./img/apple.png";
-import phone from "./img/phone.png";
+import stars from './img/stars.svg';
+import android from './img/android.png';
+import windows from './img/windows.png';
+import apple from './img/apple.png';
+import phone from './img/phone.png';
 
 const MobileApp = styled.section`
   padding: 24px 0 0;
@@ -46,7 +46,7 @@ const Rating = styled.div`
   text-align: center;
   margin-bottom: 56px;
   :before {
-    content: "";
+    content: '';
     display: inline-block;
     background: url(${stars});
     width: 70px;
@@ -83,18 +83,18 @@ const systems = [
   {
     id: 1,
     img: apple,
-    text: "iPhone или iPad"
+    text: 'iPhone или iPad',
   },
   {
     id: 2,
     img: android,
-    text: "Android"
+    text: 'Android',
   },
   {
     id: 3,
     img: windows,
-    text: "Windows Phone"
-  }
+    text: 'Windows Phone',
+  },
 ];
 
 export default () => (
@@ -108,9 +108,7 @@ export default () => (
       </Row>
       <Row>
         <Col xsOffset={6} xs={6} mdOffset={4} md={8}>
-          {systems.map(system => (
-            <System key={system.id} img={system.img} text={system.text} />
-          ))}
+          {systems.map(system => <System key={system.id} img={system.img} text={system.text} />)}
         </Col>
       </Row>
       <Picture>

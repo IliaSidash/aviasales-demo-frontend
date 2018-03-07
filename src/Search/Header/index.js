@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { Grid } from "react-flexbox-grid";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { Grid } from 'react-flexbox-grid';
+import { Link } from 'react-router-dom';
 
-import Logo from "../../Header/Logo";
-import arrowBack from "./img/arrow-back.svg";
+import Logo from '../../Header/Logo';
+import arrowBack from './img/arrow-back.svg';
 
-import Form from "./Form";
+import Form from './Form';
 
 const Header = styled.header`
   padding: 11px 0 8px;
@@ -75,7 +75,7 @@ export default () => (
       <Head>
         <Logo customLogo />
         <Params>
-          <Link to="/">
+          <Link href="/" to="/">
             <Arrow src={arrowBack} />
           </Link>
           <Path>

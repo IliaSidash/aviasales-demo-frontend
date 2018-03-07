@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const Ticket = styled.div`
+const TicketContent = styled.div`
   background: #fff;
   padding-bottom: 16px;
   margin-bottom: 12px;
@@ -86,8 +87,8 @@ const Button = styled.button`
   }
 `;
 
-export default props => (
-  <Ticket>
+const Ticket = props => (
+  <TicketContent>
     <Title>
       {props.title}
       <Img src={props.icon} alt="" />
@@ -100,5 +101,16 @@ export default props => (
     </Cost>
     <Text>{props.text}</Text>
     <Button>Узнать подробности</Button>
-  </Ticket>
+  </TicketContent>
 );
+
+Ticket.propTypes = {
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  company: PropTypes.string.isRequired,
+  cost: PropTypes.string.isRequired,
+  daysLeft: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
+
+export default Ticket;

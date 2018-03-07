@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const Logo = styled.a`
+const LogoContent = styled.a`
   box-sizing: border-box;
   width: 50%;
   text-align: right;
@@ -30,22 +31,31 @@ const SmallImg = styled.img`
   }
 `;
 
-export default function(props) {
-  const companies = props.companies;
+const Logo = (props) => {
+  const { companies } = props;
 
   if (companies.length > 1) {
     return (
-      <Logo>
+      <LogoContent>
         {companies.map(company => (
           <SmallImg key={company.id} src={company.logoSrc} alt={company.alt} />
         ))}
-      </Logo>
+      </LogoContent>
     );
   }
 
   return (
-    <Logo>
+    <LogoContent>
       <Img src={companies[0].logoSrc} alt={companies[0].alt} />
-    </Logo>
+    </LogoContent>
   );
-}
+};
+
+Logo.propTypes = {
+  companies: PropTypes.arrayOf(PropTypes.shape({
+    logoSrc: PropTypes.string,
+    alt: PropTypes.string,
+  })).isRequired,
+};
+
+export default Logo;

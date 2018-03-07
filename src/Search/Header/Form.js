@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import InputCity from "../../Form/InputCity";
-import InputDate from "../../Form/InputDate";
-import Select from "../../Form/Select";
-import Submit from "../../Form/Submit";
+import InputCity from '../../Form/InputCity';
+import InputDate from '../../Form/InputDate';
+import Select from '../../Form/Select';
+import Submit from '../../Form/Submit';
 
 const Form = styled.form`
   display: none;
@@ -21,8 +21,8 @@ const Form = styled.form`
 
 export default () => (
   <Form>
-    <InputCity value={"Москва"} air={"MOW"} arrows />
-    <InputCity value={"Барселона"} air={"BCN"} />
+    <InputCity value="Москва" air="MOW" arrows />
+    <InputCity value="Барселона" air="BCN" />
     <InputDate />
     <Select customBorder />
     <Submit withoutIcon />

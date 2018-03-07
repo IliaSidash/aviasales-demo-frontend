@@ -1,11 +1,11 @@
 export default {
   VKO: {
-    city: "Москва"
+    city: 'Москва',
   },
   BCN: {
-    city: "Барселона"
+    city: 'Барселона',
   },
   SVO: {
-    city: "Москва"
-  }
+    city: 'Москва',
+  },
 };

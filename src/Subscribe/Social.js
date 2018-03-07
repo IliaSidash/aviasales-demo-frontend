@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const Socials = styled.div`
+const SocialsContent = styled.div`
   display: block;
   justify-content: center;
   margin-bottom: 24px;
@@ -30,12 +31,22 @@ const Img = styled.img`
   transform: translate(-50%, -50%);
 `;
 
-export default props => (
-  <Socials>
+const Socials = props => (
+  <SocialsContent>
     {props.socials.map(social => (
       <Icon key={social.id} href={social.href}>
         <Img src={social.icon} />
       </Icon>
     ))}
-  </Socials>
+  </SocialsContent>
 );
+
+Socials.propTypes = {
+  socials: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    href: PropTypes.string,
+    icon: PropTypes.string,
+  })).isRequired,
+};
+
+export default Socials;

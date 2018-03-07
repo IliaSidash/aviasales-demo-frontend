@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const Card = styled.div`
+const CardContent = styled.div`
   display: block;
   padding-bottom: 24px;
   border-bottom: 1px dashed #afbec6;
@@ -78,8 +79,8 @@ const Img = styled.img`
   box-shadow: 0px 0px 8px rgba(38, 38, 38, 0.1);
 `;
 
-export default props => (
-  <Card key={props.id}>
+const Card = props => (
+  <CardContent key={props.id}>
     <Direction>
       <Img src={props.src} alt="" />
       <Country>
@@ -93,5 +94,19 @@ export default props => (
         <Coast>{price.coast} ₽</Coast>
       </Table>
     ))}
-  </Card>
+  </CardContent>
 );
+
+Card.propTypes = {
+  id: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  prices: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    from: PropTypes.string,
+    coast: PropTypes.string,
+  })).isRequired,
+};
+
+export default Card;

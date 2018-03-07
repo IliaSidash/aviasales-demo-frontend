@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import air from './img/air.svg';
 
-import air from "./img/air.svg";
-
-const Time = styled.div`
+const TimeContent = styled.div`
   padding-top: 26px;
 `;
 
@@ -51,22 +51,20 @@ const Point = styled.div`
   border: 1px solid #d6d9da;
   border-radius: 50px;
   position: absolute;
-  left: ${props => (props.right ? "auto" : "-8px")};
-  right: ${props => (props.right ? "-8px" : "auto")};
+  left: ${props => (props.right ? 'auto' : '-8px')};
+  right: ${props => (props.right ? '-8px' : 'auto')};
   top: 50%;
   transform: translatey(-50%);
   cursor: pointer;
 `;
 
-function Options(props) {
-  const intervals = props.interval;
-  const travelTime = props.travelTime;
-
+const Time = (props) => {
+  const { intervals, travelTime } = props;
   if (intervals) {
     return (
       <div>
         {intervals.map(interval => (
-          <Time>
+          <TimeContent>
             <Direction>
               {interval.from.city}
               <Img src={air} /> {interval.to.city}
@@ -80,34 +78,40 @@ function Options(props) {
               <Point />
               <Point right />
             </Line>
-          </Time>
-        ))}
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        {travelTime.map(interval => (
-          <Time>
-            <Direction>
-              {interval.from}
-              <Img src={air} /> {interval.to}
-            </Direction>
-            <Interval>
-              <Date>{interval.start}</Date>
-              <Date>{interval.end}</Date>
-            </Interval>
-            <Line>
-              <Point />
-              <Point right />
-            </Line>
-          </Time>
+          </TimeContent>
         ))}
       </div>
     );
   }
-}
+  return (
+    <div>
+      {travelTime.map(interval => (
+        <TimeContent>
+          <Direction>
+            {interval.from}
+            <Img src={air} /> {interval.to}
+          </Direction>
+          <Interval>
+            <Date>{interval.start}</Date>
+            <Date>{interval.end}</Date>
+          </Interval>
+          <Line>
+            <Point />
+            <Point right />
+          </Line>
+        </TimeContent>
+      ))}
+    </div>
+  );
+};
 
-export default props => (
-  <Options interval={props.interval} travelTime={props.travelTime} />
-);
+Time.propTypes = {
+  intervals: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+  })).isRequired,
+  travelTime: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+  })).isRequired,
+};
+
+export default Time;

@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const Slider = styled.div`
+const SliderContent = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -63,8 +64,8 @@ const ActiveDot = Dot.extend`
   background: #818181;
 `;
 
-export default props => (
-  <Slider>
+const Slider = props => (
+  <SliderContent>
     <ArrowPrev />
     <ArrowNext />
     {props.partners.map(partner => (
@@ -77,5 +78,15 @@ export default props => (
       <Dot />
       <Dot />
     </Dots>
-  </Slider>
+  </SliderContent>
 );
+
+Slider.propTypes = {
+  partners: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    src: PropTypes.string,
+    alt: PropTypes.string,
+  })).isRequired,
+};
+
+export default Slider;

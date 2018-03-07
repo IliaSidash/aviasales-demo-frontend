@@ -1,26 +1,27 @@
-import React from "react";
-import styled from "styled-components";
-import { FormattedNumber } from "react-intl";
-import { format } from "date-fns";
-import ruLocale from "date-fns/locale/ru";
+import React from 'react';
+import styled from 'styled-components';
+import { FormattedNumber } from 'react-intl';
+import { format } from 'date-fns';
+import ruLocale from 'date-fns/locale/ru';
+import PropTypes from 'prop-types';
 
-import airLeft from "./img/air-left.svg";
-import airRight from "./img/air-right.svg";
-import clock from "./img/clock.svg";
-import pin from "./img/pin.svg";
-import takeOffPlane from "./img/take-off-plane.svg";
-import landingPlane from "./img/landing-plane.svg";
-import sharing from "./img/sharing.svg";
-import arrow from "./img/arrow.svg";
+import airLeft from './img/air-left.svg';
+import airRight from './img/air-right.svg';
+import clock from './img/clock.svg';
+import pin from './img/pin.svg';
+import takeOffPlane from './img/take-off-plane.svg';
+import landingPlane from './img/landing-plane.svg';
+import sharing from './img/sharing.svg';
+import arrow from './img/arrow.svg';
 
-import airoports from "../airoports";
+import airoports from '../airoports';
 
-import Title from "./Title";
-import Buy from "./Buy";
-import Company from "./Company";
-import Stops from "./Stops";
+import Title from './Title';
+import Buy from './Buy';
+import Company from './Company';
+import Stops from './Stops';
 
-const Ticket = styled.div`
+const TicketContent = styled.div`
   padding-bottom: 14px;
   display: flex;
   flex-wrap: wrap;
@@ -102,7 +103,7 @@ const Path = styled.div`
     margin: 0 14px 0 24px;
     flex-grow: 1;
     max-width: 233px;
-    border-bottom: ${props => (props.first ? "1px dashed #ddd" : "none")};
+    border-bottom: ${props => (props.first ? '1px dashed #ddd' : 'none')};
   }
 `;
 
@@ -155,8 +156,8 @@ const Dot = styled.div`
   border-radius: 50px;
   position: absolute;
   top: 0;
-  left: ${props => (props.right ? "auto" : 0)};
-  right: ${props => (props.right ? 0 : "auto")};
+  left: ${props => (props.right ? 'auto' : 0)};
+  right: ${props => (props.right ? 0 : 'auto')};
 `;
 
 const Line = styled.div`
@@ -174,7 +175,7 @@ const Line = styled.div`
 
 const Total = styled.span`
   :before {
-    content: "Всего: ";
+    content: 'Всего: ';
     display: none;
     @media screen and (min-width: 768px) {
       display: inline;
@@ -196,7 +197,7 @@ const Time = styled.div`
       order: 1;
     }
     :after {
-      content: "—";
+      content: '—';
       margin: 0 5px;
       @media screen and (min-width: 768px) {
         display: none;
@@ -268,38 +269,37 @@ const Button = styled.button`
 const Arrow = styled.img``;
 
 function formatDate(milliseconds) {
-  return format(milliseconds, "DD MMM YYYY, dd", {
-    locale: ruLocale
+  return format(milliseconds, 'DD MMM YYYY, dd', {
+    locale: ruLocale,
   });
 }
 
 function formatTime(milliseconds) {
-  return format(milliseconds, "HH:mm", {
-    locale: ruLocale
+  return format(milliseconds, 'HH:mm', {
+    locale: ruLocale,
   });
 }
 
 function formatDuration(milliseconds) {
   if (milliseconds % 3600 === 0) {
-    return format(milliseconds, "H ч", {
-      locale: ruLocale
-    });
-  } else {
-    return format(milliseconds, "H ч mm м", {
-      locale: ruLocale
+    return format(milliseconds, 'H ч', {
+      locale: ruLocale,
     });
   }
+  return format(milliseconds, 'H ч mm м', {
+    locale: ruLocale,
+  });
 }
 
-export default props => (
-  <Ticket key={props.id}>
+const Ticket = props => (
+  <TicketContent key={props.id}>
     <Buy price={props.price} />
     <Info>
       <Title type={props.type} />
       <Price>
         <FormattedNumber
-          style={`currency`}
-          currency={"rub"}
+          style={String('currency')}
+          currency="rub"
           value={props.price}
           minimumFractionDigits={0}
           maximumFractionDigits={0}
@@ -377,5 +377,31 @@ export default props => (
     <Button>
       <Arrow src={arrow} />
     </Button>
-  </Ticket>
+  </TicketContent>
 );
+
+Ticket.propTypes = {
+  id: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  depart: PropTypes.shape({
+    out: PropTypes.number,
+    in: PropTypes.number,
+    stops: PropTypes.arrayOf(PropTypes.string),
+    airoportDepart: PropTypes.string,
+    airoportArrival: PropTypes.string,
+  }).isRequired,
+  return: PropTypes.shape({
+    out: PropTypes.number,
+    in: PropTypes.number,
+    stops: PropTypes.arrayOf(PropTypes.string),
+    airoportDepart: PropTypes.string,
+    airoportArrival: PropTypes.string,
+  }).isRequired,
+  companies: PropTypes.arrayOf(PropTypes.shape({
+    logoSrc: PropTypes.string,
+    alt: PropTypes.string,
+  })).isRequired,
+};
+
+export default Ticket;

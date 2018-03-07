@@ -1,11 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { FormattedNumber } from "react-intl";
+import React from 'react';
+import styled from 'styled-components';
+import { FormattedNumber } from 'react-intl';
+import PropTypes from 'prop-types';
 
-import carryon from "./img/carryon.svg";
-import baggage from "./img/baggage.svg";
+import carryon from './img/carryon.svg';
+import baggage from './img/baggage.svg';
 
-const Buy = styled.div`
+const BuyContent = styled.div`
   box-sizing: border-box;
   max-width: 209px;
   display: none;
@@ -56,8 +57,8 @@ const Option = styled.div`
   min-width: 50%;
   text-align: center;
   padding: 5px 0 7px;
-  background: ${props => (props.active ? "#F8FBFB" : "none")};
-  border: ${props => (props.active ? "1px solid #dddddd" : "none")};
+  background: ${props => (props.active ? '#F8FBFB' : 'none')};
+  border: ${props => (props.active ? '1px solid #dddddd' : 'none')};
   border-left: none;
   border-top: none;
   position: relative;
@@ -137,8 +138,8 @@ const More = styled.a`
   display: block;
 `;
 
-export default props => (
-  <Buy>
+const Buy = props => (
+  <BuyContent>
     <Baggage>
       <Option active>
         <Icon>
@@ -169,21 +170,21 @@ export default props => (
       <Price>
         за &nbsp;
         <FormattedNumber
-          style={`currency`}
-          currency={"rub"}
+          style={String('currency')}
+          currency="rub"
           value={props.price}
           minimumFractionDigits={0}
           maximumFractionDigits={0}
         />
       </Price>
     </Button>
-    <Link>на Clickavia</Link>
+    <Link href="./">на Clickavia</Link>
     <Offer>
       <Store>Clickavia</Store>
       <Coast>
         <FormattedNumber
-          style={`currency`}
-          currency={"rub"}
+          style={String('currency')}
+          currency="rub"
           value={8302}
           minimumFractionDigits={0}
           maximumFractionDigits={0}
@@ -192,8 +193,8 @@ export default props => (
       <Store>Aviakassa</Store>
       <Coast>
         <FormattedNumber
-          style={`currency`}
-          currency={"rub"}
+          style={String('currency')}
+          currency="rub"
           value={8376}
           minimumFractionDigits={0}
           maximumFractionDigits={0}
@@ -201,5 +202,11 @@ export default props => (
       </Coast>
     </Offer>
     <More>+ Еще 3 предложения</More>
-  </Buy>
+  </BuyContent>
 );
+
+Buy.propTypes = {
+  price: PropTypes.number.isRequired,
+};
+
+export default Buy;

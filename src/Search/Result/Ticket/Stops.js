@@ -1,11 +1,12 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const stop = {
-  ru: "Прямой"
+  ru: 'Прямой',
 };
 
-const Stops = styled.div`
+const StopsContent = styled.div`
   flex-grow: 1;
   text-align: right;
   color: #4a4a4a;
@@ -14,12 +15,18 @@ const Stops = styled.div`
   }
 `;
 
-export default props => {
-  const stops = props.stops;
+const Stops = (props) => {
+  const { stops } = props;
 
   if (stops.length > 0) {
-    return <Stops>{stops.join(", ")}</Stops>;
+    return <StopsContent>{stops.join(', ')}</StopsContent>;
   }
 
-  return <Stops>{stop["ru"]}</Stops>;
+  return <StopsContent>{stop.ru}</StopsContent>;
 };
+
+Stops.propTypes = {
+  stops: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+export default Stops;

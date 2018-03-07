@@ -1,18 +1,18 @@
-import React from "react";
-import styled from "styled-components";
-import { Grid, Row, Col } from "react-flexbox-grid";
+import React from 'react';
+import styled from 'styled-components';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import bgLine from "./img/background-line.png";
-import facebook from "./img/facebook.png";
-import rss from "./img/rss.png";
-import twitter from "./img/twitter.png";
-import vk from "./img/vk.png";
+import bgLine from './img/background-line.png';
+import facebook from './img/facebook.png';
+import rss from './img/rss.png';
+import twitter from './img/twitter.png';
+import vk from './img/vk.png';
 
-import Social from "./Social";
+import Social from './Social';
 
 const Subscribe = styled.section`
   padding: 32px 0 61px;
-  background: #fff url(${bgLine})repeat-x center top;
+  background: #fff url(${bgLine}) repeat-x center top;
   display: none;
   @media screen and (min-width: 768px) {
     display: block;
@@ -80,24 +80,24 @@ const Button = styled.button`
 const socials = [
   {
     id: 1,
-    href: "#",
-    icon: twitter
+    href: '#',
+    icon: twitter,
   },
   {
     id: 2,
-    href: "#",
-    icon: facebook
+    href: '#',
+    icon: facebook,
   },
   {
     id: 3,
-    href: "#",
-    icon: vk
+    href: '#',
+    icon: vk,
   },
   {
     id: 4,
-    href: "#",
-    icon: rss
-  }
+    href: '#',
+    icon: rss,
+  },
 ];
 
 export default () => (
@@ -107,8 +107,7 @@ export default () => (
         <Col xs={6} xlOffset={1} xl={5}>
           <Title>Хотите знать всё о скидках на авиабилеты?</Title>
           <Subtitle>
-            Вы можете подписаться на нашу рассылку через соцсети или по
-            электронной почте
+            Вы можете подписаться на нашу рассылку через соцсети или по электронной почте
           </Subtitle>
         </Col>
         <Col xs={12} xl={6}>

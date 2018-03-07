@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { Grid, Row, Col } from "react-flexbox-grid";
+import React from 'react';
+import styled from 'styled-components';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import tickets from "./data";
-import settings from "./img/settings.svg";
+import tickets from './data';
+import settings from './img/settings.svg';
 
-import Ticket from "./Ticket/";
-import Aside from "./Aside/";
+import Ticket from './Ticket/';
+import Aside from './Aside/';
 
 const Result = styled.div`
   background-color: #eaeaea;

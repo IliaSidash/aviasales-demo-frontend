@@ -1,8 +1,8 @@
-import React from "react";
-import { Helmet } from "react-helmet";
+import React from 'react';
+import { Helmet } from 'react-helmet';
 
-import Header from "./Header";
-import Result from "./Result";
+import Header from './Header';
+import Result from './Result';
 
 export default () => (
   <div>

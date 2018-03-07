@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-import checked from "./img/checked.svg";
+import checked from './img/checked.svg';
 
 const Label = styled.label`
   display: flex;
@@ -17,14 +18,14 @@ const CustomCheckbox = styled.span`
   height: 18px;
   border: 1px;
   border-style: solid;
-  border-color: ${props => (props.checked ? "#00ACE2" : "#a0b0b9")};
-  background-color: ${props => (props.checked ? "#E1F8FF" : "#ffffff")};
+  border-color: ${props => (props.checked ? '#00ACE2' : '#a0b0b9')};
+  background-color: ${props => (props.checked ? '#E1F8FF' : '#ffffff')};
   box-sizing: border-box;
   border-radius: 4px;
   margin-right: 6px;
   position: relative;
   :after {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -32,7 +33,7 @@ const CustomCheckbox = styled.span`
     background: url(${checked}) no-repeat center;
     width: 18px;
     height: 18px;
-    opacity: ${props => (props.checked ? "1" : "0")};
+    opacity: ${props => (props.checked ? '1' : '0')};
   }
 `;
 
@@ -51,19 +52,20 @@ const Price = styled.span`
   color: #a0b0b9;
 `;
 
-export default class Checkbox extends React.Component {
+class Checkbox extends React.Component {
   state = {
-    checked: false
+    checked: false,
   };
 
-  click = e => {
+  click = () => {
     this.setState(prevState => ({
-      checked: !prevState.checked
+      checked: !prevState.checked,
     }));
   };
 
   render() {
-    const checkbox = this.props.checkbox;
+    const { checkbox } = this.props;
+
     return (
       <Label key={checkbox.id}>
         <Input type="checkbox" />
@@ -74,3 +76,13 @@ export default class Checkbox extends React.Component {
     );
   }
 }
+
+Checkbox.propTypes = {
+  checkbox: PropTypes.shape({
+    id: PropTypes.number,
+    text: PropTypes.string,
+    price: PropTypes.string,
+  }).isRequired,
+};
+
+export default Checkbox;
