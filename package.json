@@ -6,6 +6,7 @@
     "date-fns": "^1.29.0",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.1",
+    "rc-slider": "^8.6.1",
     "react": "^16.2.0",
     "react-clickoutside": "^2.0.0",
     "react-day-picker": "^7.0.7",
