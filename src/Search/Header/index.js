@@ -2,13 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid } from 'react-flexbox-grid';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Logo from '../../Header/Logo';
 import arrowBack from './img/arrow-back.svg';
-
+import airoports from '../Result/airoports';
 import Form from './Form';
 
-const Header = styled.header`
+const HeaderContent = styled.header`
   padding: 11px 0 8px;
   background: linear-gradient(
     100deg,
@@ -69,23 +70,45 @@ const Info = styled.div`
   font-size: 12px;
 `;
 
-export default () => (
-  <Header>
-    <Grid>
-      <Head>
-        <Logo customLogo />
-        <Params>
-          <Link href="/" to="/">
-            <Arrow src={arrowBack} />
-          </Link>
-          <Path>
-            Москва — Барселона
-            <Info>24 фев — 3 март, 1 пассажир</Info>
-          </Path>
-        </Params>
-        <Button>RUB</Button>
-      </Head>
-      <Form />
-    </Grid>
-  </Header>
-);
+const Header = (props) => {
+  const {
+    airoportDepart, airoportArrival, departFrom, returnFrom, updateDate,
+  } = props;
+
+  return (
+    <HeaderContent>
+      <Grid>
+        <Head>
+          <Logo customLogo />
+          <Params>
+            <Link href="/" to="/">
+              <Arrow src={arrowBack} />
+            </Link>
+            <Path>
+              {airoports[airoportDepart].city} — {airoports[airoportArrival].city}
+              <Info>24 фев — 3 март, 1 пассажир</Info>
+            </Path>
+          </Params>
+          <Button>RUB</Button>
+        </Head>
+        <Form
+          airoportDepart={airoportDepart}
+          airoportArrival={airoportArrival}
+          departFrom={departFrom}
+          returnFrom={returnFrom}
+          updateDate={updateDate}
+        />
+      </Grid>
+    </HeaderContent>
+  );
+};
+
+Header.propTypes = {
+  airoportDepart: PropTypes.string.isRequired,
+  airoportArrival: PropTypes.string.isRequired,
+  departFrom: PropTypes.number.isRequired,
+  returnFrom: PropTypes.number.isRequired,
+  updateDate: PropTypes.func.isRequired,
+};
+
+export default Header;
