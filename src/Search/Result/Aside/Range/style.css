@@ -1,0 +1,38 @@
+.rc-slider-step {
+}
+
+.rc-slider-rail {
+  background-color: #fafafa;
+  top: 50%;
+  transform: translateY(-50%);
+  /* height: 2px;
+  background: #00acde;
+  border-radius: 2px;
+  margin: 7px 8px; */
+}
+/* rc-slider-handle rc-slider-handle-2 */
+.rc-slider-handle {
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border: 1px solid #d6d9da;
+  border-radius: 50px;
+  /* position: absolute; */
+  /* left: ${props => (props.right ? 'auto' : '-8px')}; */
+  /* right: ${props => (props.right ? '-8px' : 'auto')}; */
+  /* top: 50%; */
+  /* transform: translatey(-50%); */
+  cursor: pointer;
+}
+.rc-slider-handle:focus {
+  border-color: #d6d9da;
+  box-shadow: none;
+  outline: none;
+}
+
+.rc-slider-track {
+  background-color: #00acde;
+  height: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+}
