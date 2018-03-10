@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import DayPicker from 'react-day-picker/DayPicker';
 import 'react-day-picker/lib/style.css';
-import { format } from 'date-fns';
+import { format, getTime } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
 import { withClickOutside } from 'react-clickoutside';
 import { FormattedNumber } from 'react-intl';
@@ -211,8 +211,8 @@ function renderDay(day) {
 
 export default class Picker extends React.Component {
   state = {
-    from: undefined,
-    to: undefined,
+    from: this.props.departFrom,
+    to: this.props.returnFrom,
     isDateToOpen: false,
     isDateFromOpen: false,
   };
@@ -230,33 +230,47 @@ export default class Picker extends React.Component {
   };
 
   handleFromChange = (from, { disabled, selected }) => {
+    const { updateDate } = this.props;
     if (!disabled) {
-      this.setState({ from, isDateFromOpen: false, isDateToOpen: true });
+      this.setState({ from: getTime(from), isDateFromOpen: false, isDateToOpen: true }, () => {
+        updateDate(this.state.from, this.state.to);
+      });
     }
     if (selected) {
-      this.setState({ from: undefined });
+      this.setState({ from: undefined }, () => {
+        updateDate(this.state.from, this.state.to);
+      });
     }
   };
 
   handleToChange = (to, { disabled, selected }) => {
+    const { updateDate } = this.props;
     if (!disabled) {
-      this.setState({ to, isDateToOpen: false });
+      this.setState({ to: getTime(to), isDateToOpen: false }, () => {
+        updateDate(this.state.from, this.state.to);
+      });
     }
     if (selected) {
-      this.setState({ to: undefined });
+      this.setState({ to: undefined }, () => {
+        updateDate(this.state.from, this.state.to);
+      });
     }
   };
 
   render() {
-    const {
-      isDateToOpen, isDateFromOpen, from, to,
-    } = this.state;
+    const { isDateToOpen, isDateFromOpen } = this.state;
+    const from = new Date(this.state.from);
+    const to = new Date(this.state.to);
     const modifiers = { start: from, end: to };
 
     return (
       <InputsBox>
         <CustomInput>
-          <Input placeholder="Туда" onClick={this.showDateFrom} value={formatDate(from)} />
+          <Input
+            placeholder="Туда"
+            onClick={this.showDateFrom}
+            value={formatDate(this.state.from)}
+          />
           {isDateFromOpen && (
             <CustomPickerWithOutside onClickOutside={this.hideDate}>
               <DayPicker
@@ -279,7 +293,11 @@ export default class Picker extends React.Component {
           )}
         </CustomInput>
         <CustomInput>
-          <Input placeholder="Обратно" onClick={this.showDateTo} value={formatDate(to)} />
+          <Input
+            placeholder="Обратно"
+            onClick={this.showDateTo}
+            value={formatDate(this.state.to)}
+          />
           {isDateToOpen && (
             <CustomPickerWithOutside onClickOutside={this.hideDate}>
               <DayPicker
