@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import PropTypes from 'prop-types';
 
 import tickets from './data';
 import settings from './img/settings.svg';
@@ -8,7 +9,7 @@ import settings from './img/settings.svg';
 import Ticket from './Ticket/';
 import Aside from './Aside/';
 
-const Result = styled.div`
+const ResultContent = styled.div`
   background-color: #eaeaea;
   padding: 8px 0 16px;
   @media screen and (min-width: 1200px) {
@@ -80,32 +81,55 @@ const Button = styled.button`
   }
 `;
 
-export default () => (
-  <Result>
-    <Grid>
-      <Row>
-        <Col xs={0} xl={3}>
-          <Aside />
-        </Col>
-        <Col xs={12} xl={8}>
-          <Settings>
-            <Icon src={settings} />
-          </Settings>
-          <ButtonUp>Наверх</ButtonUp>
-          {tickets.map(ticket => (
-            <Ticket
-              id={ticket.id}
-              type={ticket.type}
-              price={ticket.price}
-              companies={ticket.companies}
-              depart={ticket.depart}
-              return={ticket.return}
+const Result = (props) => {
+  const {
+    airoportDepart, airoportArrival, departFrom, returnFrom, departTo, returnTo,
+  } = props;
+  return (
+    <ResultContent>
+      <Grid>
+        <Row>
+          <Col xs={0} xl={3}>
+            <Aside
+              airoportDepart={airoportDepart}
+              airoportArrival={airoportArrival}
+              departFrom={departFrom}
+              returnFrom={returnFrom}
+              departTo={departTo}
+              returnTo={returnTo}
             />
-          ))}
-          <ButtonFilter>Фильтровать</ButtonFilter>
-          <Button>ПОКАЗАТЬ ЕЩЕ 10 БИЛЕТОВ!</Button>
-        </Col>
-      </Row>
-    </Grid>
-  </Result>
-);
+          </Col>
+          <Col xs={12} xl={8}>
+            <Settings>
+              <Icon src={settings} />
+            </Settings>
+            <ButtonUp>Наверх</ButtonUp>
+            {tickets.map(ticket => (
+              <Ticket
+                id={ticket.id}
+                type={ticket.type}
+                price={ticket.price}
+                companies={ticket.companies}
+                depart={ticket.depart}
+                return={ticket.return}
+              />
+            ))}
+            <ButtonFilter>Фильтровать</ButtonFilter>
+            <Button>ПОКАЗАТЬ ЕЩЕ 10 БИЛЕТОВ!</Button>
+          </Col>
+        </Row>
+      </Grid>
+    </ResultContent>
+  );
+};
+
+Result.propTypes = {
+  airoportDepart: PropTypes.string.isRequired,
+  airoportArrival: PropTypes.string.isRequired,
+  departFrom: PropTypes.number.isRequired,
+  returnFrom: PropTypes.number.isRequired,
+  departTo: PropTypes.number.isRequired,
+  returnTo: PropTypes.number.isRequired,
+};
+
+export default Result;

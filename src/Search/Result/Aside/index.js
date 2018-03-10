@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import PropTypes from 'prop-types';
 import Filter from './Filter';
 import close from './img/close.svg';
 
-import filters from './data';
+// import filters from './data';
 
-const Aside = styled.aside`
+const AsideContent = styled.aside`
   position: relative;
   background: #ffffff;
   border-radius: 4px;
@@ -38,13 +38,88 @@ const Close = styled.img`
   cursor: pointer;
 `;
 
-export default () => (
-  <Aside>
-    {filters.map(filter => <Filter filter={filter} />)}
-    <Reset>
-      СБРОСИТЬ ВСЕ ФИЛЬТРЫ
-      <Close src={close} />
-    </Reset>
-    <Close src={close} />
-  </Aside>
-);
+const filters = [
+  {
+    id: 1,
+    checkboxes: true,
+    isOpen: true,
+  },
+  {
+    id: 2,
+    intervals: true,
+    isOpen: false,
+  },
+  {
+    id: 3,
+    baggage: true,
+    isOpen: false,
+  },
+  {
+    id: 4,
+    changeTime: true,
+    isOpen: false,
+  },
+  {
+    id: 5,
+    travelTime: true,
+    isOpen: false,
+  },
+  {
+    id: 6,
+    companies: true,
+    isOpen: false,
+  },
+  {
+    id: 7,
+    airoports: true,
+    isOpen: false,
+  },
+  {
+    id: 8,
+    airoportOfChange: true,
+    isOpen: false,
+  },
+  {
+    id: 9,
+    agencies: true,
+    isOpen: false,
+  },
+];
+
+const Aside = (props) => {
+  const {
+    airoportDepart, airoportArrival, departFrom, returnFrom, departTo, returnTo,
+  } = props;
+
+  return (
+    <AsideContent>
+      {filters.map(filter => (
+        <Filter
+          key={filter.id}
+          filter={filter}
+          airoportDepart={airoportDepart}
+          airoportArrival={airoportArrival}
+          departFrom={departFrom}
+          returnFrom={returnFrom}
+          departTo={departTo}
+          returnTo={returnTo}
+        />
+      ))}
+      <Reset>
+        СБРОСИТЬ ВСЕ ФИЛЬТРЫ
+        <Close src={close} />
+      </Reset>
+    </AsideContent>
+  );
+};
+
+Aside.propTypes = {
+  airoportDepart: PropTypes.string.isRequired,
+  airoportArrival: PropTypes.string.isRequired,
+  departFrom: PropTypes.number.isRequired,
+  departTo: PropTypes.number.isRequired,
+  returnFrom: PropTypes.number.isRequired,
+  returnTo: PropTypes.number.isRequired,
+};
+
+export default Aside;

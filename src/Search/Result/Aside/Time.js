@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
+import ruLocale from 'date-fns/locale/ru';
 import air from './img/air.svg';
+import airoports from '../airoports';
+
+import Range from './Range/';
 
 const TimeContent = styled.div`
   padding-top: 26px;
@@ -26,6 +31,7 @@ const Text = styled.div`
   font-size: 12px;
   color: #323333;
   text-transform: none;
+  margin-top: 12px;
 `;
 
 const Interval = styled.div`
@@ -34,84 +40,74 @@ const Interval = styled.div`
   padding-bottom: 4px;
 `;
 
-const Date = Text.extend``;
-
-const Line = styled.div`
-  height: 2px;
-  background: #00acde;
-  border-radius: 2px;
-  margin: 7px 8px;
-  position: relative;
+const Date = Text.extend`
+  margin-top: 0;
 `;
 
-const Point = styled.div`
-  width: 16px;
-  height: 16px;
-  background: #ffffff;
-  border: 1px solid #d6d9da;
-  border-radius: 50px;
-  position: absolute;
-  left: ${props => (props.right ? 'auto' : '-8px')};
-  right: ${props => (props.right ? '-8px' : 'auto')};
-  top: 50%;
-  transform: translatey(-50%);
-  cursor: pointer;
-`;
+function formatDate(milliseconds) {
+  return format(milliseconds, 'HH:mm, DD MMM', {
+    locale: ruLocale,
+  });
+}
 
-const Time = (props) => {
-  const { intervals, travelTime } = props;
-  if (intervals) {
+class Time extends React.Component {
+  state = {
+    depart: [this.props.depart, this.props.depart + 86340000],
+    arrival: [this.props.arrival, this.props.arrival + 86340000],
+  };
+
+  componentWillReceiveProps() {
+    this.setState({
+      depart: [this.props.depart, this.props.depart + 86340000],
+      arrival: [this.props.arrival, this.props.arrival + 86340000],
+    });
+  }
+
+  updateState = (value, arrival) => {
+    if (arrival) {
+      this.setState({
+        arrival: value,
+      });
+    } else {
+      this.setState({
+        depart: value,
+      });
+    }
+  };
+
+  render() {
+    const { airoportDepart, airoportArrival } = this.props;
+
     return (
-      <div>
-        {intervals.map(interval => (
-          <TimeContent>
-            <Direction>
-              {interval.from.city}
-              <Img src={air} /> {interval.to.city}
-            </Direction>
-            <Text> Вылет из {interval.from.city}: </Text>
-            <Interval>
-              <Date>{interval.from.start}</Date>
-              <Date>{interval.from.end}</Date>
-            </Interval>
-            <Line>
-              <Point />
-              <Point right />
-            </Line>
-          </TimeContent>
-        ))}
-      </div>
+      <TimeContent>
+        <Direction>
+          {airoports[airoportDepart].city}
+          <Img src={air} />
+          {airoports[airoportArrival].city}
+        </Direction>
+        <Text> Вылет из {airoports[airoportDepart].city}: </Text>
+        <Interval>
+          <Date>с {formatDate(this.state.depart[0])}</Date>
+          <Date>до {formatDate(this.state.depart[1])}</Date>
+        </Interval>
+        <Range value={this.state.depart} updateState={this.updateState} />
+
+        <Text> Прибытие в {airoports[airoportArrival].city}: </Text>
+        <Interval>
+          <Date>с {formatDate(this.state.arrival[0])}</Date>
+          <Date>до {formatDate(this.state.arrival[1])}</Date>
+        </Interval>
+        <Range value={this.state.arrival} updateState={this.updateState} arrival />
+      </TimeContent>
     );
   }
-  return (
-    <div>
-      {travelTime.map(interval => (
-        <TimeContent>
-          <Direction>
-            {interval.from}
-            <Img src={air} /> {interval.to}
-          </Direction>
-          <Interval>
-            <Date>{interval.start}</Date>
-            <Date>{interval.end}</Date>
-          </Interval>
-          <Line>
-            <Point />
-            <Point right />
-          </Line>
-        </TimeContent>
-      ))}
-    </div>
-  );
-};
+}
 
 Time.propTypes = {
-  intervals: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-  })).isRequired,
-  travelTime: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-  })).isRequired,
+  arrival: PropTypes.number.isRequired,
+  depart: PropTypes.number.isRequired,
+  airoportDepart: PropTypes.string.isRequired,
+  airoportArrival: PropTypes.string.isRequired,
 };
 
 export default Time;
