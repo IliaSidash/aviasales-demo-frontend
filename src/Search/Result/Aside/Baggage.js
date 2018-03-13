@@ -3,73 +3,54 @@ import React from 'react';
 import Checkbox from './Checkbox';
 
 const baggageType = {
-  0: 'Багаж и ручная кладь',
-  1: 'Без багажа',
+  withBaggage: 'Багаж и ручная кладь',
+  withoutBaggage: 'Без багажа',
 };
 
 class Stops extends React.Component {
   state = {
-    allChecked: true,
-    checkboxes: [
+    handleCheckedAll: true,
+    ckeckboxList: [
       {
-        id: 2,
-        baggage: 0,
+        id: 1,
+        baggage: 'withBaggage',
         checked: true,
       },
       {
-        id: 3,
-        baggage: 1,
+        id: 2,
+        baggage: 'withoutBaggage',
         checked: true,
       },
     ],
   };
+  handleCheckedAll = () => {};
 
-  updateStatus = (index, allChecked) => {
-    const { checkboxes } = this.state;
+  handleChecked = (index) => {
+    const { ckeckboxList } = this.state;
+    ckeckboxList[index].checked = !this.state.ckeckboxList[index].checked;
 
-    if (allChecked) {
-      for (let i = 0; i < checkboxes.length; i += 1) {
-        checkboxes[i].checked = !this.state.allChecked;
-      }
-
-      this.setState({
-        allChecked: !this.state.allChecked,
-        checkboxes,
-      });
-    } else {
-      checkboxes[index].checked = !checkboxes[index].checked;
-
-      if (
-        checkboxes.filter(checkbox => checkbox.checked).length < this.state.checkboxes.length &&
-        this.state.allChecked
-      ) {
-        this.setState({
-          allChecked: false,
-        });
-      } else if (
-        checkboxes.filter(checkbox => checkbox.checked).length === this.state.checkboxes.length
-      ) {
-        this.setState({
-          allChecked: true,
-        });
-      }
-      this.setState({
-        checkboxes,
-      });
-    }
+    this.setState({
+      ckeckboxList,
+    });
   };
 
   render() {
     return (
       <div>
-        <Checkbox text="Все" checked={this.state.allChecked} updateStatus={this.updateStatus} all />
-        {this.state.checkboxes.map((checkbox, index) => (
+        {this.state.ckeckboxList.length > 1 && (
+          <Checkbox
+            text="Все"
+            checked={this.state.handleCheckedAll}
+            onChange={this.handleAllChecked}
+          />
+        )}
+        {this.state.ckeckboxList.map((checkbox, index) => (
           <Checkbox
             id={checkbox.id}
             index={index}
             text={baggageType[checkbox.baggage]}
             checked={checkbox.checked}
-            updateStatus={this.updateStatus}
+            onChange={this.handleChecked}
           />
         ))}
       </div>

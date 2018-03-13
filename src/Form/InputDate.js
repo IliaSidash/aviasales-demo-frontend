@@ -211,8 +211,8 @@ function renderDay(day) {
 
 export default class Picker extends React.Component {
   state = {
-    from: this.props.departFrom,
-    to: this.props.returnFrom,
+    departDate: 1519412700000,
+    returnDate: 1520055300000,
     isDateToOpen: false,
     isDateFromOpen: false,
   };
@@ -229,39 +229,29 @@ export default class Picker extends React.Component {
     this.setState({ isDateFromOpen: false, isDateToOpen: false });
   };
 
-  handleFromChange = (from, { disabled, selected }) => {
-    const { updateDate } = this.props;
+  handleUpdateDepartDate = (departDate, { disabled, selected }) => {
     if (!disabled) {
-      this.setState({ from: getTime(from), isDateFromOpen: false, isDateToOpen: true }, () => {
-        updateDate(this.state.from, this.state.to);
-      });
+      this.setState({ departDate: getTime(departDate), isDateFromOpen: false, isDateToOpen: true });
     }
     if (selected) {
-      this.setState({ from: undefined }, () => {
-        updateDate(this.state.from, this.state.to);
-      });
+      this.setState({ departDate: undefined });
     }
   };
 
-  handleToChange = (to, { disabled, selected }) => {
-    const { updateDate } = this.props;
+  handleUpdateReturnDate = (returnDate, { disabled, selected }) => {
     if (!disabled) {
-      this.setState({ to: getTime(to), isDateToOpen: false }, () => {
-        updateDate(this.state.from, this.state.to);
-      });
+      this.setState({ returnDate: getTime(returnDate), isDateToOpen: false });
     }
     if (selected) {
-      this.setState({ to: undefined }, () => {
-        updateDate(this.state.from, this.state.to);
-      });
+      this.setState({ returnDate: undefined });
     }
   };
 
   render() {
     const { isDateToOpen, isDateFromOpen } = this.state;
-    const from = new Date(this.state.from);
-    const to = new Date(this.state.to);
-    const modifiers = { start: from, end: to };
+    const departDate = new Date(this.state.departDate);
+    const returnDate = new Date(this.state.returnDate);
+    const modifiers = { start: departDate, end: returnDate };
 
     return (
       <InputsBox>
@@ -269,19 +259,19 @@ export default class Picker extends React.Component {
           <Input
             placeholder="Туда"
             onClick={this.showDateFrom}
-            value={formatDate(this.state.from)}
+            value={formatDate(this.state.departDate)}
           />
           {isDateFromOpen && (
             <CustomPickerWithOutside onClickOutside={this.hideDate}>
               <DayPicker
-                onDayClick={this.handleFromChange}
+                onDayClick={this.handleUpdateDepartDate}
                 locale="ru"
                 months={MONTHS}
                 weekdaysLong={WEEKDAYS_LONG}
                 weekdaysShort={WEEKDAYS_SHORT}
                 firstDayOfWeek={1}
                 disabledDays={{ before: new Date() }}
-                selectedDays={[from, { from, to }]}
+                selectedDays={[departDate, { departDate, returnDate }]}
                 modifiers={modifiers}
                 renderDay={renderDay}
               />
@@ -296,19 +286,19 @@ export default class Picker extends React.Component {
           <Input
             placeholder="Обратно"
             onClick={this.showDateTo}
-            value={formatDate(this.state.to)}
+            value={formatDate(this.state.returnDate)}
           />
           {isDateToOpen && (
             <CustomPickerWithOutside onClickOutside={this.hideDate}>
               <DayPicker
-                onDayClick={this.handleToChange}
+                onDayClick={this.handleUpdateReturnDate}
                 locale="ru"
                 months={MONTHS}
                 weekdaysLong={WEEKDAYS_LONG}
                 weekdaysShort={WEEKDAYS_SHORT}
                 firstDayOfWeek={1}
-                disabledDays={[{ before: new Date() }, { before: from }]}
-                selectedDays={[from, { from, to }]}
+                disabledDays={[{ before: new Date() }, { before: departDate }]}
+                selectedDays={[departDate, { departDate, returnDate }]}
                 modifiers={modifiers}
                 renderDay={renderDay}
               />

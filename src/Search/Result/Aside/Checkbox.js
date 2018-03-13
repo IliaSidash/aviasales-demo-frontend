@@ -1,16 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
+import { FormattedNumber } from 'react-intl';
 import isChecked from './img/checked.svg';
 
-const Label = styled.label`
+const Label = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const Input = styled.input`
-  display: none;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const CustomCheckbox = styled.span`
@@ -45,6 +44,8 @@ const Text = styled.span`
   font-size: 12px;
   color: #4a4a4a;
   text-transform: none;
+  font-style: normal;
+  font-weight: normal;
 `;
 
 const Price = styled.span`
@@ -53,38 +54,34 @@ const Price = styled.span`
   line-height: 36px;
   font-size: 12px;
   color: #a0b0b9;
+  font-style: normal;
+  font-weight: normal;
 `;
 
 const Checkbox = (props) => {
   const {
-    all, index, id, text, price, checked, updateStatus,
+    index, id, text, price, checked, onChange,
   } = props;
-
-  if (all) {
-    return (
-      <Label>
-        <Input type="checkbox" />
-        <CustomCheckbox
-          onClick={(allChecked) => {
-            updateStatus(index, allChecked);
-          }}
-          checked={checked}
-        />
-        <Text>{text}</Text>
-      </Label>
-    );
-  }
   return (
-    <Label key={id}>
-      <Input type="checkbox" />
-      <CustomCheckbox
-        onClick={() => {
-          updateStatus(index);
-        }}
-        checked={checked}
-      />
+    <Label
+      key={id}
+      onClick={() => {
+        onChange(index);
+      }}
+    >
+      <CustomCheckbox checked={checked} />
       <Text>{text}</Text>
-      <Price> {price}</Price>
+      {price && (
+        <Price>
+          <FormattedNumber
+            value={price}
+            style={['currency']}
+            currency="RUB"
+            minimumFractionDigits={0}
+            maximumFractionDigits={0}
+          />
+        </Price>
+      )}
     </Label>
   );
 };
@@ -95,8 +92,7 @@ Checkbox.propTypes = {
   text: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
-  updateStatus: PropTypes.func.isRequired,
-  all: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Checkbox;
