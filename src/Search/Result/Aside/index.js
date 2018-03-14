@@ -3,6 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Filter from './Filter';
 import close from './img/close.svg';
+import CheckboxGroup from './CheckboxGroup';
+
+import Stops from './Stops';
+import Time from './Time';
+import Baggage from './Baggage';
 
 // import filters from './data';
 
@@ -38,80 +43,174 @@ const Close = styled.img`
   cursor: pointer;
 `;
 
-const filters = [
-  {
-    id: 1,
-    checkboxes: true,
+const filters = {
+  stops: {
     isOpen: true,
+    checkboxes: [
+      {
+        id: 1,
+        stops: 0,
+        price: 7712,
+        checked: true,
+      },
+      {
+        id: 2,
+        stops: 1,
+        price: 11150,
+        checked: true,
+      },
+      {
+        id: 3,
+        stops: 2,
+        price: 16821,
+        checked: true,
+      },
+      {
+        id: 4,
+        stops: 3,
+        price: 23986,
+        checked: true,
+      },
+    ],
   },
-  {
-    id: 2,
-    intervals: true,
-    isOpen: false,
+  time: {
+    isOpen: true,
+    flightThere: {
+      range: [1519412700000, 1519423500000],
+      stops: [],
+      airoportDepart: 'VKO',
+      airoportArrival: 'BCN',
+    },
+    flightBack: {
+      range: [1520055300000, 1520079000000],
+      stops: [],
+      airoportDepart: 'BCN',
+      airoportArrival: 'SVO',
+    },
   },
-  {
-    id: 3,
-    baggage: true,
-    isOpen: false,
+  baggage: {
+    isOpen: true,
+    checkedAll: true,
+    checkboxes: [
+      {
+        id: 1,
+        baggage: 'withBaggage',
+        checked: true,
+      },
+      {
+        id: 2,
+        baggage: 'withoutBaggage',
+        checked: true,
+      },
+    ],
   },
-  {
-    id: 4,
-    changeTime: true,
-    isOpen: false,
-  },
-  {
-    id: 5,
-    travelTime: true,
-    isOpen: false,
-  },
-  {
-    id: 6,
-    companies: true,
-    isOpen: false,
-  },
-  {
-    id: 7,
-    airoports: true,
-    isOpen: false,
-  },
-  {
-    id: 8,
-    airoportOfChange: true,
-    isOpen: false,
-  },
-  {
-    id: 9,
-    agencies: true,
-    isOpen: false,
-  },
-];
-
-const Aside = (props) => {
-  const {
-    airoportDepart, airoportArrival, departFrom, returnFrom, departTo, returnTo,
-  } = props;
-
-  return (
-    <AsideContent>
-      {filters.map(filter => (
-        <Filter
-          key={filter.id}
-          filter={filter}
-          airoportDepart={airoportDepart}
-          airoportArrival={airoportArrival}
-          departFrom={departFrom}
-          returnFrom={returnFrom}
-          departTo={departTo}
-          returnTo={returnTo}
-        />
-      ))}
-      <Reset>
-        СБРОСИТЬ ВСЕ ФИЛЬТРЫ
-        <Close src={close} />
-      </Reset>
-    </AsideContent>
-  );
 };
+
+function updateCheckedAll(prevState, props) {
+  console.log(prevState, props);
+}
+
+class Aside extends React.Component {
+  state = {
+    filters: {
+      stops: {
+        isOpen: true,
+        checkboxes: [
+          {
+            id: 1,
+            stops: 0,
+            price: 7712,
+            checked: true,
+          },
+          {
+            id: 2,
+            stops: 1,
+            price: 11150,
+            checked: true,
+          },
+          {
+            id: 3,
+            stops: 2,
+            price: 16821,
+            checked: true,
+          },
+          {
+            id: 4,
+            stops: 3,
+            price: 23986,
+            checked: true,
+          },
+        ],
+      },
+      time: {
+        isOpen: true,
+        flightThere: {
+          range: [1519412700000, 1519423500000],
+          stops: [],
+          airoportDepart: 'VKO',
+          airoportArrival: 'BCN',
+        },
+        flightBack: {
+          range: [1520055300000, 1520079000000],
+          stops: [],
+          airoportDepart: 'BCN',
+          airoportArrival: 'SVO',
+        },
+      },
+      baggage: {
+        isOpen: true,
+        checkedAll: true,
+        checkboxes: [
+          {
+            id: 1,
+            baggage: 'withBaggage',
+            checked: true,
+          },
+          {
+            id: 2,
+            baggage: 'withoutBaggage',
+            checked: true,
+          },
+        ],
+      },
+    },
+  };
+
+  handleClickAll = (component) => {
+    const { checkedAll } = this.state.filters[component];
+
+    this.setState(prevState => ({
+      filters: {
+        ...prevState.filters,
+        baggage: {
+          ...prevState.filters.baggage,
+          checkedAll: !checkedAll,
+        },
+      },
+    }));
+  };
+
+  render() {
+    const { stops, time, baggage } = this.state.filters;
+    return (
+      <AsideContent>
+        <Filter title="checkboxes" isOpen>
+          <Stops stops={stops} />
+        </Filter>
+        <Filter title="time" isOpen={time.isOpen}>
+          <Time time={time} />
+        </Filter>
+        <Filter title="baggage" checkedAll={time.checkedAll} isOpen>
+          <Baggage baggage={baggage} onChange={this.handleClickAll} />
+        </Filter>
+        <Reset>
+          СБРОСИТЬ ВСЕ ФИЛЬТРЫ
+          <Close src={close} />
+        </Reset>
+      </AsideContent>
+    );
+  }
+}
 
 Aside.propTypes = {
   airoportDepart: PropTypes.string.isRequired,

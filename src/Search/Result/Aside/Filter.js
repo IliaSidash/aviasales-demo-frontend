@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import arrow from '../Ticket/img/arrow.svg';
 
 import Stops from './Stops';
+import CheckboxGroup from './CheckboxGroup';
 
 import Time from './Time';
 import TravelTime from './TravelTime';
@@ -39,20 +40,20 @@ const Submenu = styled.div`
 `;
 
 const titles = {
-  checkboxes: { title: 'Пересадки' },
-  intervals: { title: 'ВРЕМЯ ВЫЛЕТА И ПРИБЫТИЯ' },
-  baggage: { title: 'Багаж' },
-  changeTime: { title: 'Длительность пересадки' },
-  travelTime: { title: 'Время в пути' },
-  companies: { title: 'Авиакомпании' },
-  airoports: { title: 'аэропорты' },
-  airoportOfChange: { title: 'аэропорт пересадки' },
-  agencies: { title: 'агенства' },
+  checkboxes: 'Пересадки',
+  time: 'Время прилета и прибытия',
+  baggage: 'Багаж',
+  changeTime: 'Длительность пересадки',
+  travelTime: 'Время в пути',
+  companies: 'Авиакомпании',
+  airoports: 'аэропорты',
+  airoportOfChange: 'аэропорт пересадки',
+  agencies: 'агенства',
 };
 
 class Filter extends React.Component {
   state = {
-    isOpen: this.props.filter.isOpen,
+    isOpen: this.props.isOpen,
   };
 
   click = () => {
@@ -62,157 +63,17 @@ class Filter extends React.Component {
   };
 
   render() {
-    const {
-      filter,
-      airoportDepart,
-      airoportArrival,
-      departFrom,
-      returnFrom,
-      departTo,
-      returnTo,
-    } = this.props;
-
-    if (filter.checkboxes) {
-      return (
-        <FilterContent key={filter.id}>
-          <Header onClick={this.click}>
-            <Arrow src={arrow} />
-            {titles.checkboxes.title}
-          </Header>
-          {this.state.isOpen && (
-            <Submenu>
-              <Stops />
-            </Submenu>
-          )}
-        </FilterContent>
-      );
-    } else if (filter.intervals) {
-      return (
-        <FilterContent key={filter.id}>
-          <Header onClick={this.click}>
-            <Arrow src={arrow} />
-            {titles.intervals.title}
-          </Header>
-          {this.state.isOpen && (
-            <Submenu>
-              <Time
-                airoportDepart={airoportDepart}
-                airoportArrival={airoportArrival}
-                depart={departFrom}
-                arrival={departTo}
-              />
-              <Time
-                airoportDepart={airoportArrival}
-                airoportArrival={airoportDepart}
-                depart={returnFrom}
-                arrival={returnTo}
-              />
-            </Submenu>
-          )}
-        </FilterContent>
-      );
-    } else if (filter.baggage) {
-      return (
-        <FilterContent key={filter.id}>
-          <Header onClick={this.click}>
-            <Arrow src={arrow} />
-            {titles.baggage.title}
-          </Header>
-          {this.state.isOpen && (
-            <Submenu>
-              <Baggage />
-            </Submenu>
-          )}
-        </FilterContent>
-      );
-    } else if (filter.changeTime) {
-      return (
-        <FilterContent key={filter.id}>
-          <Header onClick={this.click}>
-            <Arrow src={arrow} />
-            {titles.changeTime.title}
-          </Header>
-          {this.state.isOpen && (
-            <Submenu>
-              <ChangeTime airoportDepart={airoportDepart} airoportArrival={airoportArrival} />
-            </Submenu>
-          )}
-        </FilterContent>
-      );
-    } else if (filter.travelTime) {
-      return (
-        <FilterContent key={filter.id}>
-          <Header onClick={this.click}>
-            <Arrow src={arrow} />
-            {titles.travelTime.title}
-          </Header>
-
-          {this.state.isOpen && (
-            <Submenu>
-              <TravelTime airoportDepart={airoportDepart} airoportArrival={airoportArrival} />
-              <TravelTime airoportDepart={airoportArrival} airoportArrival={airoportDepart} />
-            </Submenu>
-          )}
-        </FilterContent>
-      );
-    } else if (filter.companies) {
-      return (
-        <FilterContent key={filter.id}>
-          <Header onClick={this.click}>
-            <Arrow src={arrow} />
-            {titles.companies.title}
-          </Header>
-          {this.state.isOpen && (
-            <Submenu>
-              <Companies />
-            </Submenu>
-          )}
-        </FilterContent>
-      );
-    } else if (filter.airoports) {
-      return (
-        <FilterContent key={filter.id}>
-          <Header onClick={this.click}>
-            <Arrow src={arrow} />
-            {titles.airoports.title}
-          </Header>
-          {this.state.isOpen && (
-            <Submenu>
-              <Companies />
-            </Submenu>
-          )}
-        </FilterContent>
-      );
-    } else if (filter.airoportOfChange) {
-      return (
-        <FilterContent key={filter.id}>
-          <Header onClick={this.click}>
-            <Arrow src={arrow} />
-            {titles.airoportOfChange.title}
-          </Header>
-          {this.state.isOpen && (
-            <Submenu>
-              <Companies />
-            </Submenu>
-          )}
-        </FilterContent>
-      );
-    } else if (filter.agencies) {
-      return (
-        <FilterContent key={filter.id}>
-          <Header onClick={this.click}>
-            <Arrow src={arrow} />
-            {titles.agencies.title}
-          </Header>
-          {this.state.isOpen && (
-            <Submenu>
-              <Companies />
-            </Submenu>
-          )}
-        </FilterContent>
-      );
-    }
-    return null;
+    const { children, title } = this.props;
+    console.log(title);
+    return (
+      <FilterContent>
+        <Header onClick={this.click}>
+          <Arrow src={arrow} />
+          {titles[title]}
+        </Header>
+        {this.state.isOpen && <Submenu>{children}</Submenu>}
+      </FilterContent>
+    );
   }
 }
 

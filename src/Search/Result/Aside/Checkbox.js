@@ -60,15 +60,10 @@ const Price = styled.span`
 
 const Checkbox = (props) => {
   const {
-    index, id, text, price, checked, onChange,
+    id, text, price, checked, onChange,
   } = props;
   return (
-    <Label
-      key={id}
-      onClick={() => {
-        onChange(index);
-      }}
-    >
+    <Label key={id} onClick={onChange}>
       <CustomCheckbox checked={checked} />
       <Text>{text}</Text>
       {price && (

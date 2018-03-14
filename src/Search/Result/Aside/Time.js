@@ -50,59 +50,55 @@ function formatDate(milliseconds) {
   });
 }
 
-class Time extends React.Component {
-  state = {
-    depart: [this.props.depart, this.props.depart + 86340000],
-    arrival: [this.props.arrival, this.props.arrival + 86340000],
-  };
+const Time = (props) => {
+  const { flightThere, flightBack } = props.time;
 
-  componentWillReceiveProps() {
-    this.setState({
-      depart: [this.props.depart, this.props.depart + 86340000],
-      arrival: [this.props.arrival, this.props.arrival + 86340000],
-    });
-  }
-
-  updateState = (value, arrival) => {
-    if (arrival) {
-      this.setState({
-        arrival: value,
-      });
-    } else {
-      this.setState({
-        depart: value,
-      });
-    }
-  };
-
-  render() {
-    const { airoportDepart, airoportArrival } = this.props;
-
-    return (
+  return (
+    <React.Fragment>
       <TimeContent>
         <Direction>
-          {airoports[airoportDepart].city}
+          {airoports[flightThere.airoportDepart].city}
           <Img src={air} />
-          {airoports[airoportArrival].city}
+          {airoports[flightThere.airoportArrival].city}
         </Direction>
-        <Text> Вылет из {airoports[airoportDepart].city}: </Text>
+        <Text> Вылет из {airoports[flightThere.airoportDepart].city}: </Text>
         <Interval>
-          <Date>с {formatDate(this.state.depart[0])}</Date>
-          <Date>до {formatDate(this.state.depart[1])}</Date>
+          <Date>с {formatDate(flightThere.range[0])}</Date>
+          <Date>до {formatDate(flightThere.range[1])}</Date>
         </Interval>
-        <Range value={this.state.depart} updateState={this.updateState} />
+        <Range value={flightThere.range} />
 
-        <Text> Прибытие в {airoports[airoportArrival].city}: </Text>
+        <Text> Прибытие в {airoports[flightThere.airoportArrival].city}: </Text>
         <Interval>
-          <Date>с {formatDate(this.state.arrival[0])}</Date>
-          <Date>до {formatDate(this.state.arrival[1])}</Date>
+          <Date>с {formatDate(flightThere.range[0])}</Date>
+          <Date>до {formatDate(flightThere.range[1])}</Date>
         </Interval>
-        <Range value={this.state.arrival} updateState={this.updateState} arrival />
+        <Range value={flightThere.range} />
       </TimeContent>
-    );
-  }
-}
 
+      <TimeContent>
+        <Direction>
+          {airoports[flightBack.airoportDepart].city}
+          <Img src={air} />
+          {airoports[flightBack.airoportArrival].city}
+        </Direction>
+        <Text> Вылет из {airoports[flightThere.airoportDepart].city}: </Text>
+        <Interval>
+          <Date>с {formatDate(flightBack.range[0])}</Date>
+          <Date>до {formatDate(flightBack.range[1])}</Date>
+        </Interval>
+        <Range value={flightBack.range} />
+
+        <Text> Прибытие в {airoports[flightBack.airoportArrival].city}: </Text>
+        <Interval>
+          <Date>с {formatDate(flightBack.range[0])}</Date>
+          <Date>до {formatDate(flightBack.range[1])}</Date>
+        </Interval>
+        <Range value={flightBack.range} />
+      </TimeContent>
+    </React.Fragment>
+  );
+};
 Time.propTypes = {
   arrival: PropTypes.number.isRequired,
   depart: PropTypes.number.isRequired,

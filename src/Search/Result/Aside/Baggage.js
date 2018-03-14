@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { set } from 'lodash/fp';
 import Checkbox from './Checkbox';
 
 const baggageType = {
@@ -7,10 +7,10 @@ const baggageType = {
   withoutBaggage: 'Без багажа',
 };
 
-class Stops extends React.Component {
+class Baggage extends React.Component {
   state = {
-    handleCheckedAll: true,
-    ckeckboxList: [
+    checkedAll: true,
+    checkboxes: [
       {
         id: 1,
         baggage: 'withBaggage',
@@ -23,39 +23,49 @@ class Stops extends React.Component {
       },
     ],
   };
-  handleCheckedAll = () => {};
 
-  handleChecked = (index) => {
-    const { ckeckboxList } = this.state;
-    ckeckboxList[index].checked = !this.state.ckeckboxList[index].checked;
+  handleClickAll = () => {
+    this.setState(prevState => ({
+      checkedAll: !prevState.checkedAll,
+    }));
+  };
 
-    this.setState({
-      ckeckboxList,
-    });
+  handleClickChechbox = (index) => {
+    // const { checkboxes } = this.state;
+    // checkboxes[index].checked = !checkboxes[index].checked;
+
+    this.setState(prevState => ({
+      // checkedAll: checkboxes.filter(checkbox => checkbox.checked).length === checkboxes.length,
+      checkboxes: set(
+        `prevState.checkboxes[${index}].checked`,
+        !prevState.checkboxes[index].checked,
+        prevState.checkboxes,
+      ),
+    }));
   };
 
   render() {
+    const { checkboxes, checkedAll } = this.state;
     return (
-      <div>
-        {this.state.ckeckboxList.length > 1 && (
+      <React.Fragment>
+        <Checkbox
+          text="Все"
+          checked={checkedAll}
+          onChange={this.handleClickAll}
+          component="baggage"
+        />
+        {checkboxes.map((checkbox, index) => (
           <Checkbox
-            text="Все"
-            checked={this.state.handleCheckedAll}
-            onChange={this.handleAllChecked}
-          />
-        )}
-        {this.state.ckeckboxList.map((checkbox, index) => (
-          <Checkbox
-            id={checkbox.id}
             index={index}
             text={baggageType[checkbox.baggage]}
             checked={checkbox.checked}
-            onChange={this.handleChecked}
+            onChange={() => this.handleClickChechbox(index)}
+            all
           />
         ))}
-      </div>
+      </React.Fragment>
     );
   }
 }
 
-export default Stops;
+export default Baggage;
