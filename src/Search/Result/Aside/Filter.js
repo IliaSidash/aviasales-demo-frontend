@@ -64,7 +64,6 @@ class Filter extends React.Component {
 
   render() {
     const { children, title } = this.props;
-    console.log(title);
     return (
       <FilterContent>
         <Header onClick={this.click}>

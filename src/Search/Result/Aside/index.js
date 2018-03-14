@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { set } from 'lodash/fp';
+
 import PropTypes from 'prop-types';
 import Filter from './Filter';
 import close from './img/close.svg';
@@ -106,10 +108,6 @@ const filters = {
   },
 };
 
-function updateCheckedAll(prevState, props) {
-  console.log(prevState, props);
-}
-
 class Aside extends React.Component {
   state = {
     filters: {
@@ -176,17 +174,23 @@ class Aside extends React.Component {
     },
   };
 
-  handleClickAll = (component) => {
-    const { checkedAll } = this.state.filters[component];
-
+  handleClickCheckboxAll = (component) => {
     this.setState(prevState => ({
-      filters: {
-        ...prevState.filters,
-        baggage: {
-          ...prevState.filters.baggage,
-          checkedAll: !checkedAll,
-        },
-      },
+      filters: set(
+        `${component}.checkedAll`,
+        !prevState.filters[component].checkedAll,
+        prevState.filters,
+      ),
+    }));
+  };
+
+  handleClickCheckbox = (component, index) => {
+    this.setState(prevState => ({
+      filters: set(
+        `${component}.checkboxes[${index}].checked`,
+        !prevState.filters[component].checkboxes[index].checked,
+        prevState.filters,
+      ),
     }));
   };
 
@@ -200,8 +204,14 @@ class Aside extends React.Component {
         <Filter title="time" isOpen={time.isOpen}>
           <Time time={time} />
         </Filter>
-        <Filter title="baggage" checkedAll={time.checkedAll} isOpen>
-          <Baggage baggage={baggage} onChange={this.handleClickAll} />
+        <Filter title="baggage" isOpen>
+          <Baggage
+            baggage={baggage}
+            checkedAll={baggage.checkedAll}
+            onChange={this.handleClickCheckbox}
+            onChangeAll={this.handleClickCheckboxAll}
+            component="baggage"
+          />
         </Filter>
         <Reset>
           СБРОСИТЬ ВСЕ ФИЛЬТРЫ
