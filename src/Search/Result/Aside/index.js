@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { set } from 'lodash/fp';
+import { set, cloneDeep, isEqual } from 'lodash/fp';
 
 import PropTypes from 'prop-types';
 import Filter from './Filter';
@@ -31,6 +31,9 @@ const Reset = styled.div`
   color: #00bde4;
   position: relative;
   padding-left: 16px;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const Close = styled.img`
@@ -44,83 +47,90 @@ const Close = styled.img`
   top: 16px;
   cursor: pointer;
 `;
+const filters = {
+  stops: {
+    isOpen: true,
+    checkedAll: true,
+    checkboxes: [
+      {
+        id: 1,
+        stops: 0,
+        price: 7712,
+        checked: true,
+      },
+      {
+        id: 2,
+        stops: 1,
+        price: 11150,
+        checked: true,
+      },
+      {
+        id: 3,
+        stops: 2,
+        price: 16821,
+        checked: true,
+      },
+      {
+        id: 4,
+        stops: 3,
+        price: 23986,
+        checked: true,
+      },
+    ],
+  },
+  time: {
+    isOpen: true,
+    directions: [
+      {
+        id: 1,
+        range: [1519412700000, 1519423500000],
+        max: 1519423500000,
+        min: 1519412700000,
+        stops: [],
+        airoportDepart: 'VKO',
+        airoportArrival: 'BCN',
+      },
+      {
+        id: 2,
+        range: [1520055300000, 1520079000000],
+        max: 1520079000000,
+        min: 1520055300000,
+        stops: [],
+        airoportDepart: 'BCN',
+        airoportArrival: 'SVO',
+      },
+    ],
+  },
+  baggage: {
+    isOpen: true,
+    checkedAll: true,
+    checkboxes: [
+      {
+        id: 1,
+        baggage: 'withBaggage',
+        checked: true,
+      },
+      {
+        id: 2,
+        baggage: 'withoutBaggage',
+        checked: true,
+      },
+    ],
+  },
+};
 
 const setChecked = (checkbox, isChecked) => ({ ...checkbox, checked: isChecked });
 
 const setCheckedAll = (filter, isChecked) =>
   filter.checkboxes.map(checkbox => setChecked(checkbox, isChecked));
 
+const isReset = (filter, text) => isEqual(filter, filters[text]);
+
 class Aside extends React.Component {
   state = {
-    stops: {
-      isOpen: true,
-      checkedAll: true,
-      checkboxes: [
-        {
-          id: 1,
-          stops: 0,
-          price: 7712,
-          checked: true,
-        },
-        {
-          id: 2,
-          stops: 1,
-          price: 11150,
-          checked: true,
-        },
-        {
-          id: 3,
-          stops: 2,
-          price: 16821,
-          checked: true,
-        },
-        {
-          id: 4,
-          stops: 3,
-          price: 23986,
-          checked: true,
-        },
-      ],
-    },
-    time: {
-      isOpen: true,
-      directions: [
-        {
-          id: 1,
-          range: [1519412700000, 1519423500000],
-          max: 1519423500000,
-          min: 1519412700000,
-          stops: [],
-          airoportDepart: 'VKO',
-          airoportArrival: 'BCN',
-        },
-        {
-          id: 2,
-          range: [1520055300000, 1520079000000],
-          max: 1520079000000,
-          min: 1520055300000,
-          stops: [],
-          airoportDepart: 'BCN',
-          airoportArrival: 'SVO',
-        },
-      ],
-    },
-    baggage: {
-      isOpen: true,
-      checkedAll: true,
-      checkboxes: [
-        {
-          id: 1,
-          baggage: 'withBaggage',
-          checked: true,
-        },
-        {
-          id: 2,
-          baggage: 'withoutBaggage',
-          checked: true,
-        },
-      ],
-    },
+    stops: cloneDeep(filters.stops),
+    time: cloneDeep(filters.time),
+    baggage: cloneDeep(filters.baggage),
   };
 
   handleChangeRange = (range, filter, index) => {
@@ -149,11 +159,31 @@ class Aside extends React.Component {
     }));
   };
 
+  handleClickReset = (e, filter) => {
+    e.stopPropagation();
+    this.setState({
+      [filter]: cloneDeep(filters[filter]),
+    });
+  };
+
+  handleClickResetAll = () => {
+    this.setState({
+      stops: cloneDeep(filters.stops),
+      time: cloneDeep(filters.time),
+      baggage: cloneDeep(filters.baggage),
+    });
+  };
+
   render() {
     const { stops, time, baggage } = this.state;
     return (
       <AsideContent>
-        <Filter title="checkboxes" isOpen>
+        <Filter
+          onClickReset={this.handleClickReset}
+          reset={isReset(stops, 'stops')}
+          title="stops"
+          isOpen
+        >
           <Stops
             stops={stops}
             checkedAll={stops.checkedAll}
@@ -162,10 +192,20 @@ class Aside extends React.Component {
             component="stops"
           />
         </Filter>
-        <Filter title="time" isOpen={time.isOpen}>
+        <Filter
+          onClickReset={this.handleClickReset}
+          reset={isReset(time, 'time')}
+          title="time"
+          isOpen
+        >
           <Time onChangeRange={this.handleChangeRange} time={time} component="time" />
         </Filter>
-        <Filter title="baggage" isOpen>
+        <Filter
+          onClickReset={this.handleClickReset}
+          reset={isReset(baggage, 'baggage')}
+          title="baggage"
+          isOpen
+        >
           <Baggage
             baggage={baggage}
             checkedAll={baggage.checkedAll}
@@ -174,10 +214,10 @@ class Aside extends React.Component {
             component="baggage"
           />
         </Filter>
-        <Filter title="travelTime" isOpen>
+        <Filter onClickReset={this.handleClickReset} title="travelTime" isOpen>
           <TravelTime directions={time.directions} />
         </Filter>
-        <Reset>
+        <Reset onClick={this.handleClickResetAll}>
           СБРОСИТЬ ВСЕ ФИЛЬТРЫ
           <Close src={close} />
         </Reset>
