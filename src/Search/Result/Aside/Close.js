@@ -13,7 +13,12 @@ const Close = styled.img`
   right: 16px;
   top: 16px;
   cursor: pointer;
+  z-index: 10;
+  transition: transform 0.5s;
+  :hover {
+    transform: scale(1.1);
+  }
 `;
 
-const CloseFilter = () => <Close src={close} />;
+const CloseFilter = props => <Close onClick={props.onClickReset} src={close} />;
 export default CloseFilter;
