@@ -22,6 +22,7 @@ const Arrow = styled.img`
 
 const Header = styled.div`
   padding: 17px 16px 18px;
+  position: relative;
   :hover {
     cursor: pointer;
     background-color: #f1fcff;
@@ -33,7 +34,7 @@ const Submenu = styled.div`
 `;
 
 const titles = {
-  checkboxes: 'Пересадки',
+  stops: 'Пересадки',
   time: 'Время прилета и прибытия',
   baggage: 'Багаж',
   changeTime: 'Длительность пересадки',
@@ -56,13 +57,15 @@ class Filter extends React.Component {
   };
 
   render() {
-    const { children, title } = this.props;
+    const {
+      children, title, reset, onClickReset,
+    } = this.props;
     return (
       <FilterContent>
         <Header onClick={this.click}>
           <Arrow src={arrow} />
           {titles[title]}
-          <Close />
+          {!reset && <Close onClickReset={e => onClickReset(e, title)} />}
         </Header>
         {this.state.isOpen && <Submenu>{children}</Submenu>}
       </FilterContent>
