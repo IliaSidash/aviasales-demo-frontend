@@ -65,7 +65,6 @@ class Time extends React.Component {
 
   render() {
     const { directions } = this.props;
-    console.log(directions);
     return (
       <React.Fragment>
         {directions.map(direct => (
