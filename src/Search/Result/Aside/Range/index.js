@@ -9,7 +9,7 @@ const RangeSlider = (props) => {
   const {
     range, onChange, max, min,
   } = props;
-
+  console.log(range, min, max);
   return (
     <Range
       min={min}
