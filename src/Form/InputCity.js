@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import arrows from './img/arrows.svg';
 
-const Input = styled.input`
+import Autocomplete from './Autocomplete';
+
+const Input = styled(Autocomplete)`
   font-style: normal;
   font-weight: normal;
   box-sizing: border-box;
@@ -88,7 +90,7 @@ class InputCity extends React.Component {
     if (this.props.value) {
       return (
         <CustomInput>
-          <Input type="text" defaultValue={this.props.value} />
+          <Input items={['Барселона', 'Москва', 'Екатеринбург']} placeholder={this.props.value} />
           <Airport styled={this.state.arrowsIsShowed}>{this.props.air} </Airport>
           <Arrows src={arrows} styled={this.state.arrowsIsShowed} />
         </CustomInput>
@@ -96,7 +98,7 @@ class InputCity extends React.Component {
     }
     return (
       <CustomInput>
-        <Input placeholder="Город прибытия" />
+        <Input items={['Барселона', 'Москва', 'Екатеринбург']} placeholder="Город прибытия" />
       </CustomInput>
     );
   }
