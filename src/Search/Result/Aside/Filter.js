@@ -4,14 +4,7 @@ import PropTypes from 'prop-types';
 
 import arrow from '../Ticket/img/arrow.svg';
 
-import Stops from './Stops';
-import CheckboxGroup from './CheckboxGroup';
-
-import Time from './Time';
-import TravelTime from './TravelTime';
-import ChangeTime from './ChangeTime';
-import Baggage from './Baggage';
-import Companies from './Companies';
+import Close from './Close';
 
 const FilterContent = styled.div`
   font-weight: 500;
@@ -69,6 +62,7 @@ class Filter extends React.Component {
         <Header onClick={this.click}>
           <Arrow src={arrow} />
           {titles[title]}
+          <Close />
         </Header>
         {this.state.isOpen && <Submenu>{children}</Submenu>}
       </FilterContent>

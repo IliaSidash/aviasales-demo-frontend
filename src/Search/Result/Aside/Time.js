@@ -51,51 +51,43 @@ function formatDate(milliseconds) {
 }
 
 const Time = (props) => {
-  const { flightThere, flightBack } = props.time;
+  const { directions } = props.time;
+  const { onChangeRange, component, id } = props;
 
   return (
     <React.Fragment>
-      <TimeContent>
-        <Direction>
-          {airoports[flightThere.airoportDepart].city}
-          <Img src={air} />
-          {airoports[flightThere.airoportArrival].city}
-        </Direction>
-        <Text> Вылет из {airoports[flightThere.airoportDepart].city}: </Text>
-        <Interval>
-          <Date>с {formatDate(flightThere.range[0])}</Date>
-          <Date>до {formatDate(flightThere.range[1])}</Date>
-        </Interval>
-        <Range value={flightThere.range} />
+      {directions.map((direct, index) => (
+        <TimeContent key={id}>
+          <Direction>
+            {airoports[direct.airoportDepart].city}
+            <Img src={air} />
+            {airoports[direct.airoportArrival].city}
+          </Direction>
+          <Text> Вылет из {airoports[direct.airoportDepart].city}: </Text>
+          <Interval>
+            <Date>с {formatDate(direct.range[0])}</Date>
+            <Date>до {formatDate(direct.range[1])}</Date>
+          </Interval>
+          <Range
+            onChange={value => onChangeRange(value, component, index)}
+            range={direct.range}
+            max={direct.max}
+            min={direct.min}
+          />
 
-        <Text> Прибытие в {airoports[flightThere.airoportArrival].city}: </Text>
-        <Interval>
-          <Date>с {formatDate(flightThere.range[0])}</Date>
-          <Date>до {formatDate(flightThere.range[1])}</Date>
-        </Interval>
-        <Range value={flightThere.range} />
-      </TimeContent>
-
-      <TimeContent>
-        <Direction>
-          {airoports[flightBack.airoportDepart].city}
-          <Img src={air} />
-          {airoports[flightBack.airoportArrival].city}
-        </Direction>
-        <Text> Вылет из {airoports[flightThere.airoportDepart].city}: </Text>
-        <Interval>
-          <Date>с {formatDate(flightBack.range[0])}</Date>
-          <Date>до {formatDate(flightBack.range[1])}</Date>
-        </Interval>
-        <Range value={flightBack.range} />
-
-        <Text> Прибытие в {airoports[flightBack.airoportArrival].city}: </Text>
-        <Interval>
-          <Date>с {formatDate(flightBack.range[0])}</Date>
-          <Date>до {formatDate(flightBack.range[1])}</Date>
-        </Interval>
-        <Range value={flightBack.range} />
-      </TimeContent>
+          <Text> Прибытие в {airoports[direct.airoportArrival].city}: </Text>
+          <Interval>
+            <Date>с {formatDate(direct.range[0])}</Date>
+            <Date>до {formatDate(direct.range[1])}</Date>
+          </Interval>
+          <Range
+            onChange={value => onChangeRange(value, component)}
+            range={direct.range}
+            max={direct.max}
+            min={direct.min}
+          />
+        </TimeContent>
+      ))}
     </React.Fragment>
   );
 };

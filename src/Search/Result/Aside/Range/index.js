@@ -5,25 +5,23 @@ import PropTypes from 'prop-types';
 import 'rc-slider/assets/index.css';
 import './style.css';
 
-class RangeSlider extends React.Component {
-  state = {
-    value: this.props.value,
-  };
+const RangeSlider = (props) => {
+  const {
+    range, onChange, max, min,
+  } = props;
 
-  render() {
-    return (
-      <Range
-        min={this.state.value[0]}
-        max={this.state.value[1]}
-        allowCross={false}
-        defaultValue={this.state.value}
-        onChange={(value) => {
-          this.props.updateState(value, this.props.arrival);
-        }}
-      />
-    );
-  }
-}
+  return (
+    <Range
+      min={min}
+      max={max}
+      allowCross={false}
+      defaultValue={range}
+      onChange={(value) => {
+        onChange(value);
+      }}
+    />
+  );
+};
 
 RangeSlider.propTypes = {
   updateState: PropTypes.func.isRequired,

@@ -53,31 +53,41 @@ function formatDate(milliseconds) {
 class Time extends React.Component {
   state = {
     depart: [0, 68340000],
-    // arrival: [0, 68340000],
+    min: 0,
+    max: 6834000,
   };
 
-  updateState = (value) => {
+  handleChangeRange = (value) => {
     this.setState({
       depart: value,
     });
   };
 
   render() {
-    const { airoportDepart, airoportArrival } = this.props;
-
+    const { directions } = this.props;
+    console.log(directions);
     return (
-      <TimeContent>
-        <Direction>
-          {airoports[airoportDepart].city}
-          <Img src={air} />
-          {airoports[airoportArrival].city}
-        </Direction>
-        <Interval>
-          <Date>от {formatDate(this.state.depart[0])}</Date>
-          <Date>до {formatDate(this.state.depart[1])}</Date>
-        </Interval>
-        <Range value={this.state.depart} updateState={this.updateState} />
-      </TimeContent>
+      <React.Fragment>
+        {directions.map(direct => (
+          <TimeContent>
+            <Direction>
+              {airoports[direct.airoportDepart].city}
+              <Img src={air} />
+              {airoports[direct.airoportArrival].city}
+            </Direction>
+            <Interval>
+              <Date>от {formatDate(this.state.depart[0])}</Date>
+              <Date>до {formatDate(this.state.depart[1])}</Date>
+            </Interval>
+            <Range
+              range={this.state.depart}
+              onChange={this.handleChangeRange}
+              min={this.state.min}
+              max={this.state.max}
+            />
+          </TimeContent>
+        ))}
+      </React.Fragment>
     );
   }
 }

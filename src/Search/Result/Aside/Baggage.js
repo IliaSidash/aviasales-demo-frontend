@@ -14,6 +14,7 @@ const Baggage = (props) => {
   return (
     <React.Fragment>
       <Checkbox text="Все" checked={checkedAll} onChange={() => onChangeAll(component)} />
+
       {baggage.checkboxes.map((checkbox, index) => (
         <Checkbox
           text={baggageType[checkbox.baggage]}
