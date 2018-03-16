@@ -41,34 +41,32 @@ const City = styled.div`
   }
 `;
 
-const Autocomplete = ({ items, placeholder }) => (
+const Autocomplete = ({ cities, placeholder }) => (
   <Downshift
     render={({
-      getInputProps,
-      getItemProps,
-      isOpen,
-      inputValue,
-      selectedItem,
-      highlightedIndex,
-    }) => (
-      <div>
-        <Input {...getInputProps({ placeholder })} />
-        {isOpen ? (
-          <Submenu>
-            {items
+ getInputProps, getItemProps, isOpen, inputValue,
+}) => (
+  <div>
+    <Input {...getInputProps({ placeholder })} />
+    {isOpen ? (
+      <Submenu>
+        {cities
               .filter(i => !inputValue || i.toLowerCase().includes(inputValue.toLowerCase()))
-              .map((item, index) => (
-                <City {...getItemProps({ item })} key={item}>
-                  {item}
+              .map(city => (
+                <City {...getItemProps({ city })} key={city}>
+                  {city}
                 </City>
               ))}
-          </Submenu>
+      </Submenu>
         ) : null}
-      </div>
+  </div>
     )}
   />
 );
 
-Autocomplete.propTypes = {};
+Autocomplete.propTypes = {
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  placeholder: PropTypes.string.isRequired,
+};
 
 export default Autocomplete;
