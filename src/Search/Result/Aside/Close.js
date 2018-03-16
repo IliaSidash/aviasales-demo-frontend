@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import close from './img/close.svg';
@@ -21,4 +22,9 @@ const Close = styled.img`
 `;
 
 const CloseFilter = props => <Close onClick={props.onClickReset} src={close} />;
+
+CloseFilter.propTypes = {
+  onClickReset: PropTypes.func.isRequired,
+};
+
 export default CloseFilter;
