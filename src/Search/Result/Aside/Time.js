@@ -52,7 +52,7 @@ function formatDate(milliseconds) {
 
 const Time = (props) => {
   const { directions } = props.time;
-  const { onChangeRange, component, id } = props;
+  const { onChangeRange, id } = props;
 
   return (
     <React.Fragment>
@@ -69,7 +69,7 @@ const Time = (props) => {
             <Date>до {formatDate(direct.range[1])}</Date>
           </Interval>
           <Range
-            onChange={value => onChangeRange(value, component, index)}
+            onChange={value => onChangeRange(value, 'time', index)}
             range={direct.range}
             max={direct.max}
             min={direct.min}
@@ -81,7 +81,7 @@ const Time = (props) => {
             <Date>до {formatDate(direct.range[1])}</Date>
           </Interval>
           <Range
-            onChange={value => onChangeRange(value, component)}
+            onChange={value => onChangeRange(value, 'time')}
             range={direct.range}
             max={direct.max}
             min={direct.min}
@@ -92,10 +92,11 @@ const Time = (props) => {
   );
 };
 Time.propTypes = {
-  arrival: PropTypes.number.isRequired,
-  depart: PropTypes.number.isRequired,
-  airoportDepart: PropTypes.string.isRequired,
-  airoportArrival: PropTypes.string.isRequired,
+  time: PropTypes.arrayOf(PropTypes.shape({
+    checkboxes: PropTypes.array,
+  })).isRequired,
+  onChangeRange: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default Time;
