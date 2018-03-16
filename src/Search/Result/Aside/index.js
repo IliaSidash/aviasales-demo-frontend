@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { set, cloneDeep, isEqual } from 'lodash/fp';
 
-import PropTypes from 'prop-types';
 import Filter from './Filter';
 import close from './img/close.svg';
 
@@ -10,6 +9,7 @@ import Stops from './Stops';
 import Time from './Time';
 import Baggage from './Baggage';
 import TravelTime from './TravelTime';
+import Companies from './Companies';
 
 // import filters from './data';
 
@@ -47,10 +47,9 @@ const Close = styled.img`
   top: 16px;
   cursor: pointer;
 `;
+
 const filters = {
   stops: {
-    isOpen: true,
-    checkedAll: true,
     checkboxes: [
       {
         id: 1,
@@ -79,7 +78,6 @@ const filters = {
     ],
   },
   time: {
-    isOpen: true,
     directions: [
       {
         id: 1,
@@ -102,8 +100,6 @@ const filters = {
     ],
   },
   baggage: {
-    isOpen: true,
-    checkedAll: true,
     checkboxes: [
       {
         id: 1,
@@ -117,6 +113,98 @@ const filters = {
       },
     ],
   },
+  alliances: {
+    checkboxes: [
+      {
+        id: 1,
+        text: 'Star Alliance',
+        price: 11150,
+        checked: true,
+      },
+      {
+        id: 2,
+        text: 'OneWorld',
+        price: 12370,
+        checked: true,
+      },
+      {
+        id: 3,
+        text: 'SkyTeam',
+        price: 16290,
+        checked: true,
+      },
+    ],
+  },
+  companies: {
+    checkboxes: [
+      {
+        id: 2,
+        text: 'Aegean Airlines',
+        price: 20357,
+        checked: true,
+      },
+      {
+        id: 3,
+        text: 'Air Algerie',
+        price: 29105,
+        checked: true,
+      },
+      {
+        id: 4,
+        text: 'Air Europa',
+        price: 22202,
+        checked: true,
+      },
+      {
+        id: 5,
+        text: 'Air France',
+        price: 17050,
+        checked: true,
+      },
+      {
+        id: 6,
+        text: 'Air Moldova',
+        price: 22613,
+        checked: true,
+      },
+      {
+        id: 7,
+        text: 'Alitalia',
+        price: 22717,
+        checked: true,
+      },
+      {
+        id: 8,
+        text: 'Alitalia CityLiner',
+        price: 20271,
+        checked: true,
+      },
+      {
+        id: 9,
+        text: 'Belle Air',
+        price: 18371,
+        checked: true,
+      },
+      {
+        id: 10,
+        text: 'British Airways',
+        price: 23839,
+        checked: true,
+      },
+      {
+        id: 11,
+        text: 'Brussels Airlines',
+        price: 11150,
+        checked: true,
+      },
+      {
+        id: 12,
+        text: 'Bulgaria Air',
+        price: 20114,
+        checked: true,
+      },
+    ],
+  },
 };
 
 const setChecked = (checkbox, isChecked) => ({ ...checkbox, checked: isChecked });
@@ -126,11 +214,15 @@ const setCheckedAll = (filter, isChecked) =>
 
 const isReset = (filter, text) => isEqual(filter, filters[text]);
 
+const isChekedAll = filter => filter.checkboxes.every(elem => elem.checked);
+
 class Aside extends React.Component {
   state = {
     stops: cloneDeep(filters.stops),
     time: cloneDeep(filters.time),
     baggage: cloneDeep(filters.baggage),
+    alliances: cloneDeep(filters.alliances),
+    companies: cloneDeep(filters.companies),
   };
 
   handleChangeRange = (range, filter, index) => {
@@ -143,8 +235,8 @@ class Aside extends React.Component {
     this.setState(prevState => ({
       [filter]: set(
         'checkboxes',
-        setCheckedAll(prevState[filter], !prevState[filter].checkedAll),
-        set('checkedAll', !prevState[filter].checkedAll, prevState[filter]),
+        setCheckedAll(prevState[filter], !isChekedAll(prevState[filter])),
+        [filter].checkboxes,
       ),
     }));
   };
@@ -175,7 +267,9 @@ class Aside extends React.Component {
   };
 
   render() {
-    const { stops, time, baggage } = this.state;
+    const {
+      stops, time, baggage, travelTime, alliances, companies,
+    } = this.state;
     return (
       <AsideContent>
         <Filter
@@ -186,37 +280,51 @@ class Aside extends React.Component {
         >
           <Stops
             stops={stops}
-            checkedAll={stops.checkedAll}
+            checkedAll={isChekedAll(stops)}
             onChange={this.handleClickCheckbox}
             onChangeAll={this.handleClickCheckboxAll}
             component="stops"
           />
         </Filter>
-        <Filter
-          onClickReset={this.handleClickReset}
-          reset={isReset(time, 'time')}
-          title="time"
-          isOpen
-        >
+        <Filter onClickReset={this.handleClickReset} reset={isReset(time, 'time')} title="time">
           <Time onChangeRange={this.handleChangeRange} time={time} component="time" />
         </Filter>
         <Filter
           onClickReset={this.handleClickReset}
           reset={isReset(baggage, 'baggage')}
           title="baggage"
-          isOpen
         >
           <Baggage
             baggage={baggage}
-            checkedAll={baggage.checkedAll}
+            checkedAll={isChekedAll(baggage)}
             onChange={this.handleClickCheckbox}
             onChangeAll={this.handleClickCheckboxAll}
             component="baggage"
           />
         </Filter>
-        <Filter onClickReset={this.handleClickReset} title="travelTime" isOpen>
+
+        <Filter
+          onClickReset={this.handleClickReset}
+          reset={isReset(travelTime, 'travelTime')}
+          title="travelTime"
+        >
           <TravelTime directions={time.directions} />
         </Filter>
+
+        <Filter
+          onClickReset={this.handleClickReset}
+          reset={isReset(alliances, 'alliances')}
+          title="companies"
+        >
+          <Companies
+            alliances={alliances}
+            companies={companies}
+            checkedAll={[isChekedAll(alliances), isChekedAll(companies)]}
+            onChange={this.handleClickCheckbox}
+            onChangeAll={this.handleClickCheckboxAll}
+          />
+        </Filter>
+
         <Reset onClick={this.handleClickResetAll}>
           СБРОСИТЬ ВСЕ ФИЛЬТРЫ
           <Close src={close} />
@@ -225,14 +333,5 @@ class Aside extends React.Component {
     );
   }
 }
-
-Aside.propTypes = {
-  airoportDepart: PropTypes.string.isRequired,
-  airoportArrival: PropTypes.string.isRequired,
-  departFrom: PropTypes.number.isRequired,
-  departTo: PropTypes.number.isRequired,
-  returnFrom: PropTypes.number.isRequired,
-  returnTo: PropTypes.number.isRequired,
-};
 
 export default Aside;
