@@ -9,7 +9,6 @@ const RangeSlider = (props) => {
   const {
     range, onChange, max, min,
   } = props;
-  console.log(range, min, max);
   return (
     <Range
       min={min}
@@ -24,9 +23,10 @@ const RangeSlider = (props) => {
 };
 
 RangeSlider.propTypes = {
-  updateState: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-  arrival: PropTypes.bool.isRequired,
+  range: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onChange: PropTypes.func.isRequired,
+  max: PropTypes.number.isRequired,
+  min: PropTypes.number.isRequired,
 };
 
 export default RangeSlider;
