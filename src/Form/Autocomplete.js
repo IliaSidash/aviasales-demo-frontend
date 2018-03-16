@@ -51,10 +51,10 @@ const Autocomplete = ({ cities, placeholder }) => (
     {isOpen ? (
       <Submenu>
         {cities
-              .filter(i => !inputValue || i.toLowerCase().includes(inputValue.toLowerCase()))
-              .map(city => (
-                <City {...getItemProps({ city })} key={city}>
-                  {city}
+              .filter(city => !inputValue || city.toLowerCase().includes(inputValue.toLowerCase()))
+              .map(item => (
+                <City {...getItemProps({ item })} key={item}>
+                  {item}
                 </City>
               ))}
       </Submenu>

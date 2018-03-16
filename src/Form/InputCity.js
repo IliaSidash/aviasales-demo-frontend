@@ -90,7 +90,7 @@ class InputCity extends React.Component {
     if (this.props.value) {
       return (
         <CustomInput>
-          <Input items={['Барселона', 'Москва', 'Екатеринбург']} placeholder={this.props.value} />
+          <Input cities={['Барселона', 'Москва', 'Екатеринбург']} placeholder={this.props.value} />
           <Airport styled={this.state.arrowsIsShowed}>{this.props.air} </Airport>
           <Arrows src={arrows} styled={this.state.arrowsIsShowed} />
         </CustomInput>
@@ -98,7 +98,7 @@ class InputCity extends React.Component {
     }
     return (
       <CustomInput>
-        <Input items={['Барселона', 'Москва', 'Екатеринбург']} placeholder="Город прибытия" />
+        <Input cities={['Барселона', 'Москва', 'Екатеринбург']} placeholder="Город прибытия" />
       </CustomInput>
     );
   }
