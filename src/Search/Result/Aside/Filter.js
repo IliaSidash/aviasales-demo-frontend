@@ -74,17 +74,11 @@ class Filter extends React.Component {
 }
 
 Filter.propTypes = {
-  filter: PropTypes.shape({
-    id: PropTypes.number,
-    checkboxes: PropTypes.string,
-    isOpen: PropTypes.bool,
-  }).isRequired,
-  airoportDepart: PropTypes.string.isRequired,
-  airoportArrival: PropTypes.string.isRequired,
-  departFrom: PropTypes.number.isRequired,
-  departTo: PropTypes.number.isRequired,
-  returnFrom: PropTypes.number.isRequired,
-  returnTo: PropTypes.number.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  children: PropTypes.element.isRequired,
+  title: PropTypes.string.isRequired,
+  reset: PropTypes.bool.isRequired,
+  onClickReset: PropTypes.func.isRequired,
 };
 
 export default Filter;
