@@ -92,8 +92,9 @@ class Time extends React.Component {
 }
 
 Time.propTypes = {
-  airoportArrival: PropTypes.string.isRequired,
-  airoportDepart: PropTypes.string.isRequired,
+  directions: PropTypes.arrayOf(PropTypes.shape({
+    checkboxes: PropTypes.array,
+  })).isRequired,
 };
 
 export default Time;
