@@ -83,7 +83,6 @@ const Checkbox = (props) => {
 
 Checkbox.propTypes = {
   id: PropTypes.number.isRequired,
-  index: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
